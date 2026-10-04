@@ -384,6 +384,19 @@
       // Test Flight Simulator
       const testFlightBtn = document.getElementById('testFlightBtn');
       if (testFlightBtn) testFlightBtn.addEventListener('click', () => this.startTestFlight());
+
+      // Fly My Drone across site-wide journey
+      const flyMyDroneBtn = document.getElementById('flyMyDroneBtn');
+      if (flyMyDroneBtn) flyMyDroneBtn.addEventListener('click', () => this.flyMyDrone());
+    }
+
+    flyMyDrone() {
+      if (window.AeroGame) {
+        window.AeroGame.setActiveDrone(this.currentBuild);
+        window.AeroGame.audio.coin();
+        window.AeroGame.unlockBadge('FLY_MY_DRONE');
+        alert(`"${this.currentBuild.name}" has been deployed as your Hero Drone across the website flight journey!`);
+      }
     }
 
     randomize() {
@@ -568,7 +581,11 @@
         { name: 'Mahanadi Flood Seeker', author: 'Pilot Anshuman', body: 'Hexacopter Alpha', likes: 142 },
         { name: 'PharmaExpress Cryo', author: 'Dr. S. Mohanty', body: 'Quad Stealth', likes: 98 },
         { name: 'Rayagada Mountain Titan', author: 'Siddharth N.', body: 'Titan Octocopter', likes: 184 },
-        { name: 'Coastal Recon VTOL', author: 'Ritika M.', body: 'VTOL Hybrid', likes: 231 }
+        { name: 'Coastal Recon VTOL', author: 'Ritika M.', body: 'VTOL Hybrid', likes: 231 },
+        { name: 'Apex Sentinel Interceptor', author: 'Cmdr. Vikram', body: 'Quad Stealth', likes: 310 },
+        { name: 'Cyclone Lifeline Heavy', author: 'Odisha SDMA Team', body: 'Titan Octocopter', likes: 275 },
+        { name: 'Kalinganagar Industrial Surveyor', author: 'Tata Steel Logistics', body: 'Hexacopter Alpha', likes: 165 },
+        { name: 'Deep Forest LiDAR Explorer', author: 'Forestry GIS Wing', body: 'VTOL Hybrid', likes: 195 }
       ];
 
       container.innerHTML = communityDrones.map(d => `

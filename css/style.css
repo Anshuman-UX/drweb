@@ -1121,81 +1121,517 @@ h1, h2, h3, h4, h5, h6 {
   fill: var(--clr-text-muted);
 }
 
-/* ---------- Team ---------- */
-.team-card {
-  position: relative;
-  background: var(--grad-card);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-lg);
-  text-align: center;
-  transition: transform var(--dur-normal) var(--ease-out),
-              border-color var(--dur-normal) ease;
+/* ---------- Drone Flight Journey (Signature Feature) ---------- */
+.flight-journey-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
   overflow: hidden;
 }
-.team-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--clr-border-hover);
+
+#flight-motion-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
-.team-card__avatar {
-  width: 100px;
-  height: 100px;
+
+.flight-motion-path {
+  fill: none;
+  stroke: rgba(0, 229, 255, 0.15);
+  stroke-width: 2;
+  stroke-dasharray: 6 8;
+  transition: stroke 0.3s ease;
+}
+
+.flight-trail-ribbon {
+  fill: none;
+  stroke: url(#flightTrailGrad);
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.8));
+}
+
+.hero-flight-drone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  z-index: 95;
+  pointer-events: auto;
+  cursor: grab;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 15px rgba(0, 229, 255, 0.35));
+  transition: filter 0.3s ease;
+  will-change: transform;
+}
+.hero-flight-drone:active {
+  cursor: grabbing;
+}
+.hero-flight-drone.barrel-rolling {
+  animation: droneBarrelRoll 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes droneBarrelRoll {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.25); filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.9)); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+/* Rotor spinning */
+.propeller-spin-fast {
+  transform-origin: center;
+  animation: propSpinFast 0.08s linear infinite;
+}
+@keyframes propSpinFast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Flight Zones */
+.flight-zone {
+  position: relative;
+  overflow: hidden;
+}
+.flight-zone-takeoff {
+  background: radial-gradient(circle at 50% 85%, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+}
+.flight-zone-cruise {
+  position: relative;
+}
+.flight-zone-flyover {
+  position: relative;
+}
+.flight-zone-portal {
+  position: relative;
+}
+.flight-zone-night {
+  background: radial-gradient(circle at 50% 50%, rgba(10, 14, 26, 0.95) 0%, #03050a 100%);
+}
+.flight-zone-landing {
+  position: relative;
+}
+
+/* Portal ring animation */
+.portal-ring {
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  margin: 0 auto var(--sp-md);
-  background: var(--grad-cyan);
+  border: 3px solid var(--clr-cyan);
+  box-shadow: 0 0 40px var(--clr-cyan), inset 0 0 40px var(--clr-cyan);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: portalPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes portalPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; box-shadow: 0 0 70px var(--clr-cyan), inset 0 0 60px var(--clr-cyan); }
+}
+
+/* Searchlight effect in Night Mission */
+.searchlight-cone {
+  position: fixed;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.18) 0%, rgba(0, 229, 255, 0.04) 45%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 14;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  mix-blend-mode: screen;
+}
+.searchlight-cone.active {
+  opacity: 1;
+}
+
+/* Laser scanner line */
+.laser-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clr-cyan), #fff, var(--clr-cyan), transparent);
+  box-shadow: 0 0 15px var(--clr-cyan);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Landing Pad Target */
+.landing-pad-target {
+  width: 180px;
+  height: 180px;
+  margin: 2rem auto;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px dashed rgba(0, 229, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.03);
+}
+.landing-pad-target::before {
+  content: 'H';
   font-family: var(--ff-heading);
-  font-size: 2rem;
-  font-weight: var(--fw-black);
-  color: var(--clr-bg);
-  border: 3px solid rgba(0,229,255,.3);
-}
-.team-card__name {
-  font-size: var(--fs-h4);
-  font-weight: var(--fw-semibold);
-  margin-bottom: 0.2rem;
-}
-.team-card__role {
-  font-size: var(--fs-sm);
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--clr-cyan);
-  font-weight: var(--fw-medium);
-  margin-bottom: var(--sp-sm);
+  text-shadow: 0 0 20px var(--clr-cyan);
 }
-.team-card__bio {
-  font-size: var(--fs-sm);
-  color: var(--clr-text-dim);
-  line-height: var(--lh-body);
-  margin-bottom: var(--sp-md);
+.landing-pad-lights {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #00e676;
+  border-bottom-color: #00e676;
+  animation: padLights 2s linear infinite;
 }
-.team-card__socials {
+@keyframes padLights {
+  to { transform: rotate(360deg); }
+}
+
+/* Cockpit HUD Overlay */
+.cockpit-hud {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(5, 8, 16, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+  z-index: 90;
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  color: var(--clr-cyan);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 229, 255, 0.05);
   display: flex;
-  justify-content: center;
-  gap: var(--sp-xs);
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 220px;
+  user-select: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.team-card__social {
-  width: 36px;
-  height: 36px;
+.cockpit-hud-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.35rem;
+}
+.cockpit-hud-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-green);
+  box-shadow: 0 0 8px var(--clr-green);
+  animation: blinkStatus 1.5s infinite;
+}
+@keyframes blinkStatus {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.cockpit-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 0.8rem;
+}
+.telemetry-item {
+  display: flex;
+  justify-content: space-between;
+}
+.telemetry-label {
+  color: var(--clr-text-dim);
+}
+.telemetry-val {
+  color: #fff;
+  font-weight: 600;
+}
+.cockpit-battery-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.2rem;
+}
+.cockpit-battery-fill {
+  height: 100%;
+  width: 98%;
+  background: var(--clr-cyan);
+  transition: width 0.3s ease;
+}
+
+/* Flight Tracker Sidebar / Mini-Map */
+.flight-tracker-map {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(5, 8, 16, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 30px;
+  padding: 1.25rem 0.6rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.flight-waypoint {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1a2340;
+  border: 2px solid var(--clr-cyan);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.flight-waypoint:hover, .flight-waypoint.active {
+  background: var(--clr-cyan);
+  box-shadow: 0 0 12px var(--clr-cyan);
+  transform: scale(1.35);
+}
+.flight-waypoint-tooltip {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0f1729;
+  border: 1px solid var(--clr-cyan);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
+  color: var(--clr-cyan);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.flight-waypoint:hover .flight-waypoint-tooltip {
+  opacity: 1;
+}
+.flight-autopilot-btn {
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid var(--clr-cyan);
+  color: var(--clr-cyan);
+  border-radius: 20px;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.flight-autopilot-btn:hover, .flight-autopilot-btn.active {
+  background: var(--clr-cyan);
+  color: #050810;
+  font-weight: 700;
+  box-shadow: 0 0 12px var(--clr-cyan);
+}
+
+/* Jet-wash Headline Reveal */
+.jet-wash-reveal {
+  background: linear-gradient(90deg, #fff 0%, #fff 50%, rgba(255,255,255,0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+/* ---------- Cinematic Showreel Styles ---------- */
+.showreel-hero-teaser {
+  position: relative;
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 229, 255, 0.15);
+  background: #000;
+}
+.showreel-teaser-inner {
+  aspect-ratio: 21 / 9;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--clr-border);
-  transition: all var(--dur-fast) var(--ease-bounce);
+  overflow: hidden;
 }
-.team-card__social:hover {
+.showreel-theater-view {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  aspect-ratio: 2.39 / 1;
+  background: #020408;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 229, 255, 0.15);
+}
+.showreel-letterbox-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6%;
+  background: #000;
+  z-index: 50;
+  pointer-events: none;
+}
+.showreel-letterbox-top { top: 0; }
+.showreel-letterbox-bottom { bottom: 0; }
+
+.showreel-film-grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 0);
+  background-size: 3px 3px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 40;
+}
+.showreel-lens-flare {
+  position: absolute;
+  width: 500px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.8), #fff, rgba(0, 229, 255, 0.8), transparent);
+  box-shadow: 0 0 25px var(--clr-cyan);
+  opacity: 0;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  z-index: 42;
+  transition: opacity 0.5s ease;
+}
+
+.showreel-caption-box {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(5, 8, 16, 0.75);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 6px 18px;
+  border-radius: 20px;
+  color: #fff;
+  font-family: var(--ff-heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  z-index: 45;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.showreel-controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(2, 4, 8, 0.95));
+  padding: 1rem 1.5rem;
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: opacity 0.3s ease;
+}
+.showreel-scrubber-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.showreel-scrubber-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--clr-cyan), #00e676);
+  border-radius: 3px;
+  position: relative;
+}
+.showreel-chapter-ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.showreel-tick {
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.showreel-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--ff-mono);
+  font-size: 0.8rem;
+  color: var(--clr-text-dim);
+}
+.showreel-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.showreel-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.showreel-ctrl-btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--clr-cyan);
+}
+.showreel-speed-pill {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+.showreel-speed-pill.active {
+  background: var(--clr-cyan);
+  color: #050810;
+  font-weight: 700;
   border-color: var(--clr-cyan);
-  background: rgba(0,229,255,.08);
-  transform: translateY(-3px);
 }
-.team-card__social svg {
-  width: 16px;
-  height: 16px;
-  fill: var(--clr-text-dim);
-  transition: fill var(--dur-fast) ease;
+
+/* Mobile responsive for flight and showreel */
+@media (max-width: 768px) {
+  .cockpit-hud { display: none; }
+  .flight-tracker-map { right: 8px; scale: 0.85; }
+  .hero-flight-drone { width: 65px; height: 65px; }
+  .showreel-theater-view { aspect-ratio: 16 / 9; }
+  .showreel-caption-box { font-size: 0.85rem; padding: 4px 12px; }
 }
-.team-card__social:hover svg { fill: var(--clr-cyan); }
 
 /* ---------- FAQ Accordion ---------- */
 .accordion__item {

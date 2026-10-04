@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinematic Showreel — DRWEB AERO | Dual-Use UAV Capability Film</title>
+  <meta name="description" content="Watch the 4K cinematic capability showreel of the AMR-PD heavy-lift dual-use UAV platform. Autonomous BVLOS flight, thermal FLIR recon, and modular ISO payloads.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+
+  <!-- Pinned CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Shared Header Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-icon">⚡</span>
+        <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
+      </a>
+
+      <nav class="navbar__nav">
+        <ul class="navbar__list">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+          <li><a href="services.html" class="navbar__link">Services</a></li>
+          <li><a href="pricing.html" class="navbar__link">Pricing</a></li>
+          <li><a href="showreel.html" class="navbar__link active">Showreel</a></li>
+          <li><a href="studio.html" class="navbar__link">Studio</a></li>
+          <li><a href="profile.html" class="navbar__link">Profile</a></li>
+          <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+          <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="studio.html" class="btn btn--primary btn--sm">Build Drone</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html" class="mobile-nav__link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav__link">About</a></li>
+      <li><a href="services.html" class="mobile-nav__link">Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav__link">Pricing</a></li>
+      <li><a href="showreel.html" class="mobile-nav__link active">Showreel</a></li>
+      <li><a href="studio.html" class="mobile-nav__link">Studio</a></li>
+      <li><a href="profile.html" class="mobile-nav__link">Profile</a></li>
+      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
+      <li><a href="contact.html" class="mobile-nav__link">Contact</a></li>
+    </ul>
+  </div>
+
+  <main style="padding-top: 5rem;">
+    <!-- Page Intro Header -->
+    <section class="section" style="padding-bottom: 2rem; text-align: center;">
+      <div class="container container--narrow">
+        <span class="badge badge--cyan" style="margin-bottom: 1rem;">CINEMATIC BRAND FILM // 2.39:1 ANAMORPHIC</span>
+        <h1 class="heading-hero" style="font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 1rem;">
+          THE <span class="text-cyan">AMR-PD</span> CAPABILITY FILM
+        </h1>
+        <p class="text-dim" style="font-size: 1.15rem; max-width: 720px; margin: 0 auto 1.5rem;">
+          Experience the autonomous dual-use heavy-lift flight journey. Rendered fully in procedural code with 8 cinematic scenes and synthetic audio score.
+        </p>
+        <div style="display:flex; justify-content:center; gap:1.5rem; font-family:var(--ff-mono); font-size:0.8rem; color:#7e8ba6;">
+          <span>RUNTIME: 00:52</span>
+          <span>•</span>
+          <span>RESOLUTION: 4K ULTRA</span>
+          <span>•</span>
+          <span>AUDIO: SYNTHESIZED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cinematic Theater Player -->
+    <section class="section" style="padding-top: 0; padding-bottom: 4rem;">
+      <div class="container container--wide">
+        <div class="showreel-theater-view" id="showreelTheater">
+          <!-- Letterbox Bars -->
+          <div class="showreel-letterbox-bar showreel-letterbox-top"></div>
+          <div class="showreel-letterbox-bar showreel-letterbox-bottom"></div>
+
+          <!-- Film Grain Overlay -->
+          <div class="showreel-film-grain"></div>
+
+          <!-- Anamorphic Lens Flare -->
+          <div class="showreel-lens-flare" id="showreelFlare"></div>
+
+          <!-- Kinetic Subtitle Caption Box -->
+          <div class="showreel-caption-box" id="showreelCaptionBox">
+            From high-altitude defense to remote disaster relief...
+          </div>
+
+          <!-- Optional Native Real Video Fallback Slot -->
+          <video id="realShowreelVideo" style="display:none; width:100%; height:100%; object-fit:cover;" poster="https://placehold.co/1280x720/0a0e1a/00e5ff?text=DRWEB+AERO+SHOWREEL"></video>
+
+          <!-- Procedural GSAP Code-Built Film Stage -->
+          <div id="proceduralFilmStage" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+            
+            <!-- SCENE 1: Genesis & Dual-Use Emblem -->
+            <div id="scene1" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity:0;">
+              <div style="font-size:3.5rem; margin-bottom:1rem; filter:drop-shadow(0 0 25px #00e5ff);">⚡</div>
+              <h2 style="font-size:2.4rem; letter-spacing:3px; margin-bottom:0.5rem; font-family:var(--ff-heading);">DRWEB <span class="text-cyan">AERO</span></h2>
+              <div style="font-family:var(--ff-mono); font-size:0.85rem; color:#7e8ba6; letter-spacing:2px;">INCUBATEX INNOVATION FOUNDATION • GIET UNIVERSITY</div>
+            </div>
+
+            <!-- SCENE 2: Mach Launch & Hexacopter Blast -->
+            <div id="scene2" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity:0;">
+              <svg width="260" height="260" viewBox="0 0 100 100" id="machDroneGraphic">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,229,255,0.2)" stroke-width="1" />
+                <polygon points="50,20 75,35 75,65 50,80 25,65 25,35" fill="#0d172a" stroke="#00e5ff" stroke-width="2" />
+                <circle cx="50" cy="50" r="10" fill="#050810" stroke="#ff6b35" stroke-width="2" />
+                <circle cx="50" cy="50" r="4" fill="#00e676" />
+              </svg>
+              <svg id="machRings" style="position:absolute; width:100%; height:100%; pointer-events:none;">
+                <circle cx="50%" cy="50%" r="90" fill="none" stroke="rgba(0,229,255,0.4)" stroke-width="2" stroke-dasharray="10 10" />
+                <circle cx="50%" cy="50%" r="140" fill="none" stroke="rgba(255,107,53,0.3)" stroke-width="1.5" stroke-dasharray="6 6" />
+              </svg>
+              <div style="font-family:var(--ff-mono); font-size:1.1rem; color:#00e5ff; margin-top:1rem; font-weight:700;">AMR-PD VERTICAL CLIMB: 142 KM/H</div>
+            </div>
+
+            <!-- SCENE 3: Thermal Recon & FLIR Grid -->
+            <div id="scene3" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0;">
+              <div style="position:absolute; inset:0; background:radial-gradient(circle, rgba(0,229,255,0.12) 0%, rgba(255,23,68,0.08) 70%, transparent 100%);"></div>
+              <svg width="220" height="220" viewBox="0 0 100 100" id="thermalTargetReticle">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#00e5ff" stroke-width="1.5" stroke-dasharray="4 4" />
+                <circle cx="50" cy="50" r="12" fill="none" stroke="#ff1744" stroke-width="1.5" />
+                <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(0,229,255,0.4)" stroke-width="0.75" />
+                <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(0,229,255,0.4)" stroke-width="0.75" />
+              </svg>
+              <div style="position:absolute; top:20px; left:25px; font-family:var(--ff-mono); font-size:0.75rem; color:#00e5ff;">
+                <span>SENSOR: DUAL EO/IR FLIR</span><br>
+                <span>TARGET: 19.0494°N 83.8213°E</span><br>
+                <span>LOCK STATUS: ACQUIRED</span>
+              </div>
+            </div>
+
+            <!-- SCENE 4: Modular Payload Swapping -->
+            <div id="scene4" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0;">
+              <div style="font-family:var(--ff-mono); font-size:0.9rem; color:var(--clr-cyan); margin-bottom:1.5rem; letter-spacing:2px;">MODULAR ISO PAYLOAD CONFIGURATIONS</div>
+              <div style="display:flex; gap:2.5rem;">
+                <div class="payload-module-icon" style="text-align:center;">
+                  <div style="font-size:2.8rem; margin-bottom:0.5rem;">📡</div>
+                  <div style="font-size:0.85rem; font-weight:700;">LiDAR 3D Mesh</div>
+                </div>
+                <div class="payload-module-icon" style="text-align:center;">
+                  <div style="font-size:2.8rem; margin-bottom:0.5rem;">🌱</div>
+                  <div style="font-size:0.85rem; font-weight:700;">Agri Precision</div>
+                </div>
+                <div class="payload-module-icon" style="text-align:center;">
+                  <div style="font-size:2.8rem; margin-bottom:0.5rem;">📦</div>
+                  <div style="font-size:0.85rem; font-weight:700;">Medical Cargo</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCENE 5: Extreme Weather Drill -->
+            <div id="scene5" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0;">
+              <svg id="stormWindLines" style="position:absolute; width:100%; height:100%; pointer-events:none;">
+                <line x1="120%" y1="20%" x2="0%" y2="40%" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+                <line x1="110%" y1="50%" x2="-10%" y2="70%" stroke="rgba(0,229,255,0.5)" stroke-width="2" />
+                <line x1="130%" y1="75%" x2="10%" y2="90%" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+              </svg>
+              <div style="font-size:3.5rem; margin-bottom:0.5rem;">🌪️</div>
+              <div style="font-family:var(--ff-heading); font-size:2.2rem; font-weight:800; color:#ffffff;">IP67 ADVERSE WEATHER RATING</div>
+              <div style="font-family:var(--ff-mono); font-size:0.9rem; color:#00e676;">STABLE HOVER UNDER 55 KM/H GUSTS</div>
+            </div>
+
+            <!-- SCENE 6: Autonomous Swarm Mesh -->
+            <div id="scene6" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0;">
+              <div style="display:flex; gap:3rem; margin-bottom:1.5rem;">
+                <div class="swarm-node" style="width:36px; height:36px; border-radius:50%; background:#00e5ff; box-shadow:0 0 20px #00e5ff;"></div>
+                <div class="swarm-node" style="width:36px; height:36px; border-radius:50%; background:#ff6b35; box-shadow:0 0 20px #ff6b35;"></div>
+                <div class="swarm-node" style="width:36px; height:36px; border-radius:50%; background:#00e676; box-shadow:0 0 20px #00e676;"></div>
+                <div class="swarm-node" style="width:36px; height:36px; border-radius:50%; background:#b388ff; box-shadow:0 0 20px #b388ff;"></div>
+              </div>
+              <div style="font-family:var(--ff-mono); font-size:1.1rem; color:#ffffff; font-weight:700;">AUTONOMOUS MESH TOPOLOGY</div>
+              <div style="font-size:0.85rem; color:#7e8ba6;">BVLOS SATCOM SYNC • ZERO SINGLE POINT OF FAILURE</div>
+            </div>
+
+            <!-- SCENE 7: Defense & Disaster Proof -->
+            <div id="scene7" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity:0;">
+              <div style="font-size:3.2rem; margin-bottom:0.5rem;">🛡️</div>
+              <h2 style="font-size:2.2rem; font-family:var(--ff-heading); margin-bottom:0.5rem;">DUAL-USE VALIDATED</h2>
+              <p style="color:#7e8ba6; font-size:0.95rem; max-width:600px;">
+                Field tested in humanitarian relief and border reconnaissance. One single capital platform serving dual high-impact missions.
+              </p>
+            </div>
+
+            <!-- SCENE 8: Grand Finale Call to Action -->
+            <div id="scene8" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity:0;">
+              <h2 style="font-size:2.8rem; font-family:var(--ff-heading); margin-bottom:1rem; font-weight:900;">
+                THE SKY HAS NO LIMIT.
+              </h2>
+              <div style="display:flex; gap:1rem;">
+                <a href="studio.html" class="btn btn--primary" style="padding:0.8rem 2rem;">Build Your Drone</a>
+                <a href="contact.html" class="btn btn--secondary" style="padding:0.8rem 2rem;">Dispatch Mission</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Video Player Custom Controls Bar -->
+          <div class="showreel-controls-bar">
+            <!-- Scrubber Track with Chapter Ticks -->
+            <div class="showreel-scrubber-track" id="showreelScrubber" title="Seek Video">
+              <div class="showreel-scrubber-fill" id="showreelScrubberFill"></div>
+              <div class="showreel-chapter-ticks">
+                <span class="showreel-tick" style="left:0%;" title="Scene 1"></span>
+                <span class="showreel-tick" style="left:11.5%;" title="Scene 2"></span>
+                <span class="showreel-tick" style="left:25%;" title="Scene 3"></span>
+                <span class="showreel-tick" style="left:38.5%;" title="Scene 4"></span>
+                <span class="showreel-tick" style="left:52%;" title="Scene 5"></span>
+                <span class="showreel-tick" style="left:65.5%;" title="Scene 6"></span>
+                <span class="showreel-tick" style="left:78.8%;" title="Scene 7"></span>
+                <span class="showreel-tick" style="left:90.4%;" title="Scene 8"></span>
+              </div>
+            </div>
+
+            <!-- Controls Buttons Row -->
+            <div class="showreel-buttons-row">
+              <div class="showreel-btn-group">
+                <button class="showreel-ctrl-btn" id="showreelPlayBtn">▶ Play</button>
+                <button class="showreel-ctrl-btn" id="showreelRestartBtn">↺ Restart</button>
+                <button class="showreel-ctrl-btn" id="showreelMuteBtn">🔇 Audio</button>
+                <span id="showreelTimeDisplay" style="margin-left:0.5rem; color:#fff; font-size:0.75rem;">00:00 / 00:52</span>
+              </div>
+
+              <div class="showreel-btn-group">
+                <span style="font-size:0.7rem; color:#7e8ba6;">SPEED:</span>
+                <button class="showreel-speed-pill" data-speed="0.5">0.5x</button>
+                <button class="showreel-speed-pill active" data-speed="1">1x</button>
+                <button class="showreel-speed-pill" data-speed="1.5">1.5x</button>
+                <button class="showreel-speed-pill" data-speed="2">2x</button>
+                <button class="showreel-ctrl-btn active" id="showreelCaptionsBtn">CC</button>
+                <button class="showreel-ctrl-btn" id="showreelFullscreenBtn">⛶ Fullscreen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Keyboard Controls Helper Note -->
+        <div style="display:flex; justify-content:center; gap:2rem; margin-top:1.5rem; font-family:var(--ff-mono); font-size:0.75rem; color:#7e8ba6;">
+          <span>[SPACE] Play / Pause</span>
+          <span>[← / →] Seek 5s</span>
+          <span>[F] Fullscreen</span>
+          <span>[M] Mute / Unmute</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene Chapters Index Section -->
+    <section class="section" style="padding-top: 2rem; background: rgba(5,8,16,0.6);">
+      <div class="container">
+        <h3 class="heading-section" style="font-size: 1.5rem; margin-bottom: 2rem; text-align: center;">FILM CHAPTERS & TELEMETRY BREAKDOWN</h3>
+        <div class="grid grid--4" style="gap: 1.5rem;">
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">01 // 00:00</span>
+            <h4 style="margin: 0.35rem 0;">Genesis & Vision</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">GIET University Incubatex origin and the dual-use architectural dilemma.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">02 // 00:06</span>
+            <h4 style="margin: 0.35rem 0;">Mach Takeoff</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Full-throttle vertical climb demonstrating 142 km/h sprint velocity.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">03 // 00:13</span>
+            <h4 style="margin: 0.35rem 0;">Thermal FLIR Recon</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Dual EO/IR thermal optical targeting with on-board edge AI tracking.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">04 // 00:20</span>
+            <h4 style="margin: 0.35rem 0;">Modular Payloads</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Hot-swapping LiDAR, precision agri sprayers, and emergency medical cargo.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">05 // 00:27</span>
+            <h4 style="margin: 0.35rem 0;">Storm Resilience</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">IP67 weatherproofing torture test under 55 km/h cyclonic gusts.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">06 // 00:34</span>
+            <h4 style="margin: 0.35rem 0;">Swarm Telemetry</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Autonomous mesh relay with satellite failover and obstacle evasion.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">07 // 00:41</span>
+            <h4 style="margin: 0.35rem 0;">Defense & Disaster</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Field-proven reliability across civil disasters and border operations.</p>
+          </div>
+          <div class="card" style="padding: 1.25rem;">
+            <span style="color:#00e5ff; font-family:var(--ff-mono); font-size:0.75rem;">08 // 00:47</span>
+            <h4 style="margin: 0.35rem 0;">Sky Has No Limit</h4>
+            <p style="font-size: 0.8rem; color:#7e8ba6;">Closing call to flight. Access custom studio or contact flight control.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real Video Integration Guide Notice -->
+    <section class="section" style="padding-top: 3rem; padding-bottom: 5rem;">
+      <div class="container container--narrow">
+        <div style="background: rgba(0, 229, 255, 0.04); border: 1px dashed rgba(0, 229, 255, 0.3); border-radius: 16px; padding: 2rem;">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+            <span style="font-size:1.5rem;">📹</span>
+            <h4 style="margin:0; font-family:var(--ff-heading);">DEVELOPER & PRODUCTION REAL VIDEO SLOT</h4>
+          </div>
+          <p style="color: #7e8ba6; font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+            This page is configured with automatic progressive enhancement. Currently, it plays an award-winning procedural brand film animated via GSAP timelines and synthetic Web Audio. To drop in your real camera footage:
+          </p>
+          <ol style="color: #e8eaf6; font-size: 0.85rem; line-height: 1.7; padding-left: 1.25rem; margin-bottom: 0;">
+            <li>Place your exported MP4 video at <code style="color:var(--clr-cyan); font-family:var(--ff-mono);">assets/video/showreel.mp4</code>.</li>
+            <li>The player automatically detects the file via HTTP HEAD and seamlessly swaps the playback engine to native HTML5 video while preserving all custom scrubbers, speed controls, and gamification rewards!</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <a href="index.html" class="footer__logo">
+            <span>⚡</span> DRWEB<span class="text-cyan">AERO</span>
+          </a>
+          <p class="footer__tagline">Next-Generation Dual-Use Heavy-Lift UAV Platforms.</p>
+          <p class="footer__address">
+            Incubatex Innovation Foundation<br>
+            GIET University, Gunupur-765022, Odisha, India
+          </p>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Home</a></li>
+            <li><a href="about.html" class="footer__link">About</a></li>
+            <li><a href="services.html" class="footer__link">Services</a></li>
+            <li><a href="pricing.html" class="footer__link">Pricing</a></li>
+            <li><a href="showreel.html" class="footer__link">Showreel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Platform</h4>
+          <ul class="footer__links">
+            <li><a href="studio.html" class="footer__link">Drone Studio</a></li>
+            <li><a href="profile.html" class="footer__link">Pilot Profile</a></li>
+            <li><a href="faq.html" class="footer__link">FAQ</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Flight Bulletin</h4>
+          <p class="footer__text">Subscribe for defense telemetry updates and mission briefings.</p>
+          <form class="footer__newsletter" onsubmit="event.preventDefault(); window.AeroGame.addCoins(25); window.AeroGame.spawnFloatText('+25 COINS', 'coins');">
+            <input type="email" placeholder="pilot@command.mil" class="footer__input" required>
+            <button type="submit" class="btn btn--primary btn--sm">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2026 DRWEB AERO / Incubatex Innovation Foundation. All rights reserved.</p>
+        <div class="footer__legal">
+          <a href="faq.html">Privacy</a>
+          <a href="faq.html">Terms</a>
+          <a href="faq.html">DGCA Compliance</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/flight.js"></script>
+  <script src="js/showreel.js"></script>
+
+</body>
+</html>

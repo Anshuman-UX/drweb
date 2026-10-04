@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pilot Profile & License | DRWEB AERO</title>
+  <title>Pilot Profile &amp; License | DRWEB AERO</title>
   <meta name="description" content="View your DRWEB AERO pilot license, achievement wall, flight telemetry rank, and mission progression.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/game.css">
+
+  <!-- Pinned CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+
   <style>
     .license-card {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 69, 0.9));
@@ -65,6 +72,28 @@
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
     }
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .leaderboard-table th {
+      text-align: left;
+      padding: 10px;
+      color: var(--clr-cyan);
+      border-bottom: 1px solid rgba(0,229,255,0.2);
+      font-family: var(--ff-mono);
+    }
+    .leaderboard-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .leaderboard-table tr.user-row {
+      background: rgba(0,229,255,0.08);
+      font-weight: 700;
+      color: #fff;
+    }
     @media (max-width: 768px) {
       .badge-wall-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -77,47 +106,49 @@
   <div class="page-transition"></div>
 
   <!-- Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
       <a href="index.html" class="navbar__logo">
-        <svg class="navbar__logo-icon" viewBox="0 0 40 40" fill="none">
-          <polygon points="20,4 36,14 36,28 20,38 4,28 4,14" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,0.1)"/>
-          <circle cx="20" cy="20" r="6" fill="#00e5ff"/>
-          <line x1="20" y1="4" x2="20" y2="14" stroke="#ff6b35" stroke-width="2"/>
-        </svg>
-        DRWEB <span>AERO</span>
+        <span class="navbar__logo-icon">⚡</span>
+        <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
       </a>
 
-      <div class="navbar__links">
-        <a href="index.html" class="navbar__link">Home</a>
-        <a href="about.html" class="navbar__link">About</a>
-        <a href="services.html" class="navbar__link">Services</a>
-        <a href="pricing.html" class="navbar__link">Pricing</a>
-        <a href="studio.html" class="navbar__link">Studio</a>
-        <a href="arcade.html" class="navbar__link">Arcade</a>
-        <a href="profile.html" class="navbar__link active">Profile</a>
-        <a href="contact.html" class="navbar__link">Contact</a>
-      </div>
+      <nav class="navbar__nav">
+        <ul class="navbar__list">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="about.html" class="navbar__link">About</a></li>
+          <li><a href="services.html" class="navbar__link">Services</a></li>
+          <li><a href="pricing.html" class="navbar__link">Pricing</a></li>
+          <li><a href="showreel.html" class="navbar__link">Showreel</a></li>
+          <li><a href="studio.html" class="navbar__link">Studio</a></li>
+          <li><a href="profile.html" class="navbar__link active">Profile</a></li>
+          <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+          <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        </ul>
+      </nav>
 
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+      <div class="navbar__actions">
+        <a href="studio.html" class="btn btn--primary btn--sm">Build Drone</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
         </button>
-        <a href="studio.html" class="navbar__cta magnetic">Build Drone</a>
-        <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <div class="navbar__mobile" id="mobileNav">
-    <a href="index.html" class="navbar__link">Home</a>
-    <a href="about.html" class="navbar__link">About</a>
-    <a href="services.html" class="navbar__link">Services</a>
-    <a href="pricing.html" class="navbar__link">Pricing</a>
-    <a href="studio.html" class="navbar__link">Studio</a>
-    <a href="arcade.html" class="navbar__link">Arcade</a>
-    <a href="profile.html" class="navbar__link active">Profile</a>
-    <a href="contact.html" class="navbar__link">Contact</a>
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li><a href="index.html" class="mobile-nav__link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav__link">About</a></li>
+      <li><a href="services.html" class="mobile-nav__link">Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav__link">Pricing</a></li>
+      <li><a href="showreel.html" class="mobile-nav__link">Showreel</a></li>
+      <li><a href="studio.html" class="mobile-nav__link">Studio</a></li>
+      <li><a href="profile.html" class="mobile-nav__link active">Profile</a></li>
+      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
+      <li><a href="contact.html" class="mobile-nav__link">Contact</a></li>
+    </ul>
   </div>
 
   <main style="padding-top: 6rem;">
@@ -171,20 +202,47 @@
             <select id="editAvatarSelect" class="form__select" style="padding:0.4rem; font-size:0.85rem; width:80px;">
               <option value="🚁">🚁</option>
               <option value="🛸">🛸</option>
+              <option value="🛰️">🛰️</option>
               <option value="⚡">⚡</option>
               <option value="🦅">🦅</option>
-              <option value="🎯">🎯</option>
-              <option value="🛡️">🛡️</option>
             </select>
             <button class="btn btn--primary" id="savePilotInfoBtn" style="padding:0.45rem 1rem; font-size:0.8rem;">Save</button>
           </div>
         </div>
 
-        <!-- 20+ ACHIEVEMENTS WALL -->
+        <!-- PILOT LEADERBOARD -->
+        <div class="card" style="max-width: 720px; margin: 0 auto 3rem; padding: 1.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1.15rem; margin:0; font-family:var(--ff-heading);">GLOBAL PILOT LEADERBOARD</h3>
+            <span style="font-size:0.75rem; color:var(--clr-cyan); font-family:var(--ff-mono);">RANKED BY TELEMETRY XP</span>
+          </div>
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>RANK</th>
+                <th>CALLSIGN</th>
+                <th>CLASSIFICATION</th>
+                <th>XP SCORE</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTbody">
+              <tr><td>01</td><td>🦅 COMMANDER-VIPER</td><td>Sky Legend</td><td>8,450 XP</td></tr>
+              <tr><td>02</td><td>⚡ VECTOR-9</td><td>Master Aviator</td><td>6,200 XP</td></tr>
+              <tr><td>03</td><td>🛸 OD-RECON</td><td>Wing Commander</td><td>3,120 XP</td></tr>
+              <tr class="user-row" id="userLeaderboardRow">
+                <td>04</td><td id="lbUserCallsign">PILOT-01</td><td id="lbUserRank">Rookie Pilot</td><td id="lbUserXP">0 XP</td>
+              </tr>
+              <tr><td>05</td><td>🎯 SIDDHARTH-N</td><td>Squadron Leader</td><td>1,650 XP</td></tr>
+              <tr><td>06</td><td>🚁 RITIKA-M</td><td>Flight Cadet</td><td>280 XP</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 22 ACHIEVEMENTS WALL -->
         <div class="section__header" style="text-align: left; margin-top: 3rem; margin-bottom: 1.5rem;">
           <div class="section__label">HONOR ROLLS</div>
-          <h2 class="section__title" style="font-size: 1.8rem;">Aero Squadron Achievements (20 Badges)</h2>
-          <p class="section__subtitle">Unlock rare and legendary titles by performing high-wind sorties, engineering custom prototypes, and discovering easter eggs.</p>
+          <h2 class="section__title" style="font-size: 1.8rem;">Aero Squadron Achievements (22 Badges)</h2>
+          <p class="section__subtitle">Unlock rare and legendary titles by performing high-wind sorties, engineering custom prototypes, and screening the cinematic film.</p>
         </div>
 
         <div class="badge-wall-grid" id="badgeWallContainer"></div>
@@ -199,14 +257,57 @@
     </section>
   </main>
 
+  <!-- Shared Footer -->
   <footer class="footer">
-    <div class="container text-center" style="font-size: 0.8rem; color: var(--clr-text-muted);">
-      &copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="navbar__logo">
+            <span class="navbar__logo-icon">⚡</span>
+            <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
+          </a>
+          <p class="footer__brand-desc">
+            Modular Autonomous Heavy-Lift Drone Platform for Flood Disaster Relief &amp; Multi-Sector Logistics. Incubatex Foundation, GIET University.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Navigation</h4>
+          <a href="index.html" class="footer__link">Home</a>
+          <a href="about.html" class="footer__link">About &amp; Tech</a>
+          <a href="services.html" class="footer__link">Services</a>
+          <a href="pricing.html" class="footer__link">Pricing</a>
+          <a href="showreel.html" class="footer__link">4K Showreel</a>
+          <a href="studio.html" class="footer__link">Drone Studio</a>
+          <a href="profile.html" class="footer__link">Pilot Profile</a>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Support &amp; Legal</h4>
+          <a href="faq.html" class="footer__link">FAQ</a>
+          <a href="contact.html" class="footer__link">Mission Request (Contact)</a>
+          <a href="404.html" class="footer__link">Flight Radar (404)</a>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Secret Recon Drones</h4>
+          <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 0.5rem;">
+            10 micro drones are hidden throughout this platform. Discover them to unlock the "Surveyor General" badge and bonus coins.
+          </p>
+          <span class="scavenger-drone" data-scavenger-id="scav_profile_footer" title="Secret Recon Drone Found!">🛸</span>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div>&copy; 2026 DRWEB Aero. All rights reserved. Incubatex Innovation Foundation, GIET University, Gunupur-765022.</div>
+      </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/game.js"></script>
+  <script src="js/flight.js"></script>
   <script>
     (function(){
       function renderProfile() {
@@ -223,30 +324,40 @@
         const editCall = document.getElementById('editCallsignInput');
         if (editCall) editCall.value = s.callsign;
 
-        // Render 20 Badges
+        // Update leaderboard row
+        const lbCall = document.getElementById('lbUserCallsign');
+        const lbRank = document.getElementById('lbUserRank');
+        const lbXP = document.getElementById('lbUserXP');
+        if (lbCall) lbCall.textContent = s.callsign;
+        if (lbRank) lbRank.textContent = window.AeroGame.getRank().name;
+        if (lbXP) lbXP.textContent = `${s.xp} XP`;
+
+        // Render 22 Badges
         const grid = document.getElementById('badgeWallContainer');
         if (grid) {
           const ALL_BADGES = [
-            { id: 'FIRST_STEPS', title: 'First Steps', icon: '🛩️', tier: 'common', desc: 'Boarded the DRWEB AERO platform.' },
-            { id: 'PAGE_HOPPER', title: 'Scout Navigator', icon: '🗺️', tier: 'common', desc: 'Explored 3 different mission sectors.' },
-            { id: 'STUDIO_CREATOR', title: 'Drone Architect', icon: '🛠️', tier: 'rare', desc: 'Crafted your first custom drone in the Studio.' },
-            { id: 'THREE_BUILDS', title: 'Master Tinkerer', icon: '📐', tier: 'rare', desc: 'Saved 3 unique drone builds to your Hangar.' },
-            { id: 'PERFECT_BALANCE', title: 'Harmonic CoG', icon: '⚖️', tier: 'epic', desc: 'Engineered a build with Speed, Battery, & Stability above 70.' },
-            { id: 'RARE_COMBO', title: 'Apex Config', icon: '💎', tier: 'epic', desc: 'Equipped VTOL Frame, LiDAR, and Neon Trail.' },
+            { id: 'FIRST_STEPS', title: 'First Lift-Off', icon: '🛩️', tier: 'common', desc: 'Boarded the DRWEB AERO dual-use platform.' },
+            { id: 'PAGE_HOPPER', title: 'Scout Navigator', icon: '🗺️', tier: 'common', desc: 'Explored 3 distinct operational flight sectors.' },
+            { id: 'FLIGHT_JOURNEY', title: 'Sonic Cruiser', icon: '⚡', tier: 'common', desc: 'Navigated the hero drone through all 6 flight zones.' },
+            { id: 'BARREL_ROLL', title: 'Aerobatic Ace', icon: '🔄', tier: 'common', desc: 'Executed a 360-degree high-G barrel roll trick.' },
+            { id: 'RADIO_CHECK', title: 'Radio Check', icon: '🔊', tier: 'common', desc: 'Engaged the Web Audio telemetry synthesizer.' },
+            { id: 'FLIR_SCAN', title: 'FLIR Certified', icon: '🕶️', tier: 'common', desc: 'Toggled optical / thermal telemetry feed.' },
             { id: 'SCAVENGER_1', title: 'Eagle Eye', icon: '🔍', tier: 'common', desc: 'Discovered your first hidden micro drone.' },
-            { id: 'SCAVENGER_5', title: 'Recon Specialist', icon: '🎯', tier: 'rare', desc: 'Located 5 hidden micro drones across the site.' },
-            { id: 'SCAVENGER_10', title: 'Surveyor General', icon: '🏆', tier: 'legendary', desc: 'Found all 10 hidden micro drones in the fleet.' },
-            { id: 'DASH_ROOKIE', title: 'First Flight', icon: '⚡', tier: 'common', desc: 'Scored 100 points in Drone Dash.' },
-            { id: 'DASH_PRO', title: 'Storm Runner', icon: '🌪️', tier: 'rare', desc: 'Scored 500 points in Drone Dash.' },
-            { id: 'SKY_DROP_1', title: 'Payload Dropped', icon: '📦', tier: 'common', desc: 'Successfully delivered humanitarian aid in Sky Delivery.' },
-            { id: 'BULLSEYE', title: 'Precision Winch', icon: '🎯', tier: 'epic', desc: 'Achieved a 95%+ precision drop score.' },
-            { id: 'NIGHT_VISION', title: 'FLIR Certified', icon: '🕶️', tier: 'common', desc: 'Toggled Thermal Vision in the live demo.' },
-            { id: 'KONAMI_CHOPPER', title: 'Secret Agent', icon: '👾', tier: 'legendary', desc: 'Entered the legendary aviator override code.' },
+            { id: 'STUDIO_CREATOR', title: 'Drone Architect', icon: '🛠️', tier: 'rare', desc: 'Engineered your first custom drone in the Studio.' },
+            { id: 'AUTOPILOT_ACE', title: 'Auto-Pilot Ace', icon: '🛰️', tier: 'rare', desc: 'Engaged hands-free autonomous flight navigation.' },
+            { id: 'SHOWREEL_DIRECTOR', title: 'Cinema Director', icon: '🎬', tier: 'rare', desc: 'Screened the full cinematic brand film showreel.' },
+            { id: 'PRECISION_LAND', title: 'Touchdown Master', icon: '🛬', tier: 'rare', desc: 'Guided the hero drone onto the contact landing pad.' },
+            { id: 'REVENUE_ANALYST', title: 'CapEx Strategist', icon: '📊', tier: 'rare', desc: 'Explored all 4 streams of the AMR-PD revenue model.' },
             { id: 'FOUNDER_SECRET', title: 'Backer Insider', icon: '🤝', tier: 'rare', desc: 'Tapped the logo 5 times to reveal lab data.' },
             { id: 'STREAK_3', title: 'On Duty', icon: '🔥', tier: 'rare', desc: 'Maintained a 3-day operational flight streak.' },
-            { id: 'SOUND_EXPLORER', title: 'Radio Check', icon: '🔊', tier: 'common', desc: 'Engaged audio synthesizer telemetry.' },
-            { id: 'REVENUE_ANALYST', title: 'CapEx Strategist', icon: '📊', tier: 'rare', desc: 'Explored all 4 streams of the AMR-PD diagram.' },
-            { id: 'HIGH_ROLLER', title: 'Aero Tycoon', icon: '💰', tier: 'epic', desc: 'Accumulated 1,000 Aero Coins.' }
+            { id: 'SCAVENGER_5', title: 'Recon Specialist', icon: '🎯', tier: 'rare', desc: 'Located 5 hidden micro drones across the site.' },
+            { id: 'THREE_BUILDS', title: 'Master Tinkerer', icon: '📐', tier: 'rare', desc: 'Saved 3 unique custom builds in My Hangar.' },
+            { id: 'PERFECT_BALANCE', title: 'Harmonic CoG', icon: '⚖️', tier: 'epic', desc: 'Engineered a build with Speed, Battery, & Stability above 70.' },
+            { id: 'FLY_MY_DRONE', title: 'Flight Command', icon: '🎮', tier: 'epic', desc: 'Deployed your custom Studio drone into the site-wide Flight Journey.' },
+            { id: 'HIGH_ROLLER', title: 'Aero Tycoon', icon: '💰', tier: 'epic', desc: 'Accumulated 1,000 Aero Coins in the treasury.' },
+            { id: 'RARE_COMBO', title: 'Apex Config', icon: '💎', tier: 'epic', desc: 'Equipped VTOL Frame, LiDAR Sensor, and Neon Trail.' },
+            { id: 'SCAVENGER_10', title: 'Surveyor General', icon: '🏆', tier: 'legendary', desc: 'Discovered all 10 hidden micro drones in the fleet.' },
+            { id: 'KONAMI_CHOPPER', title: 'Secret Agent', icon: '👾', tier: 'legendary', desc: 'Entered the legendary aviator override code.' }
           ];
 
           grid.innerHTML = ALL_BADGES.map(b => {
@@ -286,6 +397,7 @@
         resetBtn.addEventListener('click', () => {
           if (confirm('Are you sure you want to reset all progress, levels, hangar builds, and coins?')) {
             localStorage.removeItem('drweb_game_state');
+            localStorage.removeItem('drweb_active_drone');
             location.reload();
           }
         });
