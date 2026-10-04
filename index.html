@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRWEB AERO | Modular Autonomous Heavy-Lift Drone for Disaster Relief & Freight</title>
+  <meta name="description" content="Next-generation dual-use heavy-lift UAV platform engineered for flood relief operations and high-frequency commercial logistics. Built at GIET University.">
+  <meta name="keywords" content="drone, heavy lift UAV, disaster relief drone, flood rescue, BVLOS, cargo drone, autonomous drone, GIET University">
+  <meta property="og:title" content="DRWEB AERO | Autonomous Heavy-Lift Drone Platform">
+  <meta property="og:description" content="One platform. Infinite missions. Solving the dual-use dilemma with hot-swappable payload rail and cellular BVLOS autonomy.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Hero Drone Live Feed / Video Simulation */
+    .video-showcase {
+      position: relative;
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      margin-top: var(--sp-xl);
+    }
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: radial-gradient(circle at center, #0d1e38 0%, #050914 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hud-scanner {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 229, 255, 0.08) 50%, transparent 100%);
+      background-size: 100% 200%;
+      animation: scanline 4s linear infinite;
+    }
+    @keyframes scanline {
+      0% { background-position: 0 -100%; }
+      100% { background-position: 0 100%; }
+    }
+    .video-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .video-hud-overlay {
+      position: absolute;
+      inset: 20px;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--clr-cyan);
+    }
+    .hud-top-bar {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(5, 8, 16, 0.6);
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+    .hud-target-box {
+      position: absolute;
+      top: 40%;
+      left: 45%;
+      width: 110px;
+      height: 110px;
+      border: 2px dashed var(--clr-cyan);
+      border-radius: 8px;
+      animation: targetPulse 2s ease-in-out infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4px;
+      font-size: 10px;
+      color: var(--clr-green);
+    }
+    @keyframes targetPulse {
+      0%, 100% { transform: scale(1); border-color: var(--clr-cyan); }
+      50% { transform: scale(1.06); border-color: var(--clr-orange); }
+    }
+    .mode-switch-pill {
+      display: inline-flex;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-full);
+      padding: 4px;
+      margin-bottom: var(--sp-md);
+      gap: 4px;
+    }
+    .mode-btn {
+      padding: 8px 20px;
+      border-radius: var(--radius-full);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-semibold);
+      color: var(--clr-text-dim);
+      transition: all var(--dur-normal) var(--ease-out);
+    }
+    .mode-btn.active {
+      background: var(--grad-cyan);
+      color: var(--clr-bg);
+      box-shadow: 0 0 15px rgba(0,229,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader__drone">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="16" fill="rgba(0,229,255,0.2)" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="28" y1="28" x2="92" y2="92" stroke="#00e5ff" stroke-width="3"/>
+        <line x1="92" y1="28" x2="28" y2="92" stroke="#00e5ff" stroke-width="3"/>
+        <line x1="15" y1="60" x2="105" y2="60" stroke="#00e5ff" stroke-width="3"/>
+        <circle cx="28" cy="28" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="92" cy="28" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="28" cy="92" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="92" cy="92" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="15" cy="60" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="105" cy="60" r="12" stroke="#00e5ff" stroke-width="2" class="prop-spin"/>
+        <circle cx="60" cy="60" r="5" fill="#ff6b35" class="led-blink"/>
+      </svg>
+    </div>
+    <div class="loader__bar-track">
+      <div class="loader__bar-fill"></div>
+    </div>
+    <div class="loader__percent">0%</div>
+    <div style="font-family: var(--ff-mono); font-size: 11px; color: var(--clr-text-dim); letter-spacing: 1px;">INITIALIZING AVIONICS & BVLOS TELEMETRY...</div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Animated Aurora Background -->
+  <div class="aurora-bg"></div>
+
+  <!-- Particle Starfield Canvas -->
+  <canvas id="particle-canvas" style="position: fixed; inset: 0; pointer-events: none; z-index: var(--z-bg);"></canvas>
+
+  <!-- Real-time HUD Viewfinder Overlay -->
+  <div class="hud-overlay">
+    <span class="hud-callsign">SYS: DRWEB-HEX-01</span>
+    <span class="hud-alt">ALT: 120 m</span>
+    <span class="hud-spd">SPD: 0 m/s</span>
+    <span class="hud-bat">BAT: 100% [52.8V]</span>
+    <span class="hud-gps">GPS: 20.4625°N 83.8275°E</span>
+    <span class="hud-link" style="color: var(--clr-green);">LINK: 5G BVLOS ACTIVE (12ms)</span>
+  </div>
+
+  <!-- Page Transition Curtain -->
+  <div class="page-transition"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <svg class="navbar__logo-icon" viewBox="0 0 40 40" fill="none">
+          <polygon points="20,4 36,14 36,28 20,38 4,28 4,14" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,0.1)"/>
+          <circle cx="20" cy="20" r="6" fill="#00e5ff"/>
+          <line x1="20" y1="4" x2="20" y2="14" stroke="#ff6b35" stroke-width="2"/>
+        </svg>
+        DRWEB <span>AERO</span>
+      </a>
+
+      <div class="navbar__links">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="services.html" class="navbar__link">Services</a>
+        <a href="pricing.html" class="navbar__link">Pricing</a>
+        <a href="team.html" class="navbar__link">Team</a>
+        <a href="faq.html" class="navbar__link">FAQ</a>
+        <a href="contact.html" class="navbar__link">Contact</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <a href="contact.html" class="navbar__cta magnetic">
+          <span>Deploy Drone</span>
+          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" fill="none"/></svg>
+        </a>
+
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle mobile menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="navbar__mobile" id="mobileNav">
+    <a href="index.html" class="navbar__link">Home</a>
+    <a href="about.html" class="navbar__link">About</a>
+    <a href="services.html" class="navbar__link">Services</a>
+    <a href="pricing.html" class="navbar__link">Pricing</a>
+    <a href="team.html" class="navbar__link">Team</a>
+    <a href="faq.html" class="navbar__link">FAQ</a>
+    <a href="contact.html" class="navbar__link">Contact</a>
+    <div style="margin-top: 2rem;">
+      <a href="contact.html" class="btn btn--primary" style="width: 100%;">Deploy Drone Fleet</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero__bg">
+        <div class="hero__grid-lines"></div>
+        <div class="hero__glow hero__glow--cyan"></div>
+        <div class="hero__glow hero__glow--purple"></div>
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            TRL 5 VALIDATED &bull; GIET UNIVERSITY INCUBATEX
+          </div>
+
+          <h1 class="hero__title">
+            <span class="line">Modular Autonomous</span>
+            <span class="line"><span class="highlight">Heavy-Lift Drone</span></span>
+            <span class="line">For Crisis & Freight</span>
+          </h1>
+
+          <p class="hero__desc">
+            Solving the dual-use dilemma. An open-architecture UAV with adaptive CoG compensation, tool-less quick-release payload rails, and cellular 5G BVLOS control. Operates daily as a high-margin commercial cargo carrier, redeploys instantly as a flood-relief lifeline.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#demo" class="btn btn--primary magnetic">
+              <span>Watch Live Flight Demo</span>
+              <svg width="18" height="18" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </a>
+            <a href="services.html" class="btn btn--outline magnetic">
+              <span>Explore Payload Modules</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- HERO SIGNATURE DRONE SVG (Tilts with cursor, hovers) -->
+        <div class="hero__drone-container" id="heroDroneWrap">
+          <svg class="hero__drone-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Shadow -->
+            <ellipse cx="200" cy="350" rx="90" ry="18" fill="rgba(0,0,0,0.5)" class="drone-shadow" filter="blur(8px)"/>
+
+            <!-- Main Carbon Fiber Chassis -->
+            <g id="droneBody" transform="translate(0, -10)">
+              <!-- Motor Arms (Hexacopter Configuration) -->
+              <line x1="200" y1="200" x2="80" y2="100" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+              <line x1="200" y1="200" x2="80" y2="100" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4 6"/>
+              
+              <line x1="200" y1="200" x2="320" y2="100" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+              <line x1="200" y1="200" x2="320" y2="100" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4 6"/>
+
+              <line x1="200" y1="200" x2="50" y2="200" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+              <line x1="200" y1="200" x2="350" y2="200" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+
+              <line x1="200" y1="200" x2="80" y2="300" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+              <line x1="200" y1="200" x2="320" y2="300" stroke="#1f2d4d" stroke-width="12" stroke-linecap="round"/>
+
+              <!-- Motors & Propellers -->
+              <!-- Motor 1 (Top Left) -->
+              <circle cx="80" cy="100" r="16" fill="#141c33" stroke="#ff6b35" stroke-width="3"/>
+              <ellipse cx="80" cy="100" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Motor 2 (Top Right) -->
+              <circle cx="320" cy="100" r="16" fill="#141c33" stroke="#ff6b35" stroke-width="3"/>
+              <ellipse cx="320" cy="100" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Motor 3 (Mid Left) -->
+              <circle cx="50" cy="200" r="16" fill="#141c33" stroke="#00e5ff" stroke-width="3"/>
+              <ellipse cx="50" cy="200" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Motor 4 (Mid Right) -->
+              <circle cx="350" cy="200" r="16" fill="#141c33" stroke="#00e5ff" stroke-width="3"/>
+              <ellipse cx="350" cy="200" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Motor 5 (Bottom Left) -->
+              <circle cx="80" cy="300" r="16" fill="#141c33" stroke="#00e5ff" stroke-width="3"/>
+              <ellipse cx="80" cy="300" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Motor 6 (Bottom Right) -->
+              <circle cx="320" cy="300" r="16" fill="#141c33" stroke="#00e5ff" stroke-width="3"/>
+              <ellipse cx="320" cy="300" rx="44" ry="10" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.08)" class="prop-spin"/>
+
+              <!-- Central Hull / Avionics Enclosure -->
+              <polygon points="200,140 250,170 250,230 200,260 150,230 150,170" fill="#0d172a" stroke="#00e5ff" stroke-width="3"/>
+              <circle cx="200" cy="200" r="32" fill="#16223d" stroke="#ff6b35" stroke-width="2"/>
+              <text x="200" y="204" font-family="'JetBrains Mono', monospace" font-size="9" fill="#00e5ff" text-anchor="middle" font-weight="bold">DRWEB</text>
+
+              <!-- Companion Edge Compute / Jetson Heatsink -->
+              <rect x="180" y="165" width="40" height="12" rx="2" fill="#1e293b" stroke="#00e5ff" stroke-width="1"/>
+              <line x1="186" y1="165" x2="186" y2="177" stroke="#00e5ff" stroke-width="1"/>
+              <line x1="194" y1="165" x2="194" y2="177" stroke="#00e5ff" stroke-width="1"/>
+              <line x1="206" y1="165" x2="206" y2="177" stroke="#00e5ff" stroke-width="1"/>
+              <line x1="214" y1="165" x2="214" y2="177" stroke="#00e5ff" stroke-width="1"/>
+
+              <!-- Universal Quick-Release Payload Interface (UPI) Underbelly Rail -->
+              <rect x="175" y="240" width="50" height="14" rx="3" fill="#ff6b35" opacity="0.9"/>
+              <text x="200" y="250" font-family="'JetBrains Mono', monospace" font-size="7" fill="#050810" text-anchor="middle" font-weight="bold">UPI RAIL</text>
+
+              <!-- Gimbal Thermal/Optical Camera Sensor -->
+              <circle cx="200" cy="275" r="14" fill="#0b1120" stroke="#00e5ff" stroke-width="2"/>
+              <circle cx="200" cy="275" r="7" fill="#ff1744" opacity="0.9"/>
+              <circle cx="202" cy="273" r="2" fill="#ffffff"/>
+
+              <!-- Navigation Warning Lights -->
+              <circle cx="80" cy="100" r="4" fill="#00e676" class="led-blink"/>
+              <circle cx="320" cy="100" r="#ff1744" fill="#ff1744" class="led-blink"/>
+              <circle cx="200" cy="140" r="3" fill="#00e5ff" class="led-blink"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER MARQUEE -->
+    <div class="marquee">
+      <div class="marquee__inner">
+        <div class="marquee__item">BVLOS CELLULAR TELEMETRY <span class="dot"></span></div>
+        <div class="marquee__item">15 KG MAX PAYLOAD <span class="dot"></span></div>
+        <div class="marquee__item">DYNAMIC CoG COMPENSATION <span class="dot"></span></div>
+        <div class="marquee__item">FLOOD WINCH LIFE-SAVING KIT <span class="dot"></span></div>
+        <div class="marquee__item">TEMPERATURE-CONTROLLED PHARMA POD <span class="dot"></span></div>
+        <div class="marquee__item">NVIDIA JETSON EDGE AI <span class="dot"></span></div>
+        <div class="marquee__item">GPS-DENIED VIO NAVIGATION <span class="dot"></span></div>
+        <div class="marquee__item">BVLOS CELLULAR TELEMETRY <span class="dot"></span></div>
+        <div class="marquee__item">15 KG MAX PAYLOAD <span class="dot"></span></div>
+        <div class="marquee__item">DYNAMIC CoG COMPENSATION <span class="dot"></span></div>
+        <div class="marquee__item">FLOOD WINCH LIFE-SAVING KIT <span class="dot"></span></div>
+      </div>
+    </div>
+
+    <!-- STATS COUNTER -->
+    <section class="section" style="padding: var(--sp-lg) 0; background: rgba(5,8,16,0.6);">
+      <div class="container">
+        <div class="stats">
+          <div class="stat">
+            <div class="stat__number gsap-counter" data-count="15" data-suffix=" kg">0 kg</div>
+            <div class="stat__label">Payload Capacity Class</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number gsap-counter" data-count="100" data-suffix="%">0%</div>
+            <div class="stat__label">BVLOS 4G/5G Cellular Control</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number gsap-counter" data-count="2" data-suffix=" min">0 min</div>
+            <div class="stat__label">Tool-Free Hot-Swap Rail</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number gsap-counter" data-prefix="₹" data-count="850000" data-suffix="">₹0</div>
+            <div class="stat__label">Phase 1 Prototype Budget</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DEMO & VIDEO HUD SIMULATION -->
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__label">TRL 5 FLIGHT BENCHMARK</div>
+          <h2 class="section__title">Live Telemetry & Field Trials Stream</h2>
+          <p class="section__subtitle">Witness the autonomous edge-intelligence node and simulated optical-thermal seeker identifying relief drop-zones in GPS-denied environments.</p>
+        </div>
+
+        <div class="video-showcase">
+          <div class="video-viewport">
+            <canvas id="droneSimCanvas" class="video-canvas"></canvas>
+            <div class="hud-scanner"></div>
+
+            <!-- Virtual HUD overlay with targeting system -->
+            <div class="video-hud-overlay">
+              <div class="hud-top-bar">
+                <span>REC &bull; 4K HDR 60FPS</span>
+                <span id="videoModeText">OPTICAL RECON FEED [CH-1]</span>
+                <span style="color: var(--clr-green);">AI ENGINE: TENSORRT ACTIVE</span>
+              </div>
+
+              <!-- Computer Vision Target Box -->
+              <div class="hud-target-box" id="targetBox">
+                <span>SURVIVOR DETECTED</span>
+                <span>CONF: 98.4%</span>
+                <span>DIST: 24.6 M</span>
+                <span>DROP: ARMED</span>
+              </div>
+
+              <div class="hud-top-bar" style="background: rgba(5,8,16,0.8);">
+                <span>LAT: 19.0725° N | LON: 83.8122° E</span>
+                <span>WIND SHEAR: 34 KM/H [COMPENSATED]</span>
+                <span>PAYLOAD: WINCH HARNESS READY</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 1.5rem 2rem; background: var(--clr-bg-card-alt); display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 1rem;">
+            <div>
+              <div style="font-weight: 600; color: var(--clr-white); font-size: 1.05rem;">Autonomous Waypoint Execution Demo</div>
+              <div style="font-size: 0.85rem; color: var(--clr-text-dim);">Flight controller auto-compensates for dynamic Center of Gravity shifts during winch supply drops.</div>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn--outline" id="toggleThermalBtn" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Toggle Thermal Vision</button>
+              <a href="contact.html" class="btn btn--primary" style="padding: 0.6rem 1.4rem; font-size: 0.85rem;">Request Field Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE INNOVATIONS (THE DUAL-USE SOLUTION) -->
+    <section class="section" style="background: var(--grad-card);">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__label">ARCHITECTURAL BREAKTHROUGHS</div>
+          <h2 class="section__title">Built to Conquer the Dual-Use Dilemma</h2>
+          <p class="section__subtitle">Traditional disaster drones sit idle in warehouses draining taxpayer funds. We designed a modular aerial chassis that earns its keep daily.</p>
+        </div>
+
+        <div class="grid grid--3 gsap-stagger">
+          <!-- Card 1 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-11h2v6h-2zm0-4h2v2h-2z"/></svg>
+            </div>
+            <h3 class="card__title">Dual-Revenue Economic Model</h3>
+            <p class="card__text">Operates daily as a high-margin commercial B2B freight carrier for hospital pharma and third-party logistics. When floods strike, the fully funded active fleet mobilizes instantly for search-and-rescue.</p>
+            <span class="card__tag">Peacetime & Crisis</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+            </div>
+            <h3 class="card__title">Universal Quick-Release Rail (UPI)</h3>
+            <p class="card__text">Standardized electromechanical coupling with high-current pass-through. Swap a rigid commercial cargo container for a motorized life-vest winch or thermal search pod in under 120 seconds with zero tools.</p>
+            <span class="card__tag">&lt; 2 Min Swap</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </div>
+            <h3 class="card__title">Active CoG Trim Algorithms</h3>
+            <p class="card__text">Dynamic center-of-gravity compensation algorithms instantly stabilize the airframe during turbulent in-flight payload winch drops over submerged terrain and high-wind shear.</p>
+            <span class="card__tag">FOC Motor Control</span>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <h3 class="card__title">Cellular BVLOS Infinite Range</h3>
+            <p class="card__text">Integrated 4G/5G transceiver architecture paired with omnidirectional arrays. Control missions from hundreds of kilometers away via national cellular footprints rather than 5 km radio-range limits.</p>
+            <span class="card__tag">SIM-Enabled Telemetry</span>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+            </div>
+            <h3 class="card__title">NVIDIA Jetson Edge Autonomy</h3>
+            <p class="card__text">Onboard companion computer executes real-time neural networks for victim detection, obstacle avoidance, visual-inertial odometry, and airborne radio relay when ground cellular towers collapse.</p>
+            <span class="card__tag">Edge AI Computer Vision</span>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            </div>
+            <h3 class="card__title">Redundant Avionics & Failsafe</h3>
+            <p class="card__text">Dual triple-axis IMUs, multi-constellation GNSS (GPS, GLONASS, Galileo, BeiDou), barometric altimeters, smart lithium BMS cell-balancing, and terrain-aware emergency safe landing protocols.</p>
+            <span class="card__tag">Smart Return-to-Launch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS & TRUST -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__label">INDUSTRY FEEDBACK</div>
+          <h2 class="section__title">Validated by Disaster & Logistics Experts</h2>
+          <p class="section__subtitle">Field evaluations and endorsements from first-response authorities and regional freight partners.</p>
+        </div>
+
+        <div class="testimonials-track gsap-reveal">
+          <div class="testimonial">
+            <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial__text">"During the Mahanadi river flood simulations, the ability to winch down emergency food rations without landing on waterlogged soil cut mission turnaround by 65%. A game-changer."</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">RP</div>
+              <div>
+                <div class="testimonial__name">R. K. Patnaik</div>
+                <div class="testimonial__role">State Disaster Management Liaison</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial__text">"The cellular BVLOS link completely solved our middle-mile latency for emergency anti-venom transit between Gunupur and Rayagada district hospitals."</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">SM</div>
+              <div>
+                <div class="testimonial__name">Dr. S. Mohanty</div>
+                <div class="testimonial__role">Regional Blood Bank Director</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial__text">"Our biggest hurdle with disaster drone fleets was maintenance depreciation. DRWEB's dual-use commercial revenue model finally makes heavy-lift drones economically viable."</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">AK</div>
+              <div>
+                <div class="testimonial__name">Anand K. Das</div>
+                <div class="testimonial__role">3PL Logistics Infrastructure VP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="section" style="padding-bottom: var(--sp-3xl);">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-banner__content">
+            <h2 class="cta-banner__title">Ready to Deploy the Next Generation of Aerial Response?</h2>
+            <p class="cta-banner__text">Partner with us for trial deployments, municipal standby retainers, or B2B middle-mile cargo trials.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+              <a href="contact.html" class="btn btn--primary magnetic">Schedule Flight Demonstration</a>
+              <a href="about.html" class="btn btn--outline magnetic">Read Whitepaper & Specs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="navbar__logo">
+            <svg class="navbar__logo-icon" viewBox="0 0 40 40" fill="none">
+              <polygon points="20,4 36,14 36,28 20,38 4,28 4,14" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,0.1)"/>
+              <circle cx="20" cy="20" r="6" fill="#00e5ff"/>
+            </svg>
+            DRWEB <span>AERO</span>
+          </a>
+          <p class="footer__brand-desc">
+            Modular Autonomous Heavy-Lift Drone Platform for Flood Disaster Relief & Multi-Sector Logistics. Engineered at GIET University.
+          </p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--clr-text-muted);">
+            Incubatex Innovation Foundation<br>GIET University, Gunupur-765022
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Navigation</h4>
+          <a href="index.html" class="footer__link">Home</a>
+          <a href="about.html" class="footer__link">About & Technology</a>
+          <a href="services.html" class="footer__link">Services & Payloads</a>
+          <a href="pricing.html" class="footer__link">Pricing & DaaS</a>
+          <a href="team.html" class="footer__link">Team & Mentors</a>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">Support & Legal</h4>
+          <a href="faq.html" class="footer__link">Frequently Asked Questions</a>
+          <a href="contact.html" class="footer__link">Contact Support</a>
+          <a href="404.html" class="footer__link">Flight Radar</a>
+          <a href="privacy.html" class="footer__link">Privacy Policy</a>
+          <a href="terms.html" class="footer__link">Terms of Service</a>
+        </div>
+
+        <div>
+          <h4 class="footer__heading">BVLOS Dispatch Alerts</h4>
+          <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 0.8rem;">
+            Subscribe to our flight testing bulletins and DGCA certification updates.
+          </p>
+          <form class="footer__newsletter">
+            <input type="email" placeholder="official@agency.gov.in" class="footer__newsletter-input" required>
+            <button type="submit" class="footer__newsletter-btn">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div>&copy; 2026 DRWEB Aero. All rights reserved. Incubatex Innovation Foundation, GIET University.</div>
+        <div class="footer__legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Airworthiness Compliance</a>
+          <a href="contact.html">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CDNs: GSAP 3.12.5 + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  
+  <!-- Interactive Drone Simulation Canvas Script -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('droneSimCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let thermalMode = false;
+      const toggleBtn = document.getElementById('toggleThermalBtn');
+      const modeText = document.getElementById('videoModeText');
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          thermalMode = !thermalMode;
+          toggleBtn.textContent = thermalMode ? "Toggle Optical Vision" : "Toggle Thermal Vision";
+          if (modeText) modeText.textContent = thermalMode ? "FLIR THERMAL RESCUE FEED [CH-2]" : "OPTICAL RECON FEED [CH-1]";
+        });
+      }
+
+      function resize() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      let frame = 0;
+      function drawSim() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Background terrain simulation (river & flood banks)
+        const bgGrad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        if (thermalMode) {
+          bgGrad.addColorStop(0, '#100028');
+          bgGrad.addColorStop(0.5, '#480048');
+          bgGrad.addColorStop(1, '#050014');
+        } else {
+          bgGrad.addColorStop(0, '#0d2238');
+          bgGrad.addColorStop(0.5, '#071524');
+          bgGrad.addColorStop(1, '#030a12');
+        }
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Water currents
+        ctx.strokeStyle = thermalMode ? 'rgba(255, 60, 180, 0.2)' : 'rgba(0, 229, 255, 0.15)';
+        ctx.lineWidth = 1.5;
+        for (let i = 0; i < 6; i++) {
+          ctx.beginPath();
+          const y = (canvas.height / 6) * i + Math.sin((frame + i * 40) * 0.03) * 15;
+          ctx.moveTo(0, y);
+          ctx.bezierCurveTo(
+            canvas.width * 0.3, y - 30,
+            canvas.width * 0.7, y + 30,
+            canvas.width, y
+          );
+          ctx.stroke();
+        }
+
+        // Crosshair HUD
+        ctx.strokeStyle = thermalMode ? '#ff0055' : '#00e5ff';
+        ctx.lineWidth = 1;
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, 50, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx - 70, cy); ctx.lineTo(cx - 30, cy);
+        ctx.moveTo(cx + 30, cy); ctx.lineTo(cx + 70, cy);
+        ctx.moveTo(cx, cy - 70); ctx.lineTo(cx, cy - 30);
+        ctx.moveTo(cx, cy + 30); ctx.lineTo(cx, cy + 70);
+        ctx.stroke();
+
+        // Moving heat signature target
+        const targetX = cx + Math.sin(frame * 0.02) * 80;
+        const targetY = cy + Math.cos(frame * 0.015) * 50;
+
+        ctx.fillStyle = thermalMode ? '#ffff00' : 'rgba(255, 107, 53, 0.7)';
+        ctx.beginPath();
+        ctx.arc(targetX, targetY, thermalMode ? 14 : 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        const targetBox = document.getElementById('targetBox');
+        if (targetBox) {
+          targetBox.style.left = (targetX - 55) + 'px';
+          targetBox.style.top = (targetY - 55) + 'px';
+        }
+
+        requestAnimationFrame(drawSim);
+      }
+      drawSim();
+    })();
+  </script>
+</body>
+</html>
