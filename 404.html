@@ -7,6 +7,7 @@
   <meta name="description" content="Telemetry lost. The drone drifted off-course outside cellular BVLOS coverage.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <div class="cursor-dot"></div>
@@ -25,16 +26,16 @@
       </a>
       <div class="navbar__links">
         <a href="index.html" class="navbar__link">Home</a>
-        <a href="about.html" class="navbar__link">About</a>
-        <a href="services.html" class="navbar__link">Services</a>
-        <a href="pricing.html" class="navbar__link">Pricing</a>
+        <a href="studio.html" class="navbar__link">Studio</a>
+        <a href="arcade.html" class="navbar__link">Arcade</a>
+        <a href="profile.html" class="navbar__link">Profile</a>
         <a href="contact.html" class="navbar__link">Contact</a>
       </div>
     </div>
   </nav>
 
   <main class="error-page">
-    <div class="error-page__drone">
+    <div class="error-page__drone" id="crashDroneWrap">
       <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Broken Sparking Drone -->
         <line x1="100" y1="100" x2="40" y2="50" stroke="#ff1744" stroke-width="8" stroke-linecap="round"/>
@@ -54,7 +55,6 @@
         <circle cx="50" cy="150" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
         <circle cx="150" cy="150" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
 
-        <!-- Tilting fuselage with smoke -->
         <polygon points="100,70 125,85 125,115 100,130 75,115 75,85" fill="#0d172a" stroke="#ff1744" stroke-width="2"/>
         <circle cx="100" cy="100" r="14" fill="#ff1744" opacity="0.8"/>
         <text x="100" y="104" font-family="'JetBrains Mono', monospace" font-size="8" fill="#ffffff" text-anchor="middle" font-weight="bold">ERR</text>
@@ -66,10 +66,20 @@
     <p class="error-page__text">
       The UAV drifted beyond geo-fenced coordinates into an uncharted sector. Autonomous fail-safe Return-to-Launch (RTL) has been initiated.
     </p>
-    <a href="index.html" class="btn btn--primary magnetic">
-      <span>Auto Return-to-Launch (RTL)</span>
-      <svg width="18" height="18" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-    </a>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+      <a href="index.html" class="btn btn--primary magnetic">
+        <span>Auto Return-to-Launch (RTL)</span>
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </a>
+      <button class="btn btn--outline magnetic" id="rescueSortieBtn">
+        <span>🚑 Dispatch Repair Drone (+100 XP)</span>
+      </button>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+      <span class="scavenger-drone" data-scavenger-id="scav_404" title="Secret Recon Drone Found!">🛸</span>
+    </div>
   </main>
 
   <footer class="footer">
@@ -78,9 +88,21 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/game.js"></script>
+  <script>
+    const rescueBtn = document.getElementById('rescueSortieBtn');
+    if (rescueBtn) {
+      rescueBtn.addEventListener('click', () => {
+        if (window.AeroGame) {
+          window.AeroGame.addXP(100);
+          window.AeroGame.addCoins(50);
+          rescueBtn.textContent = '✓ AIRFRAME STABILIZED (+100 XP / +50🪙)';
+          rescueBtn.style.color = '#00e676';
+          rescueBtn.disabled = true;
+        }
+      });
+    }
+  </script>
 </body>
 </html>

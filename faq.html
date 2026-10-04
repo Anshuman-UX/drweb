@@ -7,18 +7,13 @@
   <meta name="description" content="Detailed answers regarding DRWEB AERO's dual-use architecture, cellular BVLOS ranges, quick-release rails, and DGCA regulatory roadmaps.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
   <div class="aurora-bg"></div>
   <div class="page-transition"></div>
-
-  <div class="hud-overlay">
-    <span class="hud-callsign">SYS: DRWEB-HEX-01</span>
-    <span class="hud-alt">STATUS: FAQ REPOSITORY</span>
-    <span class="hud-link" style="color: var(--clr-green);">DOCS: VERIFIED</span>
-  </div>
 
   <nav class="navbar" id="navbar">
     <div class="navbar__inner">
@@ -36,17 +31,17 @@
         <a href="about.html" class="navbar__link">About</a>
         <a href="services.html" class="navbar__link">Services</a>
         <a href="pricing.html" class="navbar__link">Pricing</a>
-        <a href="team.html" class="navbar__link">Team</a>
-        <a href="faq.html" class="navbar__link active">FAQ</a>
+        <a href="studio.html" class="navbar__link">Studio</a>
+        <a href="arcade.html" class="navbar__link">Arcade</a>
+        <a href="profile.html" class="navbar__link">Profile</a>
         <a href="contact.html" class="navbar__link">Contact</a>
       </div>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
-        <a href="contact.html" class="navbar__cta magnetic">Deploy Drone</a>
+        <a href="studio.html" class="navbar__cta magnetic">Build Drone</a>
         <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -57,8 +52,9 @@
     <a href="about.html" class="navbar__link">About</a>
     <a href="services.html" class="navbar__link">Services</a>
     <a href="pricing.html" class="navbar__link">Pricing</a>
-    <a href="team.html" class="navbar__link">Team</a>
-    <a href="faq.html" class="navbar__link active">FAQ</a>
+    <a href="studio.html" class="navbar__link">Studio</a>
+    <a href="arcade.html" class="navbar__link">Arcade</a>
+    <a href="profile.html" class="navbar__link">Profile</a>
     <a href="contact.html" class="navbar__link">Contact</a>
   </div>
 
@@ -66,7 +62,10 @@
     <section class="section">
       <div class="container container--narrow">
         <div class="section__header" style="text-align: left; margin-bottom: 2.5rem;">
-          <div class="section__label">KNOWLEDGE BASE</div>
+          <div class="section__label">
+            KNOWLEDGE BASE
+            <span class="scavenger-drone" data-scavenger-id="scav_faq" style="margin-left:8px;" title="Secret Recon Drone Found!">🛸</span>
+          </div>
           <h1 class="section__title" style="font-size: clamp(2.2rem, 4.5vw, 3.8rem);">
             Frequently Asked <span class="text-cyan">Questions</span>
           </h1>
@@ -127,89 +126,18 @@
               </div>
             </div>
           </div>
-
-          <!-- Item 5 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What happens if ground cell towers collapse or GPS is jammed during a flood?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The onboard NVIDIA Jetson Orin companion computer switches immediately to visual-inertial odometry (VIO) using downward optical cameras to hold position. A long-range fallback direct RF link (up to 30km) activates automatically. Furthermore, the drone can hover as an airborne Wi-Fi/mesh radio relay to restore frontline communications for ground responders.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 6 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What is the current Technology Readiness Level (TRL)?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The project is at TRL 5 (Subsystem Functional Validation). The core avionics, autonomous navigation algorithms, and 5G cellular BVLOS links have been proven and video-demonstrated. Phase 1 prototype development integrates this validated stack onto the dedicated 1600mm industrial hexacopter chassis to achieve TRL 7 load-bearing field validation.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 7 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">How is the Phase 1 ₹8,50,000 prototype development budget allocated?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The ₹8.5L budget covers: 1600mm carbon fiber hexacopter frame (₹48K), Hobbywing X9 propulsion system (₹1.29L), Pixhawk Cube Orange+ RTK GNSS (₹70K), NVIDIA Jetson Orin Nano (₹42K), BVLOS modem &amp; SIYI HM30 backup (₹72K), 14S 22,000mAh Smart LiPo batteries (₹1.25L), charger/PMS (₹40K), motorized winch mechanism (₹50K), sensors/LiDAR (₹35K), CNC assembly &amp; calibration (₹1.2L), and contingency buffer (₹1.19L).
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 8 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What is the DGCA regulatory and type certification path?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                During Phase 2, we initiate testing with the Quality Council of India (QCI) authorized test entities to receive DGCA Type Certification for the heavy-lift category. Simultaneously, we operate in cellular BVLOS sandboxes under specific experimental exemptions for emergency flood disaster drills.
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- STILL HAVE QUESTIONS CTA -->
-    <section class="section" style="padding-bottom: var(--sp-3xl);">
-      <div class="container text-center">
-        <h2 style="font-size: var(--fs-h3); margin-bottom: 0.8rem;">Have a Specific Engineering or Deployment Query?</h2>
-        <p style="color: var(--clr-text-dim); margin-bottom: 1.5rem;">Speak directly with our robotics research lead.</p>
-        <a href="contact.html" class="btn btn--outline magnetic">Open Direct Technical Inquiry</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <div class="footer__bottom">
-        <div>&copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.</div>
-        <div class="footer__legal">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
+    <div class="container text-center" style="font-size:0.8rem; color:var(--clr-text-muted);">
+      &copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>

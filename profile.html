@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilot Profile & License | DRWEB AERO</title>
+  <meta name="description" content="View your DRWEB AERO pilot license, achievement wall, flight telemetry rank, and mission progression.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+  <style>
+    .license-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 69, 0.9));
+      border: 2px solid var(--clr-cyan);
+      box-shadow: 0 15px 40px rgba(0, 229, 255, 0.25);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .license-card::before {
+      content: 'BVLOS PILOT LICENSE';
+      position: absolute;
+      bottom: -15px;
+      right: 15px;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.03);
+      font-family: var(--ff-heading);
+      pointer-events: none;
+    }
+    .license-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .badge-wall-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .badge-card {
+      background: rgba(15, 23, 41, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .badge-card.unlocked {
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.05);
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
+    }
+    .badge-card.locked {
+      opacity: 0.4;
+      filter: grayscale(1);
+    }
+    .badge-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .badge-wall-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="aurora-bg"></div>
+  <div class="page-transition"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <svg class="navbar__logo-icon" viewBox="0 0 40 40" fill="none">
+          <polygon points="20,4 36,14 36,28 20,38 4,28 4,14" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,0.1)"/>
+          <circle cx="20" cy="20" r="6" fill="#00e5ff"/>
+          <line x1="20" y1="4" x2="20" y2="14" stroke="#ff6b35" stroke-width="2"/>
+        </svg>
+        DRWEB <span>AERO</span>
+      </a>
+
+      <div class="navbar__links">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="services.html" class="navbar__link">Services</a>
+        <a href="pricing.html" class="navbar__link">Pricing</a>
+        <a href="studio.html" class="navbar__link">Studio</a>
+        <a href="arcade.html" class="navbar__link">Arcade</a>
+        <a href="profile.html" class="navbar__link active">Profile</a>
+        <a href="contact.html" class="navbar__link">Contact</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+        </button>
+        <a href="studio.html" class="navbar__cta magnetic">Build Drone</a>
+        <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile" id="mobileNav">
+    <a href="index.html" class="navbar__link">Home</a>
+    <a href="about.html" class="navbar__link">About</a>
+    <a href="services.html" class="navbar__link">Services</a>
+    <a href="pricing.html" class="navbar__link">Pricing</a>
+    <a href="studio.html" class="navbar__link">Studio</a>
+    <a href="arcade.html" class="navbar__link">Arcade</a>
+    <a href="profile.html" class="navbar__link active">Profile</a>
+    <a href="contact.html" class="navbar__link">Contact</a>
+  </div>
+
+  <main style="padding-top: 6rem;">
+    <!-- HEADER -->
+    <section class="section" style="padding-bottom: 1rem;">
+      <div class="container container--narrow text-center">
+        <div class="section__label">PILOT CREDENTIALS</div>
+        <h1 class="section__title" style="font-size: clamp(2.2rem, 4.5vw, 3.8rem);">
+          Flight Deck <span class="text-cyan">Profile</span>
+        </h1>
+        <p class="section__subtitle" style="margin-left:auto; margin-right:auto;">
+          Your decentralized flight telemetry record, validated badges, and hangar access keys.
+        </p>
+      </div>
+    </section>
+
+    <!-- PILOT LICENSE HOLOGRAPHIC CARD -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="license-card" id="licenseCard">
+          <div class="license-header">
+            <div>
+              <div style="font-size: 0.75rem; color: #ff6b35; font-family: var(--ff-mono); font-weight: 700;">DGCA BVLOS CLASS 1 CERTIFICATE</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: #fff;" id="profileCallsign">PILOT-01</div>
+            </div>
+            <div style="font-size: 2.5rem;" id="profileAvatar">🚁</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
+            <div>
+              <span style="color:#7e8ba6;">Rank Classification:</span><br>
+              <strong style="color:var(--clr-cyan);" id="profileRank">Rookie Pilot</strong>
+            </div>
+            <div>
+              <span style="color:#7e8ba6;">Pilot Clearance:</span><br>
+              <strong style="color:#00e676;">Level <span id="profileLevel">1</span> BVLOS</strong>
+            </div>
+            <div>
+              <span style="color:#7e8ba6;">Flight Experience:</span><br>
+              <strong style="color:#fff;" id="profileXP">0 XP</strong>
+            </div>
+            <div>
+              <span style="color:#7e8ba6;">Aero Vault Balance:</span><br>
+              <strong style="color:#ffd700;" id="profileCoins">150 🪙</strong>
+            </div>
+          </div>
+
+          <!-- Edit Callsign & Avatar -->
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; display:flex; gap: 0.5rem; align-items:center;">
+            <input type="text" id="editCallsignInput" class="form__input" placeholder="Change Callsign" style="padding:0.4rem 0.8rem; font-size:0.85rem;" maxlength="14">
+            <select id="editAvatarSelect" class="form__select" style="padding:0.4rem; font-size:0.85rem; width:80px;">
+              <option value="🚁">🚁</option>
+              <option value="🛸">🛸</option>
+              <option value="⚡">⚡</option>
+              <option value="🦅">🦅</option>
+              <option value="🎯">🎯</option>
+              <option value="🛡️">🛡️</option>
+            </select>
+            <button class="btn btn--primary" id="savePilotInfoBtn" style="padding:0.45rem 1rem; font-size:0.8rem;">Save</button>
+          </div>
+        </div>
+
+        <!-- 20+ ACHIEVEMENTS WALL -->
+        <div class="section__header" style="text-align: left; margin-top: 3rem; margin-bottom: 1.5rem;">
+          <div class="section__label">HONOR ROLLS</div>
+          <h2 class="section__title" style="font-size: 1.8rem;">Aero Squadron Achievements (20 Badges)</h2>
+          <p class="section__subtitle">Unlock rare and legendary titles by performing high-wind sorties, engineering custom prototypes, and discovering easter eggs.</p>
+        </div>
+
+        <div class="badge-wall-grid" id="badgeWallContainer"></div>
+
+        <!-- RESET SESSION DATA -->
+        <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--clr-border);">
+          <button class="btn btn--outline" id="resetGameDataBtn" style="color: #ff1744; border-color: rgba(255,23,68,0.3);">
+            ⚠️ Reset All Pilot Telemetry &amp; Game Progress
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container text-center" style="font-size: 0.8rem; color: var(--clr-text-muted);">
+      &copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/game.js"></script>
+  <script>
+    (function(){
+      function renderProfile() {
+        if (!window.AeroGame) return;
+        const s = window.AeroGame.state;
+
+        document.getElementById('profileCallsign').textContent = s.callsign;
+        document.getElementById('profileAvatar').textContent = s.avatar;
+        document.getElementById('profileRank').textContent = window.AeroGame.getRank().name;
+        document.getElementById('profileLevel').textContent = s.level;
+        document.getElementById('profileXP').textContent = `${s.xp} XP`;
+        document.getElementById('profileCoins').textContent = `${s.coins} 🪙`;
+
+        const editCall = document.getElementById('editCallsignInput');
+        if (editCall) editCall.value = s.callsign;
+
+        // Render 20 Badges
+        const grid = document.getElementById('badgeWallContainer');
+        if (grid) {
+          const ALL_BADGES = [
+            { id: 'FIRST_STEPS', title: 'First Steps', icon: '🛩️', tier: 'common', desc: 'Boarded the DRWEB AERO platform.' },
+            { id: 'PAGE_HOPPER', title: 'Scout Navigator', icon: '🗺️', tier: 'common', desc: 'Explored 3 different mission sectors.' },
+            { id: 'STUDIO_CREATOR', title: 'Drone Architect', icon: '🛠️', tier: 'rare', desc: 'Crafted your first custom drone in the Studio.' },
+            { id: 'THREE_BUILDS', title: 'Master Tinkerer', icon: '📐', tier: 'rare', desc: 'Saved 3 unique drone builds to your Hangar.' },
+            { id: 'PERFECT_BALANCE', title: 'Harmonic CoG', icon: '⚖️', tier: 'epic', desc: 'Engineered a build with Speed, Battery, & Stability above 70.' },
+            { id: 'RARE_COMBO', title: 'Apex Config', icon: '💎', tier: 'epic', desc: 'Equipped VTOL Frame, LiDAR, and Neon Trail.' },
+            { id: 'SCAVENGER_1', title: 'Eagle Eye', icon: '🔍', tier: 'common', desc: 'Discovered your first hidden micro drone.' },
+            { id: 'SCAVENGER_5', title: 'Recon Specialist', icon: '🎯', tier: 'rare', desc: 'Located 5 hidden micro drones across the site.' },
+            { id: 'SCAVENGER_10', title: 'Surveyor General', icon: '🏆', tier: 'legendary', desc: 'Found all 10 hidden micro drones in the fleet.' },
+            { id: 'DASH_ROOKIE', title: 'First Flight', icon: '⚡', tier: 'common', desc: 'Scored 100 points in Drone Dash.' },
+            { id: 'DASH_PRO', title: 'Storm Runner', icon: '🌪️', tier: 'rare', desc: 'Scored 500 points in Drone Dash.' },
+            { id: 'SKY_DROP_1', title: 'Payload Dropped', icon: '📦', tier: 'common', desc: 'Successfully delivered humanitarian aid in Sky Delivery.' },
+            { id: 'BULLSEYE', title: 'Precision Winch', icon: '🎯', tier: 'epic', desc: 'Achieved a 95%+ precision drop score.' },
+            { id: 'NIGHT_VISION', title: 'FLIR Certified', icon: '🕶️', tier: 'common', desc: 'Toggled Thermal Vision in the live demo.' },
+            { id: 'KONAMI_CHOPPER', title: 'Secret Agent', icon: '👾', tier: 'legendary', desc: 'Entered the legendary aviator override code.' },
+            { id: 'FOUNDER_SECRET', title: 'Backer Insider', icon: '🤝', tier: 'rare', desc: 'Tapped the logo 5 times to reveal lab data.' },
+            { id: 'STREAK_3', title: 'On Duty', icon: '🔥', tier: 'rare', desc: 'Maintained a 3-day operational flight streak.' },
+            { id: 'SOUND_EXPLORER', title: 'Radio Check', icon: '🔊', tier: 'common', desc: 'Engaged audio synthesizer telemetry.' },
+            { id: 'REVENUE_ANALYST', title: 'CapEx Strategist', icon: '📊', tier: 'rare', desc: 'Explored all 4 streams of the AMR-PD diagram.' },
+            { id: 'HIGH_ROLLER', title: 'Aero Tycoon', icon: '💰', tier: 'epic', desc: 'Accumulated 1,000 Aero Coins.' }
+          ];
+
+          grid.innerHTML = ALL_BADGES.map(b => {
+            const isUnlocked = s.badges.includes(b.id);
+            return `
+              <div class="badge-card ${isUnlocked ? 'unlocked' : 'locked'}">
+                <div class="badge-icon">${b.icon}</div>
+                <div style="font-weight:700; color:#fff; font-size:0.9rem; margin-bottom:2px;">${b.title}</div>
+                <div style="font-size:0.68rem; text-transform:uppercase; color:${b.tier === 'legendary' ? '#ffd700' : (b.tier === 'epic' ? '#b388ff' : '#00e5ff')}; font-family:var(--ff-mono); font-weight:700; margin-bottom:6px;">${b.tier}</div>
+                <div style="font-size:0.75rem; color:#7e8ba6;">${b.desc}</div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // Save custom callsign/avatar
+      const saveBtn = document.getElementById('savePilotInfoBtn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const callInput = document.getElementById('editCallsignInput');
+          const avaSelect = document.getElementById('editAvatarSelect');
+          if (callInput && callInput.value.trim()) {
+            window.AeroGame.state.callsign = callInput.value.trim().toUpperCase();
+            window.AeroGame.state.avatar = avaSelect.value;
+            window.AeroGame.save();
+            window.AeroGame.updateHUD();
+            renderProfile();
+            alert('Pilot License credentials updated!');
+          }
+        });
+      }
+
+      // Reset
+      const resetBtn = document.getElementById('resetGameDataBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset all progress, levels, hangar builds, and coins?')) {
+            localStorage.removeItem('drweb_game_state');
+            location.reload();
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', renderProfile);
+      setTimeout(renderProfile, 300);
+    })();
+  </script>
+</body>
+</html>

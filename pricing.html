@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing & Business Model | DRWEB AERO</title>
-  <meta name="description" content="Flexible CapEx and OpEx Drone-as-a-Service (DaaS) pricing models for healthcare logistics, commercial cargo, and municipal disaster readiness.">
+  <title>Pricing &amp; Loadout Selection | DRWEB AERO</title>
+  <meta name="description" content="Choose your UAV mission loadout. Flexible CapEx and OpEx Drone-as-a-Service (DaaS) pricing models for healthcare logistics and disaster readiness.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
   <div class="aurora-bg"></div>
   <div class="page-transition"></div>
-
-  <div class="hud-overlay">
-    <span class="hud-callsign">SYS: DRWEB-HEX-01</span>
-    <span class="hud-alt">ALT: 160 m</span>
-    <span class="hud-bat">BAT: 95%</span>
-    <span class="hud-link" style="color: var(--clr-green);">BUSINESS ENGINE: DaaS ACTIVE</span>
-  </div>
 
   <nav class="navbar" id="navbar">
     <div class="navbar__inner">
@@ -37,17 +31,17 @@
         <a href="about.html" class="navbar__link">About</a>
         <a href="services.html" class="navbar__link">Services</a>
         <a href="pricing.html" class="navbar__link active">Pricing</a>
-        <a href="team.html" class="navbar__link">Team</a>
-        <a href="faq.html" class="navbar__link">FAQ</a>
+        <a href="studio.html" class="navbar__link">Studio</a>
+        <a href="arcade.html" class="navbar__link">Arcade</a>
+        <a href="profile.html" class="navbar__link">Profile</a>
         <a href="contact.html" class="navbar__link">Contact</a>
       </div>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
-        <a href="contact.html" class="navbar__cta magnetic">Deploy Drone</a>
+        <a href="studio.html" class="navbar__cta magnetic">Build Drone</a>
         <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -58,19 +52,22 @@
     <a href="about.html" class="navbar__link">About</a>
     <a href="services.html" class="navbar__link">Services</a>
     <a href="pricing.html" class="navbar__link active">Pricing</a>
-    <a href="team.html" class="navbar__link">Team</a>
-    <a href="faq.html" class="navbar__link">FAQ</a>
+    <a href="studio.html" class="navbar__link">Studio</a>
+    <a href="arcade.html" class="navbar__link">Arcade</a>
+    <a href="profile.html" class="navbar__link">Profile</a>
     <a href="contact.html" class="navbar__link">Contact</a>
   </div>
 
   <main style="padding-top: 6rem;">
-    <!-- HEADER -->
     <section class="section" style="padding-bottom: 2rem;">
       <div class="container">
         <div class="section__header" style="text-align: left; margin-bottom: 2rem;">
-          <div class="section__label">COMMERCIAL &amp; B2G ENGAGEMENT</div>
+          <div class="section__label">
+            OPERATIONAL LOADOUTS
+            <span class="scavenger-drone" data-scavenger-id="scav_pricing" style="margin-left:8px;" title="Secret Recon Drone Found!">🛸</span>
+          </div>
           <h1 class="section__title" style="font-size: clamp(2.4rem, 5vw, 4rem);">
-            Transparent <span class="text-cyan">Dual-Revenue</span> Pricing
+            Select Your Mission <span class="text-cyan">Loadout</span>
           </h1>
           <p class="section__subtitle" style="max-width: 800px;">
             Choose between upfront hardware acquisition with modular payload upsells or our fully managed Drone-as-a-Service (DaaS) monthly operational leasing.
@@ -79,13 +76,13 @@
       </div>
     </section>
 
-    <!-- 3 TIERS -->
+    <!-- 3 TIERS (LOADOUTS) -->
     <section class="section" style="padding-top: 0;">
       <div class="container">
         <div class="grid grid--3">
           <!-- Tier 1 -->
           <div class="pricing-card">
-            <div class="pricing-card__name">Scout Pilot PoC</div>
+            <div class="pricing-card__name">Loadout 1: Scout PoC</div>
             <div class="pricing-card__price">
               <span class="currency">₹</span>2.5L
             </div>
@@ -110,21 +107,13 @@
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 <span>Cloud GCS Flight Telemetry Dashboard</span>
               </div>
-              <div class="pricing-card__feature pricing-card__feature--disabled">
-                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                <span>Motorized Flood Winch Lifeline Kit</span>
-              </div>
-              <div class="pricing-card__feature pricing-card__feature--disabled">
-                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                <span>On-Site Emergency Rapid Deployment</span>
-              </div>
             </div>
-            <a href="contact.html" class="btn btn--outline" style="width: 100%;">Select Scout PoC</a>
+            <a href="contact.html?loadout=scout" class="btn btn--outline" style="width: 100%;">Equip Scout Loadout</a>
           </div>
 
-          <!-- Tier 2 (Featured) -->
+          <!-- Tier 2 -->
           <div class="pricing-card pricing-card--featured">
-            <div class="pricing-card__name" style="color: var(--clr-cyan);">Sentinel Fleet</div>
+            <div class="pricing-card__name" style="color: var(--clr-cyan);">Loadout 2: Sentinel Fleet</div>
             <div class="pricing-card__price">
               <span class="currency">₹</span>6.0L
             </div>
@@ -135,7 +124,7 @@
             <div class="pricing-card__features">
               <div class="pricing-card__feature">
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>3 Active Heavy-Lift Airframes + 1 Backup</span>
+                <span>3 Active Airframes + 1 Standby Backup</span>
               </div>
               <div class="pricing-card__feature">
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -153,17 +142,13 @@
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 <span>Full SaaS GCS Fleet Suite + Video Downlink</span>
               </div>
-              <div class="pricing-card__feature">
-                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>24/7 Remote Pilot Operator Dispatch</span>
-              </div>
             </div>
-            <a href="contact.html" class="btn btn--primary" style="width: 100%;">Deploy Sentinel Fleet</a>
+            <a href="contact.html?loadout=sentinel" class="btn btn--primary" style="width: 100%;">Equip Sentinel Loadout</a>
           </div>
 
           <!-- Tier 3 -->
           <div class="pricing-card">
-            <div class="pricing-card__name">Armada Standby</div>
+            <div class="pricing-card__name">Loadout 3: Armada Standby</div>
             <div class="pricing-card__price">Custom</div>
             <div class="pricing-card__period">B2G Retainer / Multi-Year SDMA</div>
             <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 1.5rem;">
@@ -184,24 +169,16 @@
               </div>
               <div class="pricing-card__feature">
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>On-Site Ground Crew &amp; Generator Trucks</span>
-              </div>
-              <div class="pricing-card__feature">
-                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>Custom DGCA Red-Zone Flight Waivers</span>
-              </div>
-              <div class="pricing-card__feature">
-                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 <span>Direct API Airspace Integration</span>
               </div>
             </div>
-            <a href="contact.html" class="btn btn--outline" style="width: 100%;">Request B2G Retainer</a>
+            <a href="contact.html?loadout=armada" class="btn btn--outline" style="width: 100%;">Request B2G Retainer</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- DETAILED COMPARISON TABLE -->
+    <!-- MATRIX -->
     <section class="section" style="background: var(--grad-card);">
       <div class="container">
         <div class="section__header">
@@ -226,28 +203,10 @@
               <td>Custom (5 to 20+)</td>
             </tr>
             <tr>
-              <td>Maximum Cargo Lift Capacity</td>
-              <td>15 kg</td>
-              <td>15 kg (expandable to 25kg)</td>
-              <td>Up to 50 kg (Hybrid)</td>
-            </tr>
-            <tr>
               <td>Cellular 5G BVLOS Control Range</td>
               <td>Unbounded (SIM)</td>
               <td>Unbounded (SIM + Satcom)</td>
               <td>Unbounded + Drone Relay</td>
-            </tr>
-            <tr>
-              <td>AeroCargo Weatherproof Container</td>
-              <td><span class="check">&#10003;</span></td>
-              <td><span class="check">&#10003;</span></td>
-              <td><span class="check">&#10003;</span></td>
-            </tr>
-            <tr>
-              <td>MediKool Cold-Chain (2°C - 8°C)</td>
-              <td>Optional Add-on</td>
-              <td><span class="check">&#10003;</span></td>
-              <td><span class="check">&#10003;</span></td>
             </tr>
             <tr>
               <td>Disaster Motorized Winch System</td>
@@ -262,42 +221,13 @@
               <td><span class="check">&#10003;</span></td>
             </tr>
             <tr>
-              <td>Cloud GCS Software Licenses</td>
-              <td>2 Seats</td>
-              <td>10 Seats</td>
-              <td>Enterprise Unlimited</td>
-            </tr>
-            <tr>
               <td>Monsoon Flood Standby Guarantee</td>
               <td><span class="cross">&#10007;</span></td>
               <td>72-Hour Response</td>
               <td>30-Minute Priority Alert</td>
             </tr>
-            <tr>
-              <td>Battery Replacement &amp; Spares AMC</td>
-              <td>Self-managed</td>
-              <td>Full AMC Included</td>
-              <td>Full AMC + Dedicated Depot</td>
-            </tr>
-            <tr>
-              <td>DGCA Regulatory Clearance Handling</td>
-              <td>Assisted</td>
-              <td>Fully Managed</td>
-              <td>Government Exemption Sandbox</td>
-            </tr>
           </tbody>
         </table>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section" style="padding-bottom: var(--sp-3xl);">
-      <div class="container text-center">
-        <h2 style="font-size: var(--fs-h2); margin-bottom: 1rem;">Need a Tailored Commercial Contract?</h2>
-        <p style="color: var(--clr-text-dim); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-          Contact our operations team for custom per-km billing or regional hospital network agreements.
-        </p>
-        <a href="contact.html" class="btn btn--primary magnetic">Schedule Commercial Consultation</a>
       </div>
     </section>
   </main>
@@ -308,17 +238,14 @@
         <div>&copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.</div>
         <div class="footer__legal">
           <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="contact.html">Contact</a>
+          <a href="studio.html">Drone Studio</a>
+          <a href="arcade.html">Flight Arcade</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>

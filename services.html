@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Modular Payloads | DRWEB AERO</title>
+  <title>Services &amp; Modular Payloads | DRWEB AERO</title>
   <meta name="description" content="Explore DRWEB AERO's commercial freight, disaster winch drops, medical cold-chain courier, and BVLOS fleet management services.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
   <div class="aurora-bg"></div>
   <div class="page-transition"></div>
-
-  <div class="hud-overlay">
-    <span class="hud-callsign">SYS: DRWEB-HEX-01</span>
-    <span class="hud-alt">ALT: 140 m</span>
-    <span class="hud-bat">BAT: 92%</span>
-    <span class="hud-link" style="color: var(--clr-green);">PAYLOAD: UPI MOTORIZED WINCH</span>
-  </div>
 
   <nav class="navbar" id="navbar">
     <div class="navbar__inner">
@@ -37,17 +31,17 @@
         <a href="about.html" class="navbar__link">About</a>
         <a href="services.html" class="navbar__link active">Services</a>
         <a href="pricing.html" class="navbar__link">Pricing</a>
-        <a href="team.html" class="navbar__link">Team</a>
-        <a href="faq.html" class="navbar__link">FAQ</a>
+        <a href="studio.html" class="navbar__link">Studio</a>
+        <a href="arcade.html" class="navbar__link">Arcade</a>
+        <a href="profile.html" class="navbar__link">Profile</a>
         <a href="contact.html" class="navbar__link">Contact</a>
       </div>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
-        <a href="contact.html" class="navbar__cta magnetic">Deploy Drone</a>
+        <a href="studio.html" class="navbar__cta magnetic">Build Drone</a>
         <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -58,8 +52,9 @@
     <a href="about.html" class="navbar__link">About</a>
     <a href="services.html" class="navbar__link active">Services</a>
     <a href="pricing.html" class="navbar__link">Pricing</a>
-    <a href="team.html" class="navbar__link">Team</a>
-    <a href="faq.html" class="navbar__link">FAQ</a>
+    <a href="studio.html" class="navbar__link">Studio</a>
+    <a href="arcade.html" class="navbar__link">Arcade</a>
+    <a href="profile.html" class="navbar__link">Profile</a>
     <a href="contact.html" class="navbar__link">Contact</a>
   </div>
 
@@ -67,7 +62,10 @@
     <section class="section">
       <div class="container">
         <div class="section__header" style="text-align: left; margin-bottom: 3rem;">
-          <div class="section__label">DUAL-USE LOGISTICS &amp; RESCUE</div>
+          <div class="section__label">
+            DUAL-USE LOGISTICS &amp; RESCUE
+            <span class="scavenger-drone" data-scavenger-id="scav_services" style="margin-left:8px;" title="Secret Recon Drone Found!">🛸</span>
+          </div>
           <h1 class="section__title" style="font-size: clamp(2.4rem, 5vw, 4rem);">
             Specialized Services &amp; <span class="text-cyan">Modular Payloads</span>
           </h1>
@@ -77,19 +75,17 @@
         </div>
 
         <div class="grid grid--3 gsap-stagger">
-          <!-- Service 1 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M19 12h-2v3h-3v2h5v-5zM7 9h2V6H6v5h1V9zm14-6H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/></svg>
             </div>
             <h3 class="card__title">Flood Winch Lifeline Delivery</h3>
             <p class="card__text">
-              Precision motorized winch cable drop with automated hook release. Drops inflatable life-vests, emergency water purification packs, and MRE food rations directly to stranded victims without touching turbulent floodwaters.
+              Precision motorized winch cable drop with automated hook release. Drops inflatable life-vests, emergency water purification packs, and food rations directly to stranded victims without touching turbulent floodwaters.
             </p>
             <span class="card__tag" style="background: rgba(255,107,53,0.15); color: var(--clr-orange);">Disaster Relief Suite</span>
           </div>
 
-          <!-- Service 2 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
@@ -101,7 +97,6 @@
             <span class="card__tag">Commercial Freight Suite</span>
           </div>
 
-          <!-- Service 3 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
@@ -113,7 +108,6 @@
             <span class="card__tag" style="background: rgba(0,230,118,0.15); color: var(--clr-green);">Healthcare Logistics</span>
           </div>
 
-          <!-- Service 4 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
@@ -125,7 +119,6 @@
             <span class="card__tag">Edge AI Reconnaissance</span>
           </div>
 
-          <!-- Service 5 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -137,7 +130,6 @@
             <span class="card__tag">Cloud Infrastructure</span>
           </div>
 
-          <!-- Service 6 -->
           <div class="card">
             <div class="card__icon">
               <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
@@ -151,88 +143,15 @@
         </div>
       </div>
     </section>
-
-    <!-- PAYLOAD SPECIFICATIONS TABLE -->
-    <section class="section" style="background: var(--grad-card);">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__label">TECHNICAL BENCHMARKS</div>
-          <h2 class="section__title">Universal Payload Interface (UPI) Modules</h2>
-        </div>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Module Name</th>
-              <th>Application</th>
-              <th>Weight</th>
-              <th>Deployment Time</th>
-              <th>Sensor Suite</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Disaster Winch Module V1</strong></td>
-              <td>Flood Survival Kit Lowering</td>
-              <td>3.8 kg</td>
-              <td>Under 90 seconds</td>
-              <td>Downward LiDAR &amp; Cable Tension Meter</td>
-            </tr>
-            <tr>
-              <td><strong>AeroCargo Rigid Pod</strong></td>
-              <td>B2B Light Freight / Parcels</td>
-              <td>2.2 kg</td>
-              <td>Under 60 seconds</td>
-              <td>Internal Geo-Lock &amp; Barcode Scanner</td>
-            </tr>
-            <tr>
-              <td><strong>MediKool CryoBox</strong></td>
-              <td>Blood &amp; Anti-Venom Transit</td>
-              <td>4.5 kg</td>
-              <td>Under 120 seconds</td>
-              <td>Cellular Cold-Chain Temp Probe</td>
-            </tr>
-            <tr>
-              <td><strong>FLIR Recon Gimbal</strong></td>
-              <td>Night Search &amp; Rescue</td>
-              <td>1.6 kg</td>
-              <td>Under 45 seconds</td>
-              <td>640p Radiometric + 4K Optical 30x</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section" style="padding-bottom: var(--sp-3xl);">
-      <div class="container text-center">
-        <h2 style="font-size: var(--fs-h2); margin-bottom: 1rem;">Need Custom Payloads Engineered for Your Mission?</h2>
-        <p style="color: var(--clr-text-dim); margin-bottom: 2rem; max-width: 650px; margin-left: auto; margin-right: auto;">
-          Our open-architecture avionics bus accepts custom PWM, CAN-bus, and UART devices with up to 400W pass-through power.
-        </p>
-        <a href="contact.html" class="btn btn--primary magnetic">Consult Our Avionics Team</a>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <div class="footer__bottom">
-        <div>&copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.</div>
-        <div class="footer__legal">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
+    <div class="container text-center" style="font-size:0.8rem; color:var(--clr-text-muted);">
+      &copy; 2026 DRWEB Aero. Incubatex Foundation, GIET University.
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>
