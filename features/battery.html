@@ -137,26 +137,46 @@
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Outer Frame -->
-                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1" />
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
 
+                <!-- 6 Toroidal Rotor Loops -->
+                <ellipse cx="230" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="500" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="230" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="200" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
                 <!-- Battery Cell Center Highlight -->
-                <rect x="315" y="145" width="70" height="55" rx="6" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
-                <line x1="315" y1="172" x2="385" y2="172" stroke="#FF4B26" stroke-width="1" stroke-dasharray="3 3" />
-                <circle cx="350" cy="172" r="5" fill="#FF4B26" />
+                <polygon points="350,110 380,126 380,154 350,170 320,154 320,126" stroke="#FF4B26" stroke-width="2.5" fill="#FF4B26" fill-opacity="0.2" />
+                <circle cx="350" cy="140" r="5" fill="#FF4B26" />
 
                 <!-- Callout -->
-                <line x1="385" y1="172" x2="520" y2="172" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="520" cy="172" r="3" fill="#FF4B26" />
-                <text x="530" y="168" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">Li-S DUAL POUCH CORE</text>
-                <text x="530" y="184" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">4,200 mAh • 22.2V Nominal • 93.2 Wh</text>
+                <line x1="380" y1="140" x2="520" y2="140" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="140" r="3" fill="#FF4B26" />
+                <text x="530" y="136" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">Li-S SOLID-STATE CORE</text>
+                <text x="530" y="152" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">4,200 mAh • 22.2V Nominal • 93.2 Wh</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: The power cell forms a structural shear-web inside the carbon monocoque, optimizing mass distribution at the center of gravity.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/gallery-hexacopter.jpg" alt="Gravitas Hexacopter Structural Monograph" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">STUDIO PLATE // 03</span>
+              <span class="mono-datum accent">AUTOCLAVED HIGH-MODULUS CARBON-FIBER HEX PLATFORM</span>
+            </div>
+            <p class="caption-text text-center">Studio Monograph: Center-of-gravity battery bay forming an integral shear-web inside the carbon monocoque.</p>
           </div>
 
           <div class="feature-section-block">

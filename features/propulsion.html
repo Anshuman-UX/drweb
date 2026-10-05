@@ -132,38 +132,56 @@
           <!-- Staged Airframe Location Diagram -->
           <div class="feature-diagram-card">
             <div class="diagram-meta">
-              <span class="mono-datum">PROPULSION DATUM: 4X RADIAL TOROIDAL HUBS</span>
+              <span class="mono-datum">PROPULSION DATUM: 6X RADIAL TOROIDAL HUBS</span>
               <span class="mono-datum accent">STATOR: 12-POLE SINTERED NEODYMIUM N52H</span>
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Outline -->
-                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1.2" />
-                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1.2" />
-                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1.2" />
-                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1.2" />
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#121316" stroke-width="2.5" stroke-linecap="round" />
 
-                <!-- Toroidal Rotor Active Highlights -->
-                <g stroke="#FF4B26" stroke-width="2" fill="#EFECE6" fill-opacity="0.4">
-                  <ellipse cx="160" cy="70" rx="48" ry="18" transform="rotate(-15 160 70)" />
-                  <ellipse cx="540" cy="70" rx="48" ry="18" transform="rotate(15 540 70)" />
-                  <ellipse cx="180" cy="250" rx="48" ry="18" transform="rotate(20 180 250)" />
-                  <ellipse cx="520" cy="250" rx="48" ry="18" transform="rotate(-20 520 250)" />
+                <!-- 6 Active Toroidal Rotor Loops -->
+                <g stroke="#FF4B26" stroke-width="2" fill="#EFECE6" fill-opacity="0.5">
+                  <ellipse cx="230" cy="60" rx="38" ry="15" transform="rotate(-15 230 60)" />
+                  <ellipse cx="470" cy="60" rx="38" ry="15" transform="rotate(15 470 60)" />
+                  <ellipse cx="500" cy="140" rx="38" ry="15" />
+                  <ellipse cx="470" cy="220" rx="38" ry="15" transform="rotate(-15 470 220)" />
+                  <ellipse cx="230" cy="220" rx="38" ry="15" transform="rotate(15 230 220)" />
+                  <ellipse cx="200" cy="140" rx="38" ry="15" />
                 </g>
-                <circle cx="160" cy="70" r="4" fill="#FF4B26" />
-                <circle cx="540" cy="70" r="4" fill="#FF4B26" />
-                <circle cx="180" cy="250" r="4" fill="#FF4B26" />
-                <circle cx="520" cy="250" r="4" fill="#FF4B26" />
+                <circle cx="230" cy="60" r="4" fill="#FF4B26" />
+                <circle cx="470" cy="60" r="4" fill="#FF4B26" />
+                <circle cx="500" cy="140" r="4" fill="#FF4B26" />
+                <circle cx="470" cy="220" r="4" fill="#FF4B26" />
+                <circle cx="230" cy="220" r="4" fill="#FF4B26" />
+                <circle cx="200" cy="140" r="4" fill="#FF4B26" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
 
                 <!-- Callout -->
-                <line x1="588" y1="70" x2="630" y2="70" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="630" cy="70" r="3" fill="#FF4B26" />
-                <text x="635" y="66" font-family="'Space Grotesk'" font-size="11" font-weight="600" fill="#121316">CLOSED-LOOP BLADE</text>
-                <text x="635" y="80" font-family="'JetBrains Mono'" font-size="9" fill="#62656E">Continuous Carbon Filament</text>
+                <line x1="538" y1="140" x2="580" y2="140" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="580" cy="140" r="3" fill="#FF4B26" />
+                <text x="590" y="136" font-family="'Space Grotesk'" font-size="11" font-weight="600" fill="#121316">6X TOROIDAL ROTORS</text>
+                <text x="590" y="150" font-family="'JetBrains Mono'" font-size="9" fill="#62656E">Continuous Carbon Loop • 48.5 dBA</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: Toroidal rotor geometry dispersing high-frequency vortex harmonics into broad sub-audible pink noise.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/gallery-hexacopter.jpg" alt="WhisperDrive Toroidal Propulsion Hex Rotor Layout" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">ACOUSTIC STUDY // TOROIDAL LOOP</span>
+              <span class="mono-datum accent">6X CLOSED-LOOP ROTOR HUBS</span>
+            </div>
+            <p class="caption-text text-center">Propulsion Layout: Six closed toroidal rotors eliminating tip vortices for a 48.5 dBA acoustic floor.</p>
           </div>
 
           <div class="feature-section-block">

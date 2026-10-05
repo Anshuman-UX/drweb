@@ -138,24 +138,47 @@
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Silhouette Outline -->
-                <path d="M 200 150 C 240 130, 360 130, 480 150 C 470 190, 440 220, 340 225 C 240 220, 210 190, 200 150 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="220" y1="140" x2="140" y2="90" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="460" y1="140" x2="540" y2="90" stroke="#D6D3CB" stroke-width="1" />
-                <ellipse cx="140" cy="90" rx="36" ry="12" stroke="#D6D3CB" stroke-width="0.8" />
-                <ellipse cx="540" cy="90" rx="36" ry="12" stroke="#D6D3CB" stroke-width="0.8" />
-                <!-- Gimbal Highlight Unit -->
-                <rect x="315" y="195" width="50" height="42" rx="6" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
-                <circle cx="340" cy="216" r="14" stroke="#121316" stroke-width="2" fill="#121316" />
-                <circle cx="340" cy="216" r="6" fill="#FF4B26" />
-                <!-- Callout Lines -->
-                <line x1="365" y1="216" x2="520" y2="216" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="520" cy="216" r="3" fill="#FF4B26" />
-                <text x="530" y="212" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">3-AXIS DIRECT-DRIVE CORE</text>
-                <text x="530" y="228" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Continuous 360&deg; Pan • -120&deg; to +35&deg; Tilt</text>
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+
+                <!-- 6 Toroidal Rotor Loops -->
+                <ellipse cx="230" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="500" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="230" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="200" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
+                <!-- Gimbal Highlight Unit (Forward Ventral) -->
+                <circle cx="350" cy="90" r="18" stroke="#121316" stroke-width="2" fill="#121316" />
+                <circle cx="350" cy="90" r="8" fill="#FF4B26" />
+                <circle cx="350" cy="90" r="3" fill="#F9F8F6" />
+
+                <!-- Callout -->
+                <line x1="368" y1="90" x2="520" y2="90" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="90" r="3" fill="#FF4B26" />
+                <text x="530" y="86" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">3-AXIS DIRECT-DRIVE CORE</text>
+                <text x="530" y="102" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Continuous 360° Pan • -120° to +35° Tilt</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: Optical core positioned forward-ventral to shield lens from propwash turbulence.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/gallery-macro-optic.jpg" alt="Gravitas 3-Axis Optical Gimbal Core" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">MACRO PLATE // 01</span>
+              <span class="mono-datum accent">DIRECT-DRIVE BRUSHLESS OPTICAL MOUNT</span>
+            </div>
+            <p class="caption-text text-center">Macro Teardown: 24mm aspherical optic with multi-layer nano-coatings and direct-drive brushless motors.</p>
           </div>
 
           <div class="feature-section-block">

@@ -137,34 +137,55 @@
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Silhouette Outline -->
-                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1" />
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
 
-                <!-- 6 Hex LiDAR Nodes -->
-                <!-- Forward -->
-                <circle cx="350" cy="115" r="5" fill="#FF4B26" />
-                <circle cx="350" cy="115" r="16" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="2 2" />
-                <!-- Left/Right Shoulders -->
-                <circle cx="285" cy="150" r="4" fill="#FF4B26" />
-                <circle cx="415" cy="150" r="4" fill="#FF4B26" />
-                <!-- Left/Right Flanks -->
-                <circle cx="295" cy="205" r="4" fill="#FF4B26" />
-                <circle cx="405" cy="205" r="4" fill="#FF4B26" />
-                <!-- Aft -->
-                <circle cx="350" cy="235" r="5" fill="#FF4B26" />
+                <!-- 6 Toroidal Rotor Loops -->
+                <ellipse cx="230" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="500" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="230" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="200" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
+                <!-- 6 Hex LiDAR Nodes on Chassis Vertices -->
+                <circle cx="350" cy="90" r="5" fill="#FF4B26" />
+                <circle cx="350" cy="90" r="14" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="2 2" />
+
+                <circle cx="395" cy="115" r="4" fill="#FF4B26" />
+                <circle cx="395" cy="165" r="4" fill="#FF4B26" />
+                
+                <circle cx="350" cy="190" r="5" fill="#FF4B26" />
+                <circle cx="350" cy="190" r="14" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="2 2" />
+
+                <circle cx="305" cy="165" r="4" fill="#FF4B26" />
+                <circle cx="305" cy="115" r="4" fill="#FF4B26" />
 
                 <!-- Callout -->
-                <line x1="350" y1="115" x2="480" y2="80" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="480" cy="80" r="3" fill="#FF4B26" />
-                <text x="490" y="76" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">SOLID-STATE TOF SENSOR</text>
-                <text x="490" y="92" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">905nm Eye-Safe Laser • 45m Range</text>
+                <line x1="350" y1="90" x2="480" y2="70" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="480" cy="70" r="3" fill="#FF4B26" />
+                <text x="490" y="66" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">SOLID-STATE TOF SENSOR</text>
+                <text x="490" y="82" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">905nm Eye-Safe Laser • 45m Range</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: Hex-directional geometry ensures zero blind spots across both horizontal and vertical quadrants.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/scenario-glacier.jpg" alt="OmniSight Multi-Sensor Array in Glacial Terrain" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">EXTREME ENVIRONMENT // 3,400M ALTITUDE</span>
+              <span class="mono-datum accent">HEX-DIRECTIONAL OBSTACLE SENSING</span>
+            </div>
+            <p class="caption-text text-center">Cryosphere Survey: Multi-spectral sensors and solid-state LiDAR operating seamlessly at -18°C.</p>
           </div>
 
           <div class="feature-section-block">

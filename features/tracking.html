@@ -137,30 +137,51 @@
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Silhouette Outline -->
-                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1" />
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
 
+                <!-- 6 Toroidal Rotor Loops -->
+                <ellipse cx="230" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="500" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="230" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="200" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
                 <!-- AI Silicon Stack Highlight -->
-                <polygon points="325,160 375,160 385,185 315,185" stroke="#FF4B26" stroke-width="2" fill="#121316" />
-                <text x="335" y="176" font-family="'JetBrains Mono'" font-size="8" fill="#F9F8F6">AI-40T</text>
-                <circle cx="350" cy="172" r="3" fill="#FF4B26" />
+                <polygon points="330,125 370,125 370,155 330,155" stroke="#FF4B26" stroke-width="2" fill="#121316" />
+                <text x="336" y="143" font-family="'JetBrains Mono'" font-size="8" fill="#F9F8F6" font-weight="600">AI-40T</text>
+                <circle cx="350" cy="140" r="3" fill="#FF4B26" />
 
                 <!-- Predictive Tracking Cone Forward -->
-                <path d="M 350 160 L 260 50 L 440 50 Z" fill="#FF4B26" fill-opacity="0.08" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="3 3" />
-                <circle cx="350" cy="50" r="5" stroke="#FF4B26" stroke-width="1.5" />
+                <path d="M 350 125 L 280 40 L 420 40 Z" fill="#FF4B26" fill-opacity="0.08" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="3 3" />
+                <circle cx="350" cy="40" r="5" stroke="#FF4B26" stroke-width="1.5" />
 
                 <!-- Callout -->
-                <line x1="375" y1="172" x2="520" y2="172" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="520" cy="172" r="3" fill="#FF4B26" />
-                <text x="530" y="168" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">NEURAL ACCELERATOR (NPU)</text>
-                <text x="530" y="184" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">40 TOPS Matrix Engine • 6W Power Envelope</text>
+                <line x1="370" y1="140" x2="520" y2="140" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="140" r="3" fill="#FF4B26" />
+                <text x="530" y="136" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">NEURAL ACCELERATOR (NPU)</text>
+                <text x="530" y="152" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">40 TOPS Matrix Engine • 6W Power Envelope</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: The neural processing core interfaces directly with sensor registers via an ultra-low latency DMA bus.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/scenario-coast.jpg" alt="EagleEye AI Subject Tracking at 72 km/h" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">HIGH-SPEED VEHICULAR TRACKING</span>
+              <span class="mono-datum accent">NEURAL VISION 120 FPS PREDICTIVE TRAJECTORY</span>
+            </div>
+            <p class="caption-text text-center">Real-World Regime: High-speed pursuit along coastal hairpin roads locking onto subjects at 72 km/h without operator lag.</p>
           </div>
 
           <div class="feature-section-block">

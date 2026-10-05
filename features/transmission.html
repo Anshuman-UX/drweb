@@ -137,30 +137,51 @@
             </div>
             <div class="diagram-canvas-wrap">
               <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
-                <!-- Drone Silhouette Outline -->
-                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
-                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1" />
-                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1" />
+                <!-- 6 Carbon Fiber Hex Arms -->
+                <line x1="320" y1="110" x2="230" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="110" x2="470" y2="60" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="395" y1="140" x2="500" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="380" y1="170" x2="470" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="320" y1="170" x2="230" y2="220" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="305" y1="140" x2="200" y2="140" stroke="#D6D3CB" stroke-width="2.5" stroke-linecap="round" />
 
-                <!-- Antenna Array in Tail Boom -->
-                <rect x="335" y="215" width="30" height="35" rx="3" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
-                <line x1="320" y1="230" x2="380" y2="230" stroke="#FF4B26" stroke-width="1.4" />
-                <circle cx="350" cy="230" r="4" fill="#FF4B26" />
+                <!-- 6 Toroidal Rotor Loops -->
+                <ellipse cx="230" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="60" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="500" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="470" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="230" cy="220" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+                <ellipse cx="200" cy="140" rx="36" ry="14" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Central Hex Monocoque Fuselage -->
+                <polygon points="350,90 395,115 395,165 350,190 305,165 305,115" stroke="#121316" stroke-width="2" fill="#EFECE6" fill-opacity="0.8" />
+                <!-- Antenna Array in Aft Spar -->
+                <rect x="338" y="175" width="24" height="28" rx="3" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
+                <line x1="326" y1="188" x2="374" y2="188" stroke="#FF4B26" stroke-width="1.4" />
+                <circle cx="350" cy="188" r="3" fill="#FF4B26" />
 
                 <!-- Radio Waves Graphic -->
-                <path d="M 390 220 Q 405 230, 390 240" stroke="#FF4B26" stroke-width="1" />
-                <path d="M 400 215 Q 420 230, 400 245" stroke="#FF4B26" stroke-width="1" stroke-dasharray="2 2" />
+                <path d="M 382 180 Q 395 188, 382 196" stroke="#FF4B26" stroke-width="1" />
+                <path d="M 390 174 Q 410 188, 390 202" stroke="#FF4B26" stroke-width="1" stroke-dasharray="2 2" />
 
                 <!-- Callout -->
-                <line x1="380" y1="230" x2="520" y2="230" stroke="#FF4B26" stroke-width="1.2" />
-                <circle cx="520" cy="230" r="3" fill="#FF4B26" />
-                <text x="530" y="226" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">TRI-BAND SDR TRANSCEIVER</text>
-                <text x="530" y="242" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Dual MIMO Antennas Integrated in Carbon Monocoque</text>
+                <line x1="362" y1="188" x2="520" y2="188" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="188" r="3" fill="#FF4B26" />
+                <text x="530" y="184" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">TRI-BAND SDR TRANSCEIVER</text>
+                <text x="530" y="200" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Dual MIMO Antennas Integrated in Carbon Monocoque</text>
               </svg>
             </div>
             <p class="caption-text text-center">Schematic: Conformal antennas embedded directly inside the airframe matrix eliminate fragile external plastic stalks.</p>
+          </div>
+
+          <!-- Photographic Monograph Plate -->
+          <div class="feature-photo-card">
+            <img src="../assets/images/scenario-bridge.jpg" alt="SkyLink Ultra-Long Range Encrypted Transmission" class="feature-photo-img" loading="lazy" width="800" height="400">
+            <div class="feature-photo-meta">
+              <span class="mono-datum">INFRASTRUCTURE AUDIT // 15 KM RANGE</span>
+              <span class="mono-datum accent">AES-256 ENCRYPTED TELEMETRY STREAM</span>
+            </div>
+            <p class="caption-text text-center">Nocturnal Survey: Zero-latency 1080p 60fps feed transmitted across 15 km through high-EMF infrastructure environments.</p>
           </div>
 
           <div class="feature-section-block">
