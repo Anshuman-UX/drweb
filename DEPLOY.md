@@ -4,6 +4,23 @@ This guide provides the exact `gcloud` and `gsutil` commands to deploy the **GRA
 
 ---
 
+## Quick Start: One-Click Automated Deployment
+
+If you already have the `gcloud` CLI installed and authenticated, deploy the entire site in a single command:
+
+**On macOS / Linux:**
+```bash
+chmod +x ./deploy.sh
+./deploy.sh gravitas-showcase-monograph us-central1
+```
+
+**On Windows (PowerShell):**
+```powershell
+.\deploy.ps1 -BucketName "gravitas-showcase-monograph" -Region "us-central1"
+```
+
+---
+
 ## 1. Prerequisites
 
 1. Install and authenticate the Google Cloud SDK:
