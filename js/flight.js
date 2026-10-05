@@ -302,7 +302,7 @@
       const path = '#flightMotionPath';
 
       // Initial placement at top
-      gsap.set(drone, { xPercent: -50, yPercent: -50 });
+      gsap.set(drone, { position: 'absolute', xPercent: -50, yPercent: -50 });
 
       // Continuous scrub flight along SVG motion path
       const flightTimeline = gsap.timeline({

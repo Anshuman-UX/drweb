@@ -34,8 +34,8 @@
 
   // ── NAVBAR ──
   const navbar = document.querySelector('.navbar');
-  const hamburger = document.querySelector('.navbar__hamburger');
-  const mobileNav = document.querySelector('.navbar__mobile');
+  const hamburger = document.querySelector('.hamburger') || document.querySelector('.navbar__hamburger');
+  const mobileNav = document.querySelector('.mobile-nav') || document.querySelector('.navbar__mobile');
 
   // Scroll – add "scrolled" class
   function onScroll() {
