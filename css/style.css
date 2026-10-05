@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — EXHIBITION & MONOGRAPH DESIGN SYSTEM (style.css)
+   GRAVITAS — EXHIBITION & MONOGRAPH DESIGN SYSTEM (style.css)
    Art Direction: Museum Exhibition / Technical Monograph
    Design Tokens:
      Background: Warm Bone (#F9F8F6)
@@ -470,42 +470,171 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
-/* Staged Drone Hero Container */
+/* Staged Hexacopter Interactive Stage */
 .hero-stage {
   position: relative;
   background-color: var(--bg-surface);
   border: 1px solid var(--hairline);
-  padding: clamp(2rem, 5vw, 5rem);
+  border-radius: var(--radius-md);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
   margin-bottom: 3rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 20px 48px rgba(18, 19, 22, 0.04);
 }
+
+.hero-drone-stage-wrap {
+  width: 100%;
+  max-width: 860px;
+  position: relative;
+  perspective: 1200px;
+}
+
+/* Live Telemetry HUD Bar */
+.hex-hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding: 10px 18px;
+  background: rgba(249, 248, 246, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22C55E;
+  box-shadow: 0 0 10px #22C55E;
+  animation: pulseBeacon 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.hud-chip-title {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+}
+
+.hud-chip-dim {
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.hud-chip-val {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Staged 3D Tilting Drone */
 .hero-staged-drone {
   width: 100%;
-  max-width: 780px;
   position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
-.hero-drone-svg {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 20px 30px rgba(18, 19, 22, 0.08));
-  animation: droneHover 6s ease-in-out infinite alternate;
+
+.drone-floating {
+  animation: droneHover 4.5s ease-in-out infinite;
 }
+
 @keyframes droneHover {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(0.4deg); }
-  100% { transform: translateY(0px) rotate(-0.3deg); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(0.4deg); }
 }
-.prop-spin {
-  transform-origin: center;
-  animation: propCycle 0.25s linear infinite;
+
+.stage-shadow {
+  position: absolute;
+  bottom: -25px;
+  left: 15%;
+  width: 70%;
+  height: 30px;
+  background: radial-gradient(ellipse at center, rgba(18, 19, 22, 0.14) 0%, rgba(18, 19, 22, 0) 75%);
+  border-radius: 50%;
+  filter: blur(10px);
+  pointer-events: none;
+  animation: shadowPulse 4.5s ease-in-out infinite;
 }
-@keyframes propCycle {
-  from { opacity: 0.75; }
-  50% { opacity: 0.95; }
-  to { opacity: 0.75; }
+
+@keyframes shadowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(0.85); opacity: 0.45; }
+}
+
+/* Interactive Hex Flight Mode Selectors */
+.hex-mode-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2rem;
+  z-index: 2;
+}
+
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg-color);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-pill:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  transform: translateY(-2px);
+}
+
+.mode-pill.active {
+  background: var(--text-main);
+  color: var(--bg-color);
+  border-color: var(--text-main);
+  box-shadow: 0 6px 18px rgba(18, 19, 22, 0.15);
+  transform: translateY(-2px);
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hairline);
+  transition: all 0.25s ease;
+}
+
+.mode-pill.active .pill-dot {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .hero-actions {

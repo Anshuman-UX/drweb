@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — INTERACTIVE EXPLODED VIEW ENGINE (explode.js)
+   GRAVITAS — INTERACTIVE EXPLODED VIEW ENGINE (explode.js)
    Physical stratum dispersion along the central vertical datum axis.
    Translates individual mechanical layers (canopy, sensors, avionics,
    battery, chassis, and gimbal) based on slider percentage.

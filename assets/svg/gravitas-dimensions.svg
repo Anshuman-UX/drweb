@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 520" width="100%" height="100%" fill="none" stroke="#121316">
+  <defs>
+    <style>
+      .dim-line { stroke: #FF4B26; stroke-width: 1.2; }
+      .dim-tick { stroke: #FF4B26; stroke-width: 1.5; }
+      .dim-aux { stroke: #8C8E94; stroke-width: 0.8; stroke-dasharray: 4 4; }
+      .dim-chassis { stroke: #121316; stroke-width: 1.8; fill: #EFECE6; fill-opacity: 0.5; }
+      .dim-arm { stroke: #121316; stroke-width: 3.5; stroke-linecap: round; }
+      .dim-rotor { stroke: #121316; stroke-width: 1.2; fill: #EFECE6; fill-opacity: 0.3; }
+      .dim-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #121316; font-weight: 500; }
+      .dim-text-accent { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #FF4B26; font-weight: 600; }
+      .dim-muted { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #62656E; }
+    </style>
+  </defs>
+
+  <!-- Title & Datum Header -->
+  <text x="40" y="40" class="dim-text-accent">GRAVITAS HEXACOPTER // TOP-DOWN &amp; ELEVATION DATUM MATRIX</text>
+  <text x="40" y="58" class="dim-muted">6-ROTOR SYMMETRICAL CONFIGURATION • NET MASS: 249 g (CLASS C0 COMPLIANT)</text>
+
+  <!-- ==================== LEFT: TOP-DOWN HEXACOPTER VIEW ==================== -->
+  <g id="top-hex-view" transform="translate(40, 20)">
+    <!-- Central Hexagonal Monocoque Body -->
+    <polygon points="260,195 295,215 310,250 305,295 260,325 215,295 210,250 225,215" class="dim-chassis" />
+    <circle cx="260" cy="260" r="16" stroke="#FF4B26" stroke-width="1.2" fill="#121316" />
+    <circle cx="260" cy="260" r="5" fill="#FF4B26" />
+    
+    <!-- Forward Gimbal -->
+    <path d="M 245 198 C 245 180, 275 180, 275 198 Z" fill="#121316" stroke="#121316" stroke-width="1.5" />
+    <circle cx="260" cy="188" r="6" stroke="#FF4B26" stroke-width="1" />
+
+    <!-- 6 Hex Arms (60° Radial Spacing) -->
+    <!-- Arm 1: Top-Left (FL) -->
+    <line x1="235" y1="230" x2="160" y2="155" class="dim-arm" />
+    <!-- Arm 2: Top-Right (FR) -->
+    <line x1="285" y1="230" x2="360" y2="155" class="dim-arm" />
+    <!-- Arm 3: Mid-Left (ML) -->
+    <line x1="210" y1="260" x2="110" y2="260" class="dim-arm" />
+    <!-- Arm 4: Mid-Right (MR) -->
+    <line x1="310" y1="260" x2="410" y2="260" class="dim-arm" />
+    <!-- Arm 5: Bottom-Left (RL) -->
+    <line x1="235" y1="290" x2="160" y2="365" class="dim-arm" />
+    <!-- Arm 6: Bottom-Right (RR) -->
+    <line x1="285" y1="290" x2="360" y2="365" class="dim-arm" />
+
+    <!-- 6 Toroidal Rotors -->
+    <ellipse cx="160" cy="155" rx="36" ry="14" class="dim-rotor" transform="rotate(-30 160 155)" />
+    <circle cx="160" cy="155" r="4" fill="#FF4B26" />
+
+    <ellipse cx="360" cy="155" rx="36" ry="14" class="dim-rotor" transform="rotate(30 360 155)" />
+    <circle cx="360" cy="155" r="4" fill="#FF4B26" />
+
+    <ellipse cx="110" cy="260" rx="36" ry="14" class="dim-rotor" />
+    <circle cx="110" cy="260" r="4" fill="#121316" />
+
+    <ellipse cx="410" cy="260" rx="36" ry="14" class="dim-rotor" />
+    <circle cx="410" cy="260" r="4" fill="#121316" />
+
+    <ellipse cx="160" cy="365" rx="36" ry="14" class="dim-rotor" transform="rotate(30 160 365)" />
+    <circle cx="160" cy="365" r="4" fill="#121316" />
+
+    <ellipse cx="360" cy="365" rx="36" ry="14" class="dim-rotor" transform="rotate(-30 360 365)" />
+    <circle cx="360" cy="365" r="4" fill="#121316" />
+
+    <!-- Dimension: Rotor-to-Rotor Span (Leftmost Tip to Rightmost Tip) -->
+    <line x1="74" y1="260" x2="74" y2="105" class="dim-aux" />
+    <line x1="446" y1="260" x2="446" y2="105" class="dim-aux" />
+    <line x1="74" y1="115" x2="446" y2="115" class="dim-line" />
+    <line x1="74" y1="109" x2="74" y2="121" class="dim-tick" />
+    <line x1="446" y1="109" x2="446" y2="121" class="dim-tick" />
+    <text x="210" y="108" class="dim-text-accent">372 mm (MAX ROTOR SPAN)</text>
+
+    <!-- Dimension: Longitudinal Length (Nose to Tail) -->
+    <line x1="260" y1="182" x2="45" y2="182" class="dim-aux" />
+    <line x1="260" y1="380" x2="45" y2="380" class="dim-aux" />
+    <line x1="52" y1="182" x2="52" y2="380" class="dim-line" />
+    <line x1="46" y1="182" x2="58" y2="182" class="dim-tick" />
+    <line x1="46" y1="380" x2="58" y2="380" class="dim-tick" />
+    <text x="18" y="285" class="dim-text-accent" transform="rotate(-90 40 285)">298 mm LENGTH</text>
+  </g>
+
+  <!-- ==================== RIGHT: SIDE ELEVATION PROFILE ==================== -->
+  <g id="side-hex-view" transform="translate(510, 40)">
+    <text x="40" y="130" class="dim-muted">SIDE ELEVATION PROFILE (HEX ARCHITECTURE)</text>
+
+    <!-- Side Silhouette -->
+    <path d="M 40 250 Q 70 230, 140 220 Q 210 216, 280 240 Q 300 248, 280 256 Q 200 264, 100 260 Z" class="dim-chassis" />
+    
+    <!-- Forward Optical Gimbal Dome -->
+    <rect x="42" y="248" width="22" height="26" rx="4" stroke="#121316" stroke-width="1.6" fill="#121316" />
+    <circle cx="53" cy="272" r="6" fill="#FF4B26" />
+
+    <!-- Hex Motor Pods and Propeller Lines (Elevated Planes) -->
+    <!-- Front Motor -->
+    <line x1="70" y1="225" x2="70" y2="210" stroke="#121316" stroke-width="2" />
+    <ellipse cx="70" cy="210" rx="34" ry="4" stroke="#121316" stroke-width="1.2" fill="#EFECE6" />
+    
+    <!-- Mid Motor -->
+    <line x1="170" y1="218" x2="170" y2="204" stroke="#121316" stroke-width="2" />
+    <ellipse cx="170" cy="204" rx="34" ry="4" stroke="#121316" stroke-width="1.2" fill="#EFECE6" />
+
+    <!-- Rear Motor -->
+    <line x1="270" y1="230" x2="270" y2="216" stroke="#121316" stroke-width="2" />
+    <ellipse cx="270" cy="216" rx="34" ry="4" stroke="#121316" stroke-width="1.2" fill="#EFECE6" />
+
+    <!-- Carbon Landing Struts -->
+    <line x1="100" y1="260" x2="80" y2="300" stroke="#121316" stroke-width="2.5" />
+    <line x1="240" y1="255" x2="260" y2="300" stroke="#121316" stroke-width="2.5" />
+    <line x1="60" y1="300" x2="280" y2="300" stroke="#121316" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Dimension: Vertical Height (Landing Skid to Propeller Tip) -->
+    <line x1="170" y1="200" x2="315" y2="200" class="dim-aux" />
+    <line x1="60" y1="300" x2="315" y2="300" class="dim-aux" />
+    <line x1="310" y1="200" x2="310" y2="300" class="dim-line" />
+    <line x1="304" y1="200" x2="316" y2="200" class="dim-tick" />
+    <line x1="304" y1="300" x2="316" y2="300" class="dim-tick" />
+    <text x="322" y="255" class="dim-text-accent">96 mm</text>
+  </g>
+
+  <!-- Technical Footer Bar -->
+  <line x1="40" y1="460" x2="810" y2="460" stroke="#D6D3CB" stroke-width="0.8" />
+  <text x="40" y="485" class="dim-muted">ARCHIVE RECORD: GRAVITAS-HEX-ARCH // ISO 2768-m TOLERANCE</text>
+  <text x="810" y="485" class="dim-text-accent" text-anchor="end">MAX GALE RESISTANCE: FORCE 8 (18 M/S)</text>
+</svg>

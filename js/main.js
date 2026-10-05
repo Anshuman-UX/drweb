@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — CORE INTERACTIONS (main.js)
+   GRAVITAS — CORE INTERACTIONS (main.js)
    Mobile navigation drawer, active link state, keyboard-accessible lightbox,
    FAQ smooth accordion, and non-sales technical inquiry validation.
    ========================================================================== */
@@ -10,7 +10,7 @@
   // Signal progressive enhancement
   document.documentElement.classList.add('js-enabled');
 
-  const GarudUI = {
+  const GravitasUI = {
     init() {
       this.initMobileNav();
       this.initAccordion();
@@ -228,7 +228,7 @@
             const feedback = document.getElementById('enquiry-feedback');
             if (feedback) {
               feedback.className = 'form-feedback success';
-              feedback.textContent = 'Transmitted successfully to Garud Archival Repository. A technical curator will respond within 48 hours.';
+              feedback.textContent = 'Transmitted successfully to Gravitas Archival Repository. A technical curator will respond within 48 hours.';
               feedback.style.display = 'block';
             }
             enquiryForm.reset();
@@ -256,5 +256,5 @@
     }
   };
 
-  document.addEventListener('DOMContentLoaded', () => GarudUI.init());
+  document.addEventListener('DOMContentLoaded', () => GravitasUI.init());
 })();

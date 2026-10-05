@@ -1,8 +1,8 @@
 /* ==========================================================================
-   GARUD — MOTION & THE ANATOMY JOURNEY (motion.js)
-   Artistic, restrained GSAP 3.12.5 + ScrollTrigger choreography.
-   Synchronized font/image ready lifecycle, matchMedia responsiveness,
-   and clean progressive enhancement.
+   GRAVITAS — MOTION & THE ANATOMY JOURNEY (motion.js)
+   Artistic, high-tech GSAP 3.12.5 + ScrollTrigger choreography.
+   Interactive 3D Hexacopter cursor tilt, flight mode transitions,
+   synchronized font/image ready lifecycle, matchMedia responsiveness.
    ========================================================================== */
 
 (function () {
@@ -26,6 +26,7 @@
       this.mm = gsap.matchMedia();
 
       this.initHeroEntrance();
+      this.initHexInteractiveStage();
       this.initStatsCounter();
       this.initEditorialReveals();
       this.initResponsiveChoreography();
@@ -43,26 +44,113 @@
       });
     },
 
-    // 1. Hero Minimal Entrance
+    // 1. Hero High-Impact Precision Entrance
     initHeroEntrance() {
       const heroWordmark = document.querySelector('.hero-wordmark-large');
       const heroTagline = document.querySelector('.hero-tagline');
       const heroDrone = document.querySelector('.hero-staged-drone');
+      const hudBar = document.querySelector('.hex-hud-bar');
+      const modeSelector = document.querySelector('.hex-mode-selector');
 
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+      const tl = gsap.timeline({ defaults: { ease: 'cubic-bezier(0.16, 1, 0.3, 1)', duration: 1.1 } });
 
       if (heroWordmark) {
-        tl.from(heroWordmark, { y: 40, opacity: 0, delay: 0.1 });
+        tl.from(heroWordmark, { y: 35, opacity: 0, delay: 0.1 });
       }
       if (heroTagline) {
-        tl.from(heroTagline, { y: 20, opacity: 0 }, '-=0.9');
+        tl.from(heroTagline, { y: 20, opacity: 0 }, '-=0.8');
+      }
+      if (hudBar) {
+        tl.from(hudBar, { y: 15, opacity: 0, duration: 0.8 }, '-=0.7');
       }
       if (heroDrone) {
-        tl.from(heroDrone, { scale: 0.96, opacity: 0, duration: 1.4 }, '-=1.0');
+        tl.from(heroDrone, { scale: 0.92, opacity: 0, duration: 1.3 }, '-=0.9');
+      }
+      if (modeSelector) {
+        tl.from(modeSelector, { y: 15, opacity: 0, duration: 0.7 }, '-=0.8');
       }
     },
 
-    // 2. Responsive Choreography (Desktop vs Mobile)
+    // 2. Interactive 3D Cursor Tilt & Hex Mode Switcher
+    initHexInteractiveStage() {
+      const stage = document.getElementById('hero-interactive-hex');
+      const droneModel = document.getElementById('hero-drone-model');
+      if (!stage || !droneModel) return;
+
+      // Mousemove 3D Parallax Tilt
+      stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - rect.width / 2;
+        const mouseY = e.clientY - rect.top - rect.height / 2;
+        
+        // Calculate smooth angular pitch and roll
+        const rotX = -(mouseY / (rect.height / 2)) * 15;
+        const rotY = (mouseX / (rect.width / 2)) * 18;
+
+        droneModel.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      stage.addEventListener('mouseleave', () => {
+        droneModel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+
+      // Hex Flight Mode Selector Pills
+      const modeButtons = stage.querySelectorAll('.mode-pill');
+      const modeValDisplay = document.getElementById('hud-mode-val');
+      const satValDisplay = document.getElementById('hud-sat-val');
+      const rotorElements = stage.querySelectorAll('.rotor-cw, .rotor-ccw');
+
+      const modeProfiles = {
+        recon: {
+          hud: 'RECON 360° // 52 MIN',
+          sat: '32 SATS (L1/L5 FIXED)',
+          spinSpeed: '0.28s'
+        },
+        whisper: {
+          hud: 'WHISPER STEALTH // 42.1 dBA',
+          sat: 'SILENT ESC ENGAGED',
+          spinSpeed: '0.45s'
+        },
+        cinema: {
+          hud: 'CINEMATIC 8K // 14 STOPS',
+          sat: 'GIMBAL ±0.003° LOCKED',
+          spinSpeed: '0.22s'
+        },
+        apex: {
+          hud: 'APEX MAXIMUM // 72 KM/H',
+          sat: 'HIGH-VELOCITY ESC ACTIVE',
+          spinSpeed: '0.12s'
+        }
+      };
+
+      modeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          modeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const modeKey = btn.getAttribute('data-mode') || 'recon';
+          const profile = modeProfiles[modeKey] || modeProfiles.recon;
+
+          if (modeValDisplay) {
+            modeValDisplay.textContent = profile.hud;
+            gsap.fromTo(modeValDisplay, { opacity: 0.2 }, { opacity: 1, duration: 0.3 });
+          }
+          if (satValDisplay) {
+            satValDisplay.textContent = profile.sat;
+          }
+
+          // Dynamically adjust rotor speeds
+          rotorElements.forEach(rotor => {
+            rotor.style.animationDuration = profile.spinSpeed;
+          });
+
+          // Gentle flash animation on drone
+          gsap.fromTo(droneModel, { scale: 0.99 }, { scale: 1.02, duration: 0.25, yoyo: true, repeat: 1 });
+        });
+      });
+    },
+
+    // 3. Responsive Choreography (Desktop vs Mobile)
     initResponsiveChoreography() {
       const self = this;
 
@@ -74,7 +162,6 @@
 
       // MOBILE REGIME (< 1024px)
       this.mm.add('(max-width: 1023px)', () => {
-        // Reset blueprint to neutral state on mobile to avoid off-screen displacement
         const blueprintSvg = document.querySelector('.anatomy-blueprint');
         if (blueprintSvg) {
           gsap.set(blueprintSvg, { clearProps: 'all' });
@@ -82,7 +169,7 @@
       });
     },
 
-    // 3. Signature Motion: The Anatomy Journey (Desktop Pinned Mode)
+    // 4. Signature Motion: The Anatomy Journey (Desktop Pinned Mode)
     initAnatomyJourneyDesktop() {
       const blueprintSvg = document.querySelector('.anatomy-blueprint');
       if (!blueprintSvg) return;
@@ -96,37 +183,37 @@
         start: 'top 60%',
         end: 'bottom 40%',
         onEnter: () => {
-          gsap.to(blueprintSvg, { scale: 1.3, x: 0, y: 40, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
-          if (lensTarget) gsap.to(lensTarget, { stroke: '#FF4B26', strokeWidth: 2, duration: 0.3 });
+          gsap.to(blueprintSvg, { scale: 1.35, x: 0, y: 70, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          if (lensTarget) gsap.to(lensTarget, { stroke: '#FF4B26', strokeWidth: 2.5, duration: 0.3 });
         },
         onLeaveBack: () => {
           gsap.to(blueprintSvg, { scale: 1.0, x: 0, y: 0, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
-          if (lensTarget) gsap.to(lensTarget, { stroke: '#FF4B26', strokeWidth: 1.2, duration: 0.3 });
+          if (lensTarget) gsap.to(lensTarget, { stroke: '#FF4B26', strokeWidth: 1.6, duration: 0.3 });
         }
       });
 
-      // Chapter 02: Toroidal Propulsion Focus
+      // Chapter 02: 6-Rotor Hexacopter Toroidal Propulsion Focus
       ScrollTrigger.create({
         trigger: '#chapter-02',
         start: 'top 60%',
         end: 'bottom 40%',
         onEnter: () => {
-          gsap.to(blueprintSvg, { scale: 1.35, x: -60, y: -30, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          gsap.to(blueprintSvg, { scale: 1.4, x: -90, y: -40, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
         },
         onEnterBack: () => {
-          gsap.to(blueprintSvg, { scale: 1.35, x: -60, y: -30, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          gsap.to(blueprintSvg, { scale: 1.4, x: -90, y: -40, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
         }
       });
 
-      // Chapter 03: OmniSight LiDAR Perimeter Focus
+      // Chapter 03: OmniSight 360° Hex-LiDAR Perimeter Focus
       ScrollTrigger.create({
         trigger: '#chapter-03',
         start: 'top 60%',
         end: 'bottom 40%',
         onEnter: () => {
-          gsap.to(blueprintSvg, { scale: 1.25, x: 40, y: -15, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          gsap.to(blueprintSvg, { scale: 1.3, x: 50, y: -20, duration: 0.8, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' });
           if (sensorBeams.length) {
-            gsap.to(sensorBeams, { opacity: 0.8, scale: 1.2, duration: 0.4, repeat: 3, yoyo: true });
+            gsap.to(sensorBeams, { opacity: 0.9, scale: 1.3, duration: 0.35, repeat: 3, yoyo: true });
           }
         },
         onLeave: () => {
@@ -135,7 +222,7 @@
       });
     },
 
-    // 4. Horizontal Scenarios Scroll (Desktop Only)
+    // 5. Horizontal Scenarios Scroll (Desktop Only)
     initHorizontalScenariosDesktop() {
       const section = document.querySelector('.scenarios-section');
       const track = document.querySelector('.scenario-track');
@@ -159,7 +246,7 @@
       }
     },
 
-    // 5. Typographic Stat Rolling Counters
+    // 6. Typographic Stat Rolling Counters
     initStatsCounter() {
       const statElements = document.querySelectorAll('.stat-number[data-target]');
       statElements.forEach(el => {
@@ -185,9 +272,9 @@
       });
     },
 
-    // 6. Subtle Editorial Reveals
+    // 7. Subtle Editorial Reveals
     initEditorialReveals() {
-      const cards = document.querySelectorAll('.stat-card, .matrix-card, .pillar-card, .scenario-card');
+      const cards = document.querySelectorAll('.stat-card, .matrix-card, .pillar-card, .scenario-card, .scenario-panel');
       cards.forEach(card => {
         gsap.from(card, {
           scrollTrigger: {

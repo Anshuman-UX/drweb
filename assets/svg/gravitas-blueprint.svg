@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%" fill="none" stroke="#121316">
+  <defs>
+    <style>
+      .hairline { stroke-width: 0.8; stroke: #8C8E94; stroke-dasharray: 4 4; }
+      .axis-grid { stroke: #D6D3CB; stroke-width: 0.6; stroke-dasharray: 2 6; }
+      .chassis-outline { stroke: #121316; stroke-width: 2.2; fill: #EFECE6; fill-opacity: 0.75; }
+      .chassis-facet { stroke: #62656E; stroke-width: 1.2; fill: #F9F8F6; fill-opacity: 0.5; }
+      .arm-heavy { stroke: #121316; stroke-width: 5; stroke-linecap: round; }
+      .arm-core { stroke: #62656E; stroke-width: 2.5; stroke-linecap: round; }
+      .rotor-ring { stroke: #121316; stroke-width: 1.8; fill: #EFECE6; fill-opacity: 0.35; }
+      .rotor-blade { stroke: #62656E; stroke-width: 1.4; fill: #121316; fill-opacity: 0.15; }
+      .accent-line { stroke: #FF4B26; stroke-width: 1.4; }
+      .accent-fill { fill: #FF4B26; }
+      .sensor-pulse { stroke: #FF4B26; stroke-width: 1; opacity: 0.4; }
+      .hud-text { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #62656E; }
+      .hud-accent { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #FF4B26; font-weight: 600; }
+      
+      /* Continuous High-Speed Rotor Blur Animation */
+      @keyframes spinClockwise {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes spinCounterClockwise {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(-360deg); }
+      }
+      @keyframes radarSweep {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes radarPulse {
+        0% { r: 12px; opacity: 0.8; }
+        100% { r: 140px; opacity: 0; }
+      }
+      
+      .rotor-cw { transform-box: fill-box; transform-origin: center; animation: spinClockwise 0.28s linear infinite; }
+      .rotor-ccw { transform-box: fill-box; transform-origin: center; animation: spinCounterClockwise 0.28s linear infinite; }
+      .radar-sweep-beam { transform-box: fill-box; transform-origin: 400px 300px; animation: radarSweep 3.5s linear infinite; }
+      .radar-wave { transform-origin: 400px 300px; animation: radarPulse 2.8s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; }
+      .prop-blur { opacity: 0.25; stroke-dasharray: 12 8; }
+    </style>
+    
+    <!-- Radar Sweep Gradient -->
+    <radialGradient id="radar-cone" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF4B26" stop-opacity="0.3" />
+      <stop offset="70%" stop-color="#FF4B26" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#FF4B26" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- ==================== BACKGROUND HUD & RANGE RINGS ==================== -->
+  <line x1="50" y1="300" x2="750" y2="300" class="axis-grid" />
+  <line x1="400" y1="40" x2="400" y2="560" class="axis-grid" />
+  
+  <!-- 60-Degree Radial Arm Alignment Axes (Hexacopter Symmetry) -->
+  <line x1="140" y1="150" x2="660" y2="450" class="hairline" />
+  <line x1="140" y1="450" x2="660" y2="150" class="hairline" />
+  <circle cx="400" cy="300" r="100" class="axis-grid" />
+  <circle cx="400" cy="300" r="200" class="hairline" />
+  <circle cx="400" cy="300" r="260" stroke="#D6D3CB" stroke-width="0.8" stroke-dasharray="6 12" />
+
+  <!-- Animated Active Radar Cone from Core -->
+  <circle cx="400" cy="300" r="80" class="radar-wave" stroke="#FF4B26" stroke-width="1.2" fill="none" />
+  <g class="radar-sweep-beam">
+    <path d="M 400 300 L 590 190 A 220 220 0 0 0 540 140 Z" fill="url(#radar-cone)" />
+    <line x1="400" y1="300" x2="590" y2="190" stroke="#FF4B26" stroke-width="1.5" stroke-opacity="0.6" />
+  </g>
+
+  <!-- ==================== 6 HEAVY CARBON ARMS (HEXACOPTER SKELETON) ==================== -->
+  <g id="hex-arms">
+    <!-- Arm 1: Forward-Left (300° / -60°) -->
+    <line x1="365" y1="260" x2="250" y2="150" class="arm-heavy" />
+    <line x1="365" y1="260" x2="250" y2="150" class="arm-core" stroke="#EFECE6" />
+    <line x1="365" y1="260" x2="250" y2="150" class="accent-line" stroke-dasharray="8 12" />
+
+    <!-- Arm 2: Forward-Right (60°) -->
+    <line x1="435" y1="260" x2="550" y2="150" class="arm-heavy" />
+    <line x1="435" y1="260" x2="550" y2="150" class="arm-core" stroke="#EFECE6" />
+    <line x1="435" y1="260" x2="550" y2="150" class="accent-line" stroke-dasharray="8 12" />
+
+    <!-- Arm 3: Mid-Left (180°) -->
+    <line x1="350" y1="300" x2="190" y2="300" class="arm-heavy" />
+    <line x1="350" y1="300" x2="190" y2="300" class="arm-core" stroke="#EFECE6" />
+
+    <!-- Arm 4: Mid-Right (0°) -->
+    <line x1="450" y1="300" x2="610" y2="300" class="arm-heavy" />
+    <line x1="450" y1="300" x2="610" y2="300" class="arm-core" stroke="#EFECE6" />
+
+    <!-- Arm 5: Aft-Left (240°) -->
+    <line x1="365" y1="340" x2="250" y2="450" class="arm-heavy" />
+    <line x1="365" y1="340" x2="250" y2="450" class="arm-core" stroke="#EFECE6" />
+
+    <!-- Arm 6: Aft-Right (300°) -->
+    <line x1="435" y1="340" x2="550" y2="450" class="arm-heavy" />
+    <line x1="435" y1="340" x2="550" y2="450" class="arm-core" stroke="#EFECE6" />
+  </g>
+
+  <!-- ==================== 6 TOROIDAL ROTORS & HIGH-RPM PROPELLERS ==================== -->
+  
+  <!-- Rotor 01: Forward Left (250, 150) -->
+  <g transform="translate(250, 150)">
+    <!-- Motor Pod Base -->
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#FF4B26" />
+    <!-- Outer Aerodynamic Guard Ring -->
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <!-- High Speed Spinning Blades -->
+    <g class="rotor-cw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#FF4B26" stroke-width="1.5" />
+    </g>
+    <!-- Nav Beacon -->
+    <circle cx="-38" cy="-38" r="4" class="accent-fill" />
+    <text x="-48" y="-46" class="hud-accent">R1-FL</text>
+  </g>
+
+  <!-- Rotor 02: Forward Right (550, 150) -->
+  <g transform="translate(550, 150)">
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#FF4B26" />
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <g class="rotor-ccw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#FF4B26" stroke-width="1.5" />
+    </g>
+    <circle cx="38" cy="-38" r="4" class="accent-fill" />
+    <text x="32" y="-46" class="hud-accent">R2-FR</text>
+  </g>
+
+  <!-- Rotor 03: Mid Left (190, 300) -->
+  <g transform="translate(190, 300)">
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#62656E" />
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <g class="rotor-ccw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#121316" stroke-width="1.2" />
+    </g>
+    <circle cx="-52" cy="0" r="3" fill="#121316" />
+    <text x="-80" y="4" class="hud-text">R3-ML</text>
+  </g>
+
+  <!-- Rotor 04: Mid Right (610, 300) -->
+  <g transform="translate(610, 300)">
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#62656E" />
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <g class="rotor-cw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#121316" stroke-width="1.2" />
+    </g>
+    <circle cx="52" cy="0" r="3" fill="#121316" />
+    <text x="58" y="4" class="hud-text">R4-MR</text>
+  </g>
+
+  <!-- Rotor 05: Aft Left (250, 450) -->
+  <g transform="translate(250, 450)">
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#62656E" />
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <g class="rotor-cw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#121316" stroke-width="1.2" />
+    </g>
+    <circle cx="-38" cy="38" r="4" fill="#121316" />
+    <text x="-48" y="52" class="hud-text">R5-RL</text>
+  </g>
+
+  <!-- Rotor 06: Aft Right (550, 450) -->
+  <g transform="translate(550, 450)">
+    <circle cx="0" cy="0" r="16" class="chassis-outline" />
+    <circle cx="0" cy="0" r="8" fill="#121316" />
+    <circle cx="0" cy="0" r="3" fill="#62656E" />
+    <circle cx="0" cy="0" r="54" class="rotor-ring" />
+    <g class="rotor-ccw">
+      <ellipse cx="0" cy="0" rx="50" ry="12" class="rotor-blade" />
+      <ellipse cx="0" cy="0" rx="12" ry="50" class="rotor-blade" />
+      <circle cx="0" cy="0" r="52" class="prop-blur" stroke="#121316" stroke-width="1.2" />
+    </g>
+    <circle cx="38" cy="38" r="4" fill="#121316" />
+    <text x="32" y="52" class="hud-text">R6-RR</text>
+  </g>
+
+  <!-- ==================== FACETED STEALTH HEXAGON FUSELAGE ==================== -->
+  <g id="hex-fuselage">
+    <!-- Main Angular Carbon Monocoque Shell (Hexagonal Geometry) -->
+    <polygon points="400,185 455,215 480,270 475,340 400,385 325,340 320,270 345,215" class="chassis-outline" />
+
+    <!-- Stealth Surface Faceting Lines -->
+    <polygon points="400,210 440,230 455,275 450,330 400,365 350,330 345,275 360,230" class="chassis-facet" />
+    <line x1="400" y1="185" x2="400" y2="210" class="chassis-facet" />
+    <line x1="480" y1="270" x2="455" y2="275" class="chassis-facet" />
+    <line x1="320" y1="270" x2="345" y2="275" class="chassis-facet" />
+    <line x1="400" y1="365" x2="400" y2="385" class="chassis-facet" />
+
+    <!-- Cooling Gills / Battery Exhaust Vents -->
+    <line x1="375" y1="340" x2="425" y2="340" stroke="#121316" stroke-width="1.5" />
+    <line x1="380" y1="346" x2="420" y2="346" stroke="#121316" stroke-width="1.5" />
+    <line x1="385" y1="352" x2="415" y2="352" stroke="#121316" stroke-width="1.5" />
+
+    <!-- Forward Optical Gimbal Turret (Protruding Nose Aperture) -->
+    <g id="gimbal-nose">
+      <path d="M 370 190 C 370 162, 430 162, 430 190 Z" fill="#121316" stroke="#121316" stroke-width="2" />
+      <!-- Multi-Coated Lens Element -->
+      <circle cx="400" cy="178" r="14" stroke="#FF4B26" stroke-width="1.6" class="anatomy-lens-ring" />
+      <circle cx="400" cy="178" r="9" stroke="#121316" stroke-width="1.2" fill="#121316" />
+      <circle cx="400" cy="178" r="4" fill="#FF4B26" />
+      <circle cx="402" cy="176" r="1.5" fill="#F9F8F6" />
+      <line x1="380" y1="178" x2="420" y2="178" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="2 2" />
+      <line x1="400" y1="158" x2="400" y2="198" stroke="#FF4B26" stroke-width="0.8" stroke-dasharray="2 2" />
+    </g>
+
+    <!-- Central OmniSight Hex-LiDAR Dome & Sensor Matrix -->
+    <g id="central-lidar-core">
+      <!-- Outer Hexagon Turret -->
+      <polygon points="400,265 430,282 430,318 400,335 370,318 370,282" stroke="#121316" stroke-width="1.8" fill="#121316" />
+      <circle cx="400" cy="300" r="18" stroke="#FF4B26" stroke-width="1.4" fill="#EFECE6" />
+      <circle cx="400" cy="300" r="7" fill="#FF4B26" />
+      <circle cx="400" cy="300" r="2" fill="#121316" />
+
+      <!-- Hex LiDAR Transceiver Diodes -->
+      <circle cx="388" cy="286" r="2.5" class="accent-fill anatomy-sensor-beam" />
+      <circle cx="412" cy="286" r="2.5" class="accent-fill anatomy-sensor-beam" />
+      <circle cx="424" cy="300" r="2.5" class="accent-fill anatomy-sensor-beam" />
+      <circle cx="412" cy="314" r="2.5" class="accent-fill anatomy-sensor-beam" />
+      <circle cx="388" cy="314" r="2.5" class="accent-fill anatomy-sensor-beam" />
+      <circle cx="376" cy="300" r="2.5" class="accent-fill anatomy-sensor-beam" />
+    </g>
+
+    <!-- Rear Aero Winglets & GNSS RTK Antennas -->
+    <path d="M 330 345 L 305 385 L 325 380 Z" fill="#121316" stroke="#121316" stroke-width="1.2" />
+    <path d="M 470 345 L 495 385 L 475 380 Z" fill="#121316" stroke="#121316" stroke-width="1.2" />
+    <circle cx="308" cy="384" r="2" fill="#FF4B26" />
+    <circle cx="492" cy="384" r="2" fill="#FF4B26" />
+  </g>
+
+  <!-- ==================== HUD CALLOUTS & TELEMETRY OVERLAYS ==================== -->
+  <g id="blueprint-callouts">
+    <!-- Top Callout: Hex Geometry -->
+    <line x1="400" y1="185" x2="400" y2="90" stroke="#FF4B26" stroke-width="1" />
+    <line x1="400" y1="90" x2="480" y2="90" stroke="#FF4B26" stroke-width="1" />
+    <text x="490" y="88" class="hud-accent">01 // 3-AXIS FULL-FRAME GIMBAL</text>
+    <text x="490" y="102" class="hud-text">8K Cinema • 14 Stops Dynamic Range</text>
+
+    <!-- Right Callout: Toroidal Propulsion -->
+    <line x1="610" y1="300" x2="680" y2="270" stroke="#FF4B26" stroke-width="1" />
+    <line x1="680" y1="270" x2="740" y2="270" stroke="#FF4B26" stroke-width="1" />
+    <text x="680" y="255" class="hud-accent">02 // 6-ROTOR HEX DRIVE</text>
+    <text x="680" y="285" class="hud-text">Toroidal Whispering Blades • 48.5 dBA</text>
+
+    <!-- Center Callout: LiDAR Hex Array -->
+    <line x1="430" y1="318" x2="490" y2="350" stroke="#FF4B26" stroke-width="1" />
+    <line x1="490" y1="350" x2="570" y2="350" stroke="#FF4B26" stroke-width="1" />
+    <text x="575" y="348" class="hud-accent">03 // OMNISIGHT 360° LIDAR</text>
+    <text x="575" y="362" class="hud-text">120,000 pts/sec • Spherical Collision Shield</text>
+
+    <!-- Dimensions & Symmetry Metrics -->
+    <text x="50" y="550" class="hud-text">GRAVITAS HEX-AIRFRAME BLUEPRINT // REVISION 6.0</text>
+    <text x="50" y="565" class="hud-accent">6-ARM SYMMETRY: 60° RADIAL • NET WEIGHT: 249g</text>
+    <text x="750" y="565" class="hud-text" text-anchor="end">DATUM: RTK-FIXED // AUTONOMOUS HEX</text>
+  </g>
+</svg>

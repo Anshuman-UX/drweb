@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 680" width="100%" height="100%" fill="none" stroke="#121316">
+  <defs>
+    <style>
+      .datum { stroke: #FF4B26; stroke-width: 1.2; stroke-dasharray: 6 3; }
+      .layer-outline { stroke: #121316; stroke-width: 2; fill: #EFECE6; fill-opacity: 0.7; }
+      .detail { stroke: #62656E; stroke-width: 1.2; }
+      .arm-thick { stroke: #121316; stroke-width: 4; stroke-linecap: round; }
+      .lbl-title { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; fill: #121316; letter-spacing: 0.05em; }
+      .lbl-desc { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #62656E; }
+      .lbl-accent { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #FF4B26; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Central Vertical Deconstruction Axis -->
+  <line x1="425" y1="30" x2="425" y2="640" class="datum" />
+
+  <!-- ==================== TIER 1: Hexagonal Stealth Dorsal Canopy (y: 50 - 120) ==================== -->
+  <g id="layer-canopy" transform="translate(0, -20)">
+    <polygon points="425,60 475,80 495,115 480,140 425,155 370,140 355,115 375,80" class="layer-outline" />
+    <polygon points="425,75 460,90 475,115 465,130 425,140 385,130 375,115 390,90" stroke="#62656E" stroke-width="1" fill="#F9F8F6" fill-opacity="0.5" />
+    <circle cx="425" cy="115" r="4" fill="#FF4B26" />
+    <!-- Callout -->
+    <line x1="495" y1="115" x2="580" y2="115" stroke="#FF4B26" stroke-width="1" />
+    <text x="590" y="110" class="lbl-title">01 / HEXAGONAL CARBON COWLING</text>
+    <text x="590" y="126" class="lbl-desc">Autoclaved T1000 Carbon Fiber Monocoque Shell</text>
+    <text x="590" y="140" class="lbl-accent">Faceted Stealth Geometry • 14.2 g Mass</text>
+  </g>
+
+  <!-- ==================== TIER 2: OmniSight 360° Hex-LiDAR Turret (y: 150 - 210) ==================== -->
+  <g id="layer-sensors" transform="translate(0, 0)">
+    <polygon points="425,170 470,188 470,222 425,240 380,222 380,188" class="layer-outline" />
+    <circle cx="425" cy="205" r="22" stroke="#121316" stroke-width="1.4" fill="#FF4B26" fill-opacity="0.2" />
+    <circle cx="425" cy="205" r="8" fill="#FF4B26" />
+    <!-- 6 Hex LiDAR Transceiver Elements -->
+    <circle cx="395" cy="192" r="3" fill="#121316" />
+    <circle cx="455" cy="192" r="3" fill="#121316" />
+    <circle cx="470" cy="205" r="3" fill="#121316" />
+    <circle cx="455" cy="218" r="3" fill="#121316" />
+    <circle cx="395" cy="218" r="3" fill="#121316" />
+    <circle cx="380" cy="205" r="3" fill="#121316" />
+    <!-- Callout -->
+    <line x1="380" y1="205" x2="250" y2="205" stroke="#FF4B26" stroke-width="1" />
+    <text x="40" y="200" class="lbl-title">02 / OMNISIGHT 360° HEX-LIDAR</text>
+    <text x="40" y="216" class="lbl-desc">6-Axis solid-state pulsed semiconductor laser array</text>
+    <text x="40" y="230" class="lbl-accent">120,000 pts/sec • Spherical 45m obstacle bubble</text>
+  </g>
+
+  <!-- ==================== TIER 3: Neural Avionics & 6-Motor ESC Hub (y: 250 - 310) ==================== -->
+  <g id="layer-avionics" transform="translate(0, 20)">
+    <polygon points="425,265 485,285 500,320 480,345 425,360 370,345 350,320 365,285" class="layer-outline" />
+    <rect x="405" y="295" width="40" height="26" rx="3" fill="#121316" />
+    <text x="412" y="312" font-family="'JetBrains Mono'" font-size="9" fill="#F9F8F6">AI-40T</text>
+    <!-- Callout -->
+    <line x1="500" y1="320" x2="580" y2="320" stroke="#FF4B26" stroke-width="1" />
+    <text x="590" y="315" class="lbl-title">03 / EAGLEEYE HEX AVIONICS &amp; 6x ESC</text>
+    <text x="590" y="331" class="lbl-desc">40 TOPS Neural Processor + Hex Field-Oriented Control</text>
+    <text x="590" y="345" class="lbl-accent">Sub-millisecond motor torque correction (24,000 Hz)</text>
+  </g>
+
+  <!-- ==================== TIER 4: Solid-State Lithium-Sulfur Power Core (y: 350 - 410) ==================== -->
+  <g id="layer-battery" transform="translate(0, 40)">
+    <polygon points="425,365 480,380 490,410 475,430 425,442 375,430 360,410 370,380" class="layer-outline" />
+    <rect x="375" y="390" width="100" height="26" rx="4" class="detail" fill="#121316" />
+    <text x="390" y="407" font-family="'JetBrains Mono'" font-size="9" fill="#F9F8F6">Li-S 6-CELL 4200mAh</text>
+    <!-- Callout -->
+    <line x1="360" y1="410" x2="250" y2="410" stroke="#FF4B26" stroke-width="1" />
+    <text x="40" y="405" class="lbl-title">04 / SOLID-STATE 6-CELL POWER CORE</text>
+    <text x="40" y="421" class="lbl-desc">Lithium-Sulfur pouch architecture (410 Wh/kg)</text>
+    <text x="40" y="435" class="lbl-accent">52 min continuous hover • Non-flammable electrolyte</text>
+  </g>
+
+  <!-- ==================== TIER 5: 6-Arm Hexacopter Monocoque Chassis & WhisperDrive Rotors (y: 450 - 520) ==================== -->
+  <g id="layer-chassis" transform="translate(0, 60)">
+    <!-- Central Hexagonal Hub -->
+    <polygon points="425,455 460,470 470,495 460,520 425,530 390,520 380,495 390,470" class="layer-outline" />
+    
+    <!-- 6 Radiating Carbon Arms -->
+    <line x1="400" y1="475" x2="270" y2="435" class="arm-thick" />
+    <line x1="450" y1="475" x2="580" y2="435" class="arm-thick" />
+    <line x1="380" y1="495" x2="220" y2="495" class="arm-thick" />
+    <line x1="470" y1="495" x2="630" y2="495" class="arm-thick" />
+    <line x1="400" y1="515" x2="270" y2="555" class="arm-thick" />
+    <line x1="450" y1="515" x2="580" y2="555" class="arm-thick" />
+
+    <!-- 6 Toroidal WhisperDrive Propellers Rings -->
+    <ellipse cx="270" cy="435" rx="34" ry="12" class="layer-outline" transform="rotate(-15 270 435)" />
+    <ellipse cx="580" cy="435" rx="34" ry="12" class="layer-outline" transform="rotate(15 580 435)" />
+    <ellipse cx="220" cy="495" rx="34" ry="12" class="layer-outline" />
+    <ellipse cx="630" cy="495" rx="34" ry="12" class="layer-outline" />
+    <ellipse cx="270" cy="555" rx="34" ry="12" class="layer-outline" transform="rotate(15 270 555)" />
+    <ellipse cx="580" cy="555" rx="34" ry="12" class="layer-outline" transform="rotate(-15 580 555)" />
+
+    <!-- Callout -->
+    <line x1="630" y1="495" x2="690" y2="495" stroke="#FF4B26" stroke-width="1" />
+    <text x="695" y="490" class="lbl-title">05 / 6-ROTOR HEX MONOCOQUE</text>
+    <text x="695" y="506" class="lbl-desc">Grade 5 Titanium Nodes + Toray T1000 Carbon</text>
+    <text x="695" y="520" class="lbl-accent">48.5 dBA Acoustic Floor • 6-Rotor Redundancy</text>
+  </g>
+
+  <!-- ==================== TIER 6: 3-Axis Stabilized 8K Optical Gimbal (y: 560 - 640) ==================== -->
+  <g id="layer-gimbal" transform="translate(0, 80)">
+    <!-- Gimbal Fork -->
+    <path d="M 405 570 C 405 595, 445 595, 445 570" stroke="#121316" stroke-width="2.5" fill="none" />
+    <!-- Camera Housing -->
+    <rect x="407" y="582" width="36" height="32" rx="5" class="layer-outline" />
+    <!-- Optical Lens Elements -->
+    <circle cx="425" cy="598" r="11" stroke="#121316" stroke-width="2" fill="#121316" />
+    <circle cx="425" cy="598" r="6" stroke="#FF4B26" stroke-width="1" fill="#FF4B26" fill-opacity="0.3" />
+    <circle cx="425" cy="598" r="2" fill="#F9F8F6" />
+    <!-- Callout -->
+    <line x1="407" y1="598" x2="250" y2="598" stroke="#FF4B26" stroke-width="1" />
+    <text x="40" y="593" class="lbl-title">06 / FULL-FRAME 3-AXIS GIMBAL</text>
+    <text x="40" y="609" class="lbl-desc">Brushless Direct-Drive • ±0.005° Angular Jitter</text>
+    <text x="40" y="623" class="lbl-accent">8K 30fps / 4K 120fps • 14 Stops Dynamic Range</text>
+  </g>
+</svg>
