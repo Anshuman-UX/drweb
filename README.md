@@ -44,7 +44,6 @@ drweb/
 │   ├── motion.js                # 3D Hero Perspective Tilt, HUD Telemetry Switcher, Rotors Spin
 │   └── explode.js               # Interactive Mechanical Strata Layer Dispersion Engine
 │
-├── .github/workflows/deploy.yml # Automated GitHub Pages Deployment Action
 ├── deploy.sh                    # One-Click Google Cloud Storage Deployment (macOS / Linux)
 ├── deploy.ps1                   # One-Click Google Cloud Storage Deployment (Windows PowerShell)
 ├── vercel.json                  # Zero-Config Vercel Deployment Configuration
@@ -96,9 +95,12 @@ chmod +x ./deploy.sh
 
 Refer to [`DEPLOY.md`](./DEPLOY.md) for full Cloud CDN and SSL setup instructions.
 
-### Option 2: GitHub Pages (Automatic)
+### Option 2: GitHub Pages (Instant)
 
-Pushing to the `master` branch automatically triggers `.github/workflows/deploy.yml`. Enable GitHub Pages under **Repository Settings → Pages → Build and deployment: GitHub Actions**.
+In your GitHub repository, navigate to **Settings → Pages**:
+1. Under **Build and deployment → Source**, select **Deploy from a branch**.
+2. Select **Branch: `master`** and folder **`/ (root)`**, then click **Save**.
+3. Your site will immediately be live at `https://<username>.github.io/drweb/`!
 
 ### Option 3: Vercel or Netlify
 
