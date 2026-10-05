@@ -1,182 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Drone Signal Lost | DRWEB AERO</title>
-  <meta name="description" content="Telemetry lost. The drone drifted off-course outside cellular BVLOS coverage.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💥</text></svg>">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Coordinates Unmapped (404) | Garud Technical Monograph</title>
+  <meta name="description" content="The requested archival record or flight coordinate does not exist within the Garud technical repository.">
+  <link rel="icon" type="image/svg+xml" href="assets/svg/garud-blueprint.svg">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/game.css">
-
-  <!-- Pinned CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
 </head>
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-  <div class="aurora-bg"></div>
 
-  <!-- Navigation -->
-  <header class="navbar" id="navbar">
-    <div class="navbar__container">
-      <a href="index.html" class="navbar__logo">
-        <span class="navbar__logo-icon">⚡</span>
-        <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Minimal Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 00</span>
       </a>
 
-      <nav class="navbar__nav">
-        <ul class="navbar__list">
-          <li><a href="index.html" class="navbar__link">Home</a></li>
-          <li><a href="about.html" class="navbar__link">About</a></li>
-          <li><a href="services.html" class="navbar__link">Services</a></li>
-          <li><a href="pricing.html" class="navbar__link">Pricing</a></li>
-          <li><a href="showreel.html" class="navbar__link">Showreel</a></li>
-          <li><a href="studio.html" class="navbar__link">Studio</a></li>
-          <li><a href="profile.html" class="navbar__link">Profile</a></li>
-          <li><a href="faq.html" class="navbar__link">FAQ</a></li>
-          <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Overview</a></li>
+          <li><a href="features.html" class="nav-link">Features</a></li>
+          <li><a href="in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="specs.html" class="nav-link">Specs</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="story.html" class="nav-link">Story</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="navbar__actions">
-        <a href="studio.html" class="btn btn--primary btn--sm">Build Drone</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-          <span></span><span></span><span></span>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-outline header-cta">
+          <span>Return home</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
-  <div class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html" class="mobile-nav__link">Home</a></li>
-      <li><a href="about.html" class="mobile-nav__link">About</a></li>
-      <li><a href="services.html" class="mobile-nav__link">Services</a></li>
-      <li><a href="pricing.html" class="mobile-nav__link">Pricing</a></li>
-      <li><a href="showreel.html" class="mobile-nav__link">Showreel</a></li>
-      <li><a href="studio.html" class="mobile-nav__link">Studio</a></li>
-      <li><a href="profile.html" class="mobile-nav__link">Profile</a></li>
-      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
-      <li><a href="contact.html" class="mobile-nav__link">Contact</a></li>
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Overview</a></li>
+      <li><a href="features.html" class="drawer-link">Features</a></li>
+      <li><a href="in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="contact.html" class="drawer-link">Exhibition Contact</a></li>
     </ul>
   </div>
 
-  <main class="error-page" style="padding-top: 8rem; padding-bottom: 5rem;">
-    <div class="error-page__drone" id="crashDroneWrap">
-      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Broken Sparking Drone -->
-        <line x1="100" y1="100" x2="40" y2="50" stroke="#ff1744" stroke-width="8" stroke-linecap="round"/>
-        <line x1="100" y1="100" x2="160" y2="50" stroke="#1f2d4d" stroke-width="8" stroke-linecap="round"/>
-        <line x1="100" y1="100" x2="30" y2="100" stroke="#1f2d4d" stroke-width="8" stroke-linecap="round"/>
-        <line x1="100" y1="100" x2="170" y2="100" stroke="#ff1744" stroke-width="8" stroke-linecap="round"/>
-        <line x1="100" y1="100" x2="50" y2="150" stroke="#1f2d4d" stroke-width="8" stroke-linecap="round"/>
-        <line x1="100" y1="100" x2="150" y2="150" stroke="#1f2d4d" stroke-width="8" stroke-linecap="round"/>
+  <main id="main-content" role="main">
 
-        <!-- Sparking motor -->
-        <circle cx="40" cy="50" r="12" fill="#141c33" stroke="#ff1744" stroke-width="2"/>
-        <path d="M35 40 L45 42 L38 52 L48 54" stroke="#ffc107" stroke-width="2"/>
+    <section class="error-page-section">
+      <div class="editorial-container text-center">
+        
+        <div class="error-vector-wrap">
+          <svg viewBox="0 0 240 180" class="error-vector-svg" fill="none" stroke="#121316">
+            <!-- Lost Waypoint Geometry -->
+            <circle cx="120" cy="90" r="40" stroke="#D6D3CB" stroke-dasharray="3 3" />
+            <circle cx="120" cy="90" r="12" stroke="#FF4B26" stroke-width="1.2" />
+            <line x1="40" y1="90" x2="200" y2="90" stroke="#D6D3CB" stroke-width="0.8" />
+            <line x1="120" y1="20" x2="120" y2="160" stroke="#D6D3CB" stroke-width="0.8" />
+            <line x1="110" y1="80" x2="130" y2="100" stroke="#FF4B26" stroke-width="2" />
+            <line x1="130" y1="80" x2="110" y2="100" stroke="#FF4B26" stroke-width="2" />
+          </svg>
+        </div>
 
-        <circle cx="160" cy="50" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
-        <circle cx="30" cy="100" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
-        <circle cx="170" cy="100" r="12" fill="#141c33" stroke="#ff1744" stroke-width="2"/>
-        <circle cx="50" cy="150" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
-        <circle cx="150" cy="150" r="12" fill="#141c33" stroke="#00e5ff" stroke-width="2"/>
+        <span class="mono-datum accent">ERROR CODE 404 // UNCHARTED COORDINATES</span>
+        <h1 class="error-title">Datum Not Found</h1>
+        
+        <p class="error-description">
+          The flight coordinate or archival chapter you requested does not exist within the Garud technical repository. It may have drifted outside current spatial telemetry.
+        </p>
 
-        <polygon points="100,70 125,85 125,115 100,130 75,115 75,85" fill="#0d172a" stroke="#ff1744" stroke-width="2"/>
-        <circle cx="100" cy="100" r="14" fill="#ff1744" opacity="0.8"/>
-        <text x="100" y="104" font-family="'JetBrains Mono', monospace" font-size="8" fill="#ffffff" text-anchor="middle" font-weight="bold">ERR</text>
-      </svg>
-    </div>
+        <div class="error-actions">
+          <a href="index.html" class="btn btn-primary">
+            <span>Return to Monograph Overview</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+              <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+            </svg>
+          </a>
+          <a href="features.html" class="btn btn-outline">
+            <span>Explore All 8 Features</span>
+          </a>
+        </div>
 
-    <div class="error-page__code">404</div>
-    <h1 class="error-page__title">Cellular Telemetry Lost</h1>
-    <p class="error-page__text">
-      The UAV drifted beyond geo-fenced coordinates into an uncharted sector. Autonomous fail-safe Return-to-Launch (RTL) has been initiated.
-    </p>
+      </div>
+    </section>
 
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-      <a href="index.html" class="btn btn--primary magnetic">
-        <span>Auto Return-to-Launch (RTL)</span>
-        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      </a>
-      <button class="btn btn--outline magnetic" id="rescueSortieBtn">
-        <span>🚑 Dispatch Repair Drone (+100 XP)</span>
-      </button>
-    </div>
-
-    <div style="margin-top: 1.5rem;">
-      <span class="scavenger-drone" data-scavenger-id="scav_404" title="Secret Recon Drone Found!">🛸</span>
-    </div>
   </main>
 
-  <!-- Shared Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a href="index.html" class="navbar__logo">
-            <span class="navbar__logo-icon">⚡</span>
-            <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
-          </a>
-          <p class="footer__brand-desc">
-            Modular Autonomous Heavy-Lift Drone Platform for Flood Disaster Relief &amp; Multi-Sector Logistics. Incubatex Foundation, GIET University.
-          </p>
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Navigation</h4>
-          <a href="index.html" class="footer__link">Home</a>
-          <a href="about.html" class="footer__link">About &amp; Tech</a>
-          <a href="services.html" class="footer__link">Services</a>
-          <a href="pricing.html" class="footer__link">Pricing</a>
-          <a href="showreel.html" class="footer__link">4K Showreel</a>
-          <a href="studio.html" class="footer__link">Drone Studio</a>
-          <a href="profile.html" class="footer__link">Pilot Profile</a>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="index.html">00 // Overview</a></li>
+            <li><a href="features.html">01 // All 8 Features</a></li>
+            <li><a href="in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Support &amp; Legal</h4>
-          <a href="faq.html" class="footer__link">FAQ</a>
-          <a href="contact.html" class="footer__link">Mission Request (Contact)</a>
-          <a href="404.html" class="footer__link">Flight Radar (404)</a>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="faq.html">07 // Technical FAQ</a></li>
+            <li><a href="contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Secret Recon Drones</h4>
-          <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 0.5rem;">
-            10 micro drones are hidden throughout this platform. Discover them to unlock the "Surveyor General" badge and bonus coins.
-          </p>
-          <span class="scavenger-drone" data-scavenger-id="scav_404_footer" title="Secret Recon Drone Found!">🛸</span>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
         </div>
       </div>
-
-      <div class="footer__bottom">
-        <div>&copy; 2026 DRWEB Aero. All rights reserved. Incubatex Innovation Foundation, GIET University, Gunupur-765022.</div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/game.js"></script>
-  <script>
-    const rescueBtn = document.getElementById('rescueSortieBtn');
-    if (rescueBtn) {
-      rescueBtn.addEventListener('click', () => {
-        if (window.AeroGame) {
-          window.AeroGame.addXP(100);
-          window.AeroGame.addCoins(50);
-          rescueBtn.textContent = '✓ AIRFRAME STABILIZED (+100 XP / +50🪙)';
-          rescueBtn.style.color = '#00e676';
-          rescueBtn.disabled = true;
-        }
-      });
-    }
-  </script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

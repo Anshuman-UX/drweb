@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Solid-State Battery | Garud Feature Monograph 03</title>
+  <meta name="description" content="Technical monograph of Garud's Solid-State Lithium-Sulfur Power Cell: 52-minute endurance, 410 Wh/kg energy density, and sub-zero thermal operation down to -25°C.">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/garud-blueprint.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="../index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 03</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Overview</a></li>
+          <li><a href="../features.html" class="nav-link active">Features</a></li>
+          <li><a href="../in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="../engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="../specs.html" class="nav-link">Specs</a></li>
+          <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="../story.html" class="nav-link">Story</a></li>
+          <li><a href="../faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../features.html" class="btn btn-outline header-cta">
+          <span>All features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="../index.html" class="drawer-link">Overview</a></li>
+      <li><a href="../features.html" class="drawer-link active">Features</a></li>
+      <li><a href="../in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="../engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="../specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="../gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="../story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="../faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="../contact.html" class="drawer-link">Exhibition Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <article class="feature-detail-article">
+      <header class="feature-hero-header">
+        <div class="editorial-container">
+          <div class="section-label-group">
+            <span class="chapter-num">FEATURE 03 / 08</span>
+            <span class="hairline-divider"></span>
+            <span class="section-meta">ELECTROCHEMISTRY &amp; THERMAL EQUILIBRIUM</span>
+          </div>
+
+          <h1 class="feature-main-title">Solid-State Lithium-Sulfur Power Cell</h1>
+          <p class="feature-lead-text">
+            A radical departure from unstable liquid-electrolyte lithium-ion cells. Garud utilizes a solid ceramic-sulfur matrix delivering 410 Wh/kg gravimetric energy density, granting 52 minutes of uninterrupted aloft flight in temperatures ranging from -25°C to +55°C.
+          </p>
+        </div>
+      </header>
+
+      <!-- Stats Banner -->
+      <section class="feature-stats-banner">
+        <div class="content-container">
+          <div class="stats-ribbon">
+            <div class="ribbon-item">
+              <span class="r-val">52 MIN</span>
+              <span class="r-lbl">CONTINUOUS HOVER TIME</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">410 Wh/kg</span>
+              <span class="r-lbl">SPECIFIC GRAVIMETRIC DENSITY</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">-25&deg; / +55&deg;C</span>
+              <span class="r-lbl">OPERATING TEMPERATURE SPAN</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">1,200</span>
+              <span class="r-lbl">CYCLES TO 85% RETENTION</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Teardown -->
+      <section class="feature-body-section">
+        <div class="editorial-container">
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">01 // SOLID-STATE ELECTROLYTE MATRIX</h2>
+            <p>
+              Traditional drone batteries depend on volatile organic liquid solvents that degrade rapidly in cold air and pose catastrophic fire risks upon high-impact shock. Garud replaces liquid electrolytes with an ultra-thin, non-flammable ceramic polymer separator. By integrating a nano-structured sulfur cathode, the cell achieves nearly double the energy capacity of conventional LiPo packs without adding dead weight.
+            </p>
+          </div>
+
+          <!-- Staged Airframe Location Diagram -->
+          <div class="feature-diagram-card">
+            <div class="diagram-meta">
+              <span class="mono-datum">CHASSIS CORE DATUM: CENTER-OF-GRAVITY BAY</span>
+              <span class="mono-datum accent">STRUCTURAL INTEGRATION: MONOCOQUE LOAD-BEARING</span>
+            </div>
+            <div class="diagram-canvas-wrap">
+              <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
+                <!-- Drone Outer Frame -->
+                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
+                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1" />
+                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1" />
+                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1" />
+                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1" />
+
+                <!-- Battery Cell Center Highlight -->
+                <rect x="315" y="145" width="70" height="55" rx="6" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
+                <line x1="315" y1="172" x2="385" y2="172" stroke="#FF4B26" stroke-width="1" stroke-dasharray="3 3" />
+                <circle cx="350" cy="172" r="5" fill="#FF4B26" />
+
+                <!-- Callout -->
+                <line x1="385" y1="172" x2="520" y2="172" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="172" r="3" fill="#FF4B26" />
+                <text x="530" y="168" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">Li-S DUAL POUCH CORE</text>
+                <text x="530" y="184" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">4,200 mAh • 22.2V Nominal • 93.2 Wh</text>
+              </svg>
+            </div>
+            <p class="caption-text text-center">Schematic: The power cell forms a structural shear-web inside the carbon monocoque, optimizing mass distribution at the center of gravity.</p>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">02 // VERIFIABLE TECHNICAL DATA</h2>
+            <div class="tech-table-wrap">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Cell Chemistry</th>
+                    <td>Solid-State Lithium-Sulfur (Li-S) pouch with ceramic solid electrolyte</td>
+                  </tr>
+                  <tr>
+                    <th>Gravimetric Energy Density</th>
+                    <td>410 Wh/kg (vs. standard drone LiPo at ~220 Wh/kg)</td>
+                  </tr>
+                  <tr>
+                    <th>Operational Endurance</th>
+                    <td>52 min hover / 46 min continuous cruise at 15 m/s</td>
+                  </tr>
+                  <tr>
+                    <th>Operating Temperature</th>
+                    <td>-25&deg;C to +55&deg;C with internal graphene thermo-conductive jacket</td>
+                  </tr>
+                  <tr>
+                    <th>Charging Protocol</th>
+                    <td>GaN Ultra-Fast Direct Perch Coupling (0% to 80% in 22 minutes)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">03 // WHY IT MATTERS TO THE USER</h2>
+            <p class="body-lead">
+              Short 20-minute flight ceilings turn aerial missions into stressful races against low-battery warnings.
+            </p>
+            <p>
+              With 52 minutes of uninterrupted endurance, pilots and autonomous research grids execute complete multi-kilometer landscape sweeps on a single charge. Scientific expeditions into sub-zero glacial terrain operate without the sudden voltage collapse that commonly grounds legacy drones.
+            </p>
+          </div>
+
+          <!-- Feature Pagination -->
+          <div class="feature-pagination">
+            <a href="propulsion.html" class="p-prev">
+              <span class="p-dir">&larr; PREVIOUS FEATURE 02</span>
+              <span class="p-title">WhisperDrive™ Toroidal Propulsion</span>
+            </a>
+            <a href="sensors.html" class="p-next">
+              <span class="p-dir">NEXT FEATURE 04 &rarr;</span>
+              <span class="p-title">OmniSight™ Hex-Directional LiDAR</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="../index.html">00 // Overview</a></li>
+            <li><a href="../features.html">01 // All 8 Features</a></li>
+            <li><a href="../in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="../engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="../specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="../gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="../story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="../faq.html">07 // Technical FAQ</a></li>
+            <li><a href="../contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/motion.js"></script>
+</body>
+</html>

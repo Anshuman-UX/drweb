@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="100%" height="100%" fill="none" stroke="#121316">
+  <defs>
+    <style>
+      .grid-line { stroke: #D6D3CB; stroke-width: 0.6; stroke-dasharray: 2 6; }
+      .topo { stroke: #E0DDD5; stroke-width: 1; fill: none; }
+      .path-lead { stroke: #FF4B26; stroke-width: 2.2; fill: none; }
+      .path-glow { stroke: #FF4B26; stroke-width: 6; stroke-opacity: 0.15; fill: none; }
+      .waypoint { fill: #121316; stroke: #FF4B26; stroke-width: 2; }
+      .telemetry { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #62656E; }
+      .telemetry-bold { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #121316; font-weight: 600; }
+      .telemetry-accent { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #FF4B26; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Coordinate Background Grid -->
+  <line x1="60" y1="80" x2="840" y2="80" class="grid-line" />
+  <line x1="60" y1="160" x2="840" y2="160" class="grid-line" />
+  <line x1="60" y1="240" x2="840" y2="240" class="grid-line" />
+  <line x1="60" y1="320" x2="840" y2="320" class="grid-line" />
+  <line x1="200" y1="50" x2="200" y2="380" class="grid-line" />
+  <line x1="450" y1="50" x2="450" y2="380" class="grid-line" />
+  <line x1="700" y1="50" x2="700" y2="380" class="grid-line" />
+
+  <!-- Topographic Terrain Curves (Subtle Landscape Underlay) -->
+  <path d="M 60 380 Q 200 360, 350 330 T 600 310 T 840 280 L 840 420 L 60 420 Z" fill="#EFECE6" fill-opacity="0.5" />
+  <path d="M 60 380 Q 200 360, 350 330 T 600 310 T 840 280" class="topo" />
+  <path d="M 60 400 Q 260 380, 480 370 T 840 330" class="topo" />
+
+  <!-- Flight Path Spline -->
+  <path d="M 100 360 C 150 220, 220 140, 320 140 C 440 140, 480 230, 580 180 C 680 130, 760 170, 800 240" class="path-glow" />
+  <path d="M 100 360 C 150 220, 220 140, 320 140 C 440 140, 480 230, 580 180 C 680 130, 760 170, 800 240" class="path-lead" />
+
+  <!-- Return-to-Perch Projected Descent -->
+  <path d="M 800 240 C 820 280, 825 330, 820 370" stroke="#8C8E94" stroke-width="1.4" stroke-dasharray="4 4" />
+
+  <!-- Waypoints -->
+  <!-- WP 01: Launch / Ground Datum -->
+  <circle cx="100" cy="360" r="5" class="waypoint" />
+  <text x="80" y="390" class="telemetry-bold">WP-01 [TAKEOFF]</text>
+  <text x="80" y="405" class="telemetry">ALT: 0m • SPD: 0 m/s</text>
+
+  <!-- WP 02: Cinematic Orbit Apex -->
+  <circle cx="320" cy="140" r="5" class="waypoint" />
+  <line x1="320" y1="140" x2="320" y2="90" stroke="#FF4B26" stroke-width="1" />
+  <text x="330" y="90" class="telemetry-accent">APEX ELEVATION</text>
+  <text x="330" y="105" class="telemetry-bold">ALT: 120.4 m • WIND: 14.2 m/s</text>
+  <text x="330" y="120" class="telemetry">Jitter Variance: ±0.003°</text>
+
+  <!-- WP 03: Autonomous Subject Tracking -->
+  <circle cx="580" cy="180" r="5" class="waypoint" />
+  <line x1="580" y1="180" x2="580" y2="230" stroke="#FF4B26" stroke-width="1" />
+  <text x="590" y="225" class="telemetry-accent">DYNAMIC TRACKING ENGAGED</text>
+  <text x="590" y="240" class="telemetry-bold">SPEED: 72 km/h • OMNISIGHT: ACTIVE</text>
+  <text x="590" y="255" class="telemetry">Neural Target Re-acquisition: 0.03s</text>
+
+  <!-- WP 04: RTK Precision Perch Descent -->
+  <circle cx="800" cy="240" r="5" class="waypoint" />
+  <circle cx="820" cy="370" r="6" stroke="#FF4B26" stroke-width="2" fill="none" />
+  <circle cx="820" cy="370" r="2" fill="#FF4B26" />
+  <text x="730" y="390" class="telemetry-bold">WP-04 [PERCH BASE]</text>
+  <text x="730" y="405" class="telemetry-accent">RTK ACCURACY: &lt; 1.5 cm</text>
+</svg>

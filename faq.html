@@ -1,260 +1,321 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frequently Asked Questions | DRWEB AERO</title>
-  <meta name="description" content="Detailed answers regarding DRWEB AERO's dual-use architecture, cellular BVLOS ranges, quick-release rails, and DGCA regulatory roadmaps.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❓</text></svg>">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Frequently Asked Questions | Garud Technical Monograph</title>
+  <meta name="description" content="Technical answers regarding Garud's acoustic signature, solid-state battery chemistry, sub-250g regulatory status, and autonomous fail-safe systems.">
+  <link rel="icon" type="image/svg+xml" href="assets/svg/garud-blueprint.svg">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/game.css">
-
-  <!-- Pinned CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
 </head>
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-  <div class="aurora-bg"></div>
-  <div class="page-transition"></div>
 
-  <!-- Navigation -->
-  <header class="navbar" id="navbar">
-    <div class="navbar__container">
-      <a href="index.html" class="navbar__logo">
-        <span class="navbar__logo-icon">⚡</span>
-        <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Minimal Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 08</span>
       </a>
 
-      <nav class="navbar__nav">
-        <ul class="navbar__list">
-          <li><a href="index.html" class="navbar__link">Home</a></li>
-          <li><a href="about.html" class="navbar__link">About</a></li>
-          <li><a href="services.html" class="navbar__link">Services</a></li>
-          <li><a href="pricing.html" class="navbar__link">Pricing</a></li>
-          <li><a href="showreel.html" class="navbar__link">Showreel</a></li>
-          <li><a href="studio.html" class="navbar__link">Studio</a></li>
-          <li><a href="profile.html" class="navbar__link">Profile</a></li>
-          <li><a href="faq.html" class="navbar__link active">FAQ</a></li>
-          <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Overview</a></li>
+          <li><a href="features.html" class="nav-link">Features</a></li>
+          <li><a href="in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="specs.html" class="nav-link">Specs</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="story.html" class="nav-link">Story</a></li>
+          <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="navbar__actions">
-        <a href="studio.html" class="btn btn--primary btn--sm">Build Drone</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-          <span></span><span></span><span></span>
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-outline header-cta">
+          <span>Inquire</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
-  <div class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html" class="mobile-nav__link">Home</a></li>
-      <li><a href="about.html" class="mobile-nav__link">About</a></li>
-      <li><a href="services.html" class="mobile-nav__link">Services</a></li>
-      <li><a href="pricing.html" class="mobile-nav__link">Pricing</a></li>
-      <li><a href="showreel.html" class="mobile-nav__link">Showreel</a></li>
-      <li><a href="studio.html" class="mobile-nav__link">Studio</a></li>
-      <li><a href="profile.html" class="mobile-nav__link">Profile</a></li>
-      <li><a href="faq.html" class="mobile-nav__link active">FAQ</a></li>
-      <li><a href="contact.html" class="mobile-nav__link">Contact</a></li>
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Overview</a></li>
+      <li><a href="features.html" class="drawer-link">Features</a></li>
+      <li><a href="in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="faq.html" class="drawer-link active">FAQ &amp; Inquiry</a></li>
+      <li><a href="contact.html" class="drawer-link">Exhibition Contact</a></li>
     </ul>
+    <div class="drawer-footer">
+      <p class="caption-text">ARCHIVAL SPECIFICATION 2026</p>
+      <!-- BRAND-NAME-PLACEHOLDER -->
+    </div>
   </div>
 
-  <main style="padding-top: 6rem;">
-    <section class="section">
-      <div class="container container--narrow">
-        <div class="section__header" style="text-align: left; margin-bottom: 2.5rem;">
-          <div class="section__label">
-            KNOWLEDGE BASE
-            <span class="scavenger-drone" data-scavenger-id="scav_faq" style="margin-left:8px;" title="Secret Recon Drone Found!">🛸</span>
-          </div>
-          <h1 class="section__title" style="font-size: clamp(2.2rem, 4.5vw, 3.8rem);">
-            Frequently Asked <span class="text-cyan">Questions</span>
-          </h1>
-          <p class="section__subtitle">
-            Everything you need to know about our dual-use drone architecture, mechanical payload interfaces, cellular BVLOS ranges, and commercialization roadmap.
-          </p>
+  <main id="main-content" role="main">
+
+    <!-- Page Title Header -->
+    <section class="page-intro-section">
+      <div class="editorial-container">
+        <div class="section-label-group">
+          <span class="chapter-num">CHAPTER 08</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">TECHNICAL INQUIRIES &amp; CLARIFICATIONS</span>
         </div>
-
-        <div class="accordion">
-          <!-- Item 1 -->
-          <div class="accordion__item active">
-            <button class="accordion__header">
-              <span class="accordion__question">What makes DRWEB AERO fundamentally different from standard drones?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                Conventional disaster drones sit in storage 95% of the time, causing crippling maintenance depreciation, while standard delivery drones cannot handle rough storm weather or winch drops. DRWEB AERO operates daily as a commercial B2B freight carrier generating consistent revenue, and instantly converts into a storm-hardened disaster rescue lifeline in under 2 minutes.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">How does the Universal Quick-Release Payload Interface (UPI) work?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The UPI is a standardized electromechanical mounting plate located under the airframe belly. It incorporates high-amperage power bus contacts and high-speed data buses. An operator pulls a dual safety cam-lock latch, slides out the commercial cargo pod, slides in the motorized rescue winch or thermal camera, and re-engages the latch with zero tools required.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">How does Active Center-of-Gravity (CoG) Compensation work?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                When winching down heavy supplies over floodwaters, pendulum swing creates violent weight shifts. Our customized flight controller runs high-frequency inertial observer loops that predict torque changes and instantaneously adjust Field-Oriented Control (FOC) motor RPMs to counteract aerodynamic destabilization in real time.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What are the maximum operational range and payload limits?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The AMR-PD heavy-lift platform supports up to 25 kg payload with a 1600mm wheelbase. Operational range is unbounded by visual line-of-sight since telemetry and 4K encrypted video stream over dual cellular 5G networks with satellite backup. Flight endurance ranges between 35 and 65 minutes depending on payload.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What happens if the cellular network connection drops in mid-flight?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                The avionics architecture features triple redundancy: dual independent carrier eSIMs (e.g. Jio and Airtel) plus Iridium satellite failover. If all carrier links disconnect, the onboard NVIDIA Jetson edge companion computer autonomously engages Visual-Inertial Odometry (VIO) to follow the pre-loaded mission flight corridor or executes an automated Return-to-Launch (RTL) safe landing.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 6 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What is your DGCA regulatory compliance and type certification status?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                Developed in compliance with the Ministry of Civil Aviation Drone Rules 2021 and Digital Sky NPNT (No Permission, No Takeoff) architecture. The platform has validated TRL 5 benchmarks at Incubatex Innovation Foundation, GIET University, with QCI type-certification trials underway in designated green-zone airspace corridors.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 7 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">Is the drone airframe certified for torrential rain and cyclones?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                Yes. The chassis, motor nacelles, and avionics bays feature IP67-rated silicone gasket seals and conformal-coated printed circuit boards. It is engineered to withstand tropical downpours and continuous gale-force wind gusts up to 55 km/h.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 8 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">How does the "Custom Studio" link to real-world drone manufacturing?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                Every drone designed in the Custom Studio translates directly into an engineering BOM (Bill of Materials) and CAD geometry package. When you save a custom build or share a blueprint URL, our manufacturing team at Incubatex GIET University can rapidly tool and assemble that exact airframe and payload configuration.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 9 -->
-          <div class="accordion__item">
-            <button class="accordion__header">
-              <span class="accordion__question">What are the terms of the Drone-as-a-Service (DaaS) contracts?</span>
-              <span class="accordion__icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
-            </button>
-            <div class="accordion__body">
-              <div class="accordion__answer">
-                Our DaaS models offer zero-CapEx operational leasing. Enterprise clients pay a predictable monthly retainer covering dedicated airframes, certified remote pilots, battery replenishments, cloud GCS dispatch, and 24/7 emergency priority dispatch during monsoon natural disaster alerts.
-              </div>
-            </div>
-          </div>
-        </div>
+        <h1 class="page-title">Frequently Asked Questions</h1>
+        <p class="body-lead">
+          Detailed technical answers addressing acoustic fluid mechanics, solid-state electrochemistry, regulatory status, and operational parameters.
+        </p>
       </div>
     </section>
+
+    <!-- Accordion Section -->
+    <section class="faq-accordion-section">
+      <div class="editorial-container">
+        <div class="accordion-group" id="faq-accordion">
+
+          <!-- Q1 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">01</span>
+              <span class="faq-question">What makes Garud acoustically silent compared to standard quadcopters?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Standard quadcopters generate high-pitched 2,000–5,000 Hz acoustic whine caused by tip vortex cavitation—violent air turbulence breaking across open blade tips. Garud’s WhisperDrive™ propellers feature closed-loop toroidal geometry molded from continuous carbon filaments. Because the blade loops back into itself without an open edge, tip vortices are physically eliminated. The acoustic energy floor drops to 48.5 dBA at 15 meters, and the remaining sound shifts below 350 Hz, blending harmlessly into natural ambient rustle.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">02</span>
+              <span class="faq-question">How does Garud achieve 52 minutes of flight time at only 249 grams?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Garud achieves this through dual innovations:
+                </p>
+                <ol class="editorial-list">
+                  <li><strong>Solid-State Lithium-Sulfur (Li-S) Chemistry:</strong> Delivering 410 Wh/kg specific energy density, almost double the capacity of standard 220 Wh/kg lithium-polymer packs.</li>
+                  <li><strong>Autoclaved Carbon Monocoque:</strong> Curing the fuselage as a single continuous hollow structure eliminates over 40 redundant steel screws, brackets, and heavy plastic shells, bringing total airframe dry weight to just 155.8 grams before battery insertion.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">03</span>
+              <span class="faq-question">Does Garud require pilot registration or licensing under global aviation laws?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Because Garud weighs precisely 249 grams at takeoff (TOW), it falls beneath the critical 250-gram regulatory threshold recognized by the FAA (United States), EASA (European Union), Transport Canada, and DGCA (India). In most jurisdictions, it is exempt from mandatory transponder beacons and restrictive pilot licensing prerequisites for standard open-category flights.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">04</span>
+              <span class="faq-question">Can Garud be ordered or purchased directly on this website?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  <strong>No.</strong> This website is an archival feature monograph and technical showcase designed for academic, scientific, and curatorial study. There is no store, shopping cart, or direct commercial purchasing portal. Research institutions and certified expedition teams may direct technical and curatorial inquiries through our contact desk.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">05</span>
+              <span class="faq-question">How does OmniSight™ LiDAR navigate in pitch-black darkness, fog, or dust?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Unlike stereo cameras that depend on ambient daylight and visual edge contrast, OmniSight™ emits active 905nm infrared laser pulses that travel through atmospheric dust and fog. By calculating the round-trip speed of light down to picoseconds for 120,000 points per second, Garud constructs an autonomous 3D volumetric barrier, rendering unlit subway tunnels, mine shafts, and night forests navigable without external spotlights.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">06</span>
+              <span class="faq-question">What failsafe protocols execute if the 18 km radio link is severed?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  If RF signal is lost for more than 1.8 seconds, Garud’s triple-redundant flight computer automatically engages Return-to-Perch protocol. It retraces its exact outbound 3D laser-mapped trajectory to escape localized RF shadows, climbs to a pre-cleared altitude, and navigates back to base using dual-band RTK satellite geodetics, touching down within 1.5 cm of its charging pad.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">07</span>
+              <span class="faq-question">How does Garud operate in extreme temperatures from -25°C to +55°C?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Standard liquid-electrolyte batteries suffer catastrophic voltage freeze in sub-zero air and risk thermal runaway in desert heat. Garud’s solid ceramic electrolyte eliminates flammable liquid solvents. Furthermore, pyrolytic graphene heat conduits route motor and NPU heat into the battery enclosure in alpine cold, while dissipating excess heat into the carbon monocoque skin during desert flights.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q8 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">08</span>
+              <span class="faq-question">What is the difference between electronic stabilization and Garud's direct-drive gimbal?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  Electronic image stabilization (EIS) crops into the sensor’s pixel grid and applies algorithmic warping, which softens fine details and introduces jelly-like motion artifacts in dim light. Garud’s 3-axis gimbal uses direct-drive brushless motors updating at 2,000 Hz to counteract physical movements mechanically. The entire 45.4-megapixel full-frame sensor remains pristine and uncropped, delivering true edge-to-edge cinema fidelity.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="faq-num">09</span>
+              <span class="faq-question">How does Precision Return-to-Perch land on moving marine research vessels?</span>
+              <span class="faq-icon">&plus;</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <p>
+                  When landing on a moving vessel, Garud receives high-frequency RTK telemetry from the ship’s master perch antenna. High-speed 300 Hz downward infrared cameras lock onto the perch’s kinetic fiducial pattern, dynamically matching the vessel’s forward velocity, pitch, and roll in real time to touch down safely even in rolling Force 5 seas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-cta-wrap text-center">
+          <p class="body-text">Have a specific technical question not covered in this monograph?</p>
+          <a href="contact.html" class="btn btn-primary">
+            <span>Contact Archival Desk</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- Shared Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a href="index.html" class="navbar__logo">
-            <span class="navbar__logo-icon">⚡</span>
-            <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
-          </a>
-          <p class="footer__brand-desc">
-            Modular Autonomous Heavy-Lift Drone Platform for Flood Disaster Relief &amp; Multi-Sector Logistics. Incubatex Foundation, GIET University.
-          </p>
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Navigation</h4>
-          <a href="index.html" class="footer__link">Home</a>
-          <a href="about.html" class="footer__link">About &amp; Tech</a>
-          <a href="services.html" class="footer__link">Services</a>
-          <a href="pricing.html" class="footer__link">Pricing</a>
-          <a href="showreel.html" class="footer__link">4K Showreel</a>
-          <a href="studio.html" class="footer__link">Drone Studio</a>
-          <a href="profile.html" class="footer__link">Pilot Profile</a>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="index.html">00 // Overview</a></li>
+            <li><a href="features.html">01 // All 8 Features</a></li>
+            <li><a href="in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Support &amp; Legal</h4>
-          <a href="faq.html" class="footer__link">FAQ</a>
-          <a href="contact.html" class="footer__link">Mission Request (Contact)</a>
-          <a href="404.html" class="footer__link">Flight Radar (404)</a>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="faq.html">07 // Technical FAQ</a></li>
+            <li><a href="contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
         </div>
-
-        <div>
-          <h4 class="footer__heading">Secret Recon Drones</h4>
-          <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 0.5rem;">
-            10 micro drones are hidden throughout this platform. Discover them to unlock the "Surveyor General" badge and bonus coins.
-          </p>
-          <span class="scavenger-drone" data-scavenger-id="scav_faq_footer" title="Secret Recon Drone Found!">🛸</span>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
         </div>
       </div>
-
-      <div class="footer__bottom">
-        <div>&copy; 2026 DRWEB Aero. All rights reserved. Incubatex Innovation Foundation, GIET University, Gunupur-765022.</div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/flight.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>

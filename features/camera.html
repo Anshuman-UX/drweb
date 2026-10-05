@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Camera &amp; 3-Axis Gimbal | Garud Feature Monograph 01</title>
+  <meta name="description" content="Detailed engineering monograph of Garud's Full-Frame 3-Axis Precision Gimbal. 8K 30fps, 4K 120fps, 14 stops dynamic range, and ±0.005° angular stability.">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/garud-blueprint.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="../index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 01</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Overview</a></li>
+          <li><a href="../features.html" class="nav-link active">Features</a></li>
+          <li><a href="../in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="../engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="../specs.html" class="nav-link">Specs</a></li>
+          <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="../story.html" class="nav-link">Story</a></li>
+          <li><a href="../faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../features.html" class="btn btn-outline header-cta">
+          <span>All features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="../index.html" class="drawer-link">Overview</a></li>
+      <li><a href="../features.html" class="drawer-link active">Features</a></li>
+      <li><a href="../in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="../engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="../specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="../gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="../story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="../faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="../contact.html" class="drawer-link">Exhibition Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <!-- Feature Detail Header -->
+    <article class="feature-detail-article">
+      <header class="feature-hero-header">
+        <div class="editorial-container">
+          <div class="section-label-group">
+            <span class="chapter-num">FEATURE 01 / 08</span>
+            <span class="hairline-divider"></span>
+            <span class="section-meta">OPTICAL KINEMATICS &amp; SENSOR CORE</span>
+          </div>
+
+          <h1 class="feature-main-title">Full-Frame 3-Axis Precision Gimbal</h1>
+          <p class="feature-lead-text">
+            A bespoke optoelectronic core pairing a back-illuminated full-frame cinema sensor with an aerospace-grade direct-drive magnesium gimbal, capturing true 8K at 30fps and 4K at 120fps with ±0.005° mechanical jitter stability.
+          </p>
+        </div>
+      </header>
+
+      <!-- Typographic Stats Banner -->
+      <section class="feature-stats-banner">
+        <div class="content-container">
+          <div class="stats-ribbon">
+            <div class="ribbon-item">
+              <span class="r-val">&plusmn;0.005&deg;</span>
+              <span class="r-lbl">ANGULAR JITTER VARIANCE</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">14 STOPS</span>
+              <span class="r-lbl">DYNAMIC RANGE (DUAL ISO)</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">8K / 4K</span>
+              <span class="r-lbl">30P 8K // 120P 4K CINEMA</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">10-BIT</span>
+              <span class="r-lbl">4:2:2 D-LOG PRORES RAW</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Teardown Prose -->
+      <section class="feature-body-section">
+        <div class="editorial-container">
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">01 // WHAT IT DOES IN PLAIN WORDS</h2>
+            <p>
+              The camera does not merely stabilize an image electronically through cropped pixels; it floats on three frictionless brushless magnetic gimbals tuned to counteract sudden air gusts, motor harmonics, and aggressive high-speed vehicle maneuvers. The full-frame sensor swallows vast amounts of light, retaining delicate highlight detail in blinding alpine snow while simultaneously preserving shadow textures in dense forest floors.
+            </p>
+          </div>
+
+          <!-- Staged Airframe Location Diagram -->
+          <div class="feature-diagram-card">
+            <div class="diagram-meta">
+              <span class="mono-datum">AIRFRAME SUBSYSTEM DATUM: FORWARD VENTRAL DOME</span>
+              <span class="mono-datum accent">ISOLATION: 4X SILICONE VISCOELASTIC DAMPERS</span>
+            </div>
+            <div class="diagram-canvas-wrap">
+              <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
+                <!-- Drone Silhouette Outline -->
+                <path d="M 200 150 C 240 130, 360 130, 480 150 C 470 190, 440 220, 340 225 C 240 220, 210 190, 200 150 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
+                <line x1="220" y1="140" x2="140" y2="90" stroke="#D6D3CB" stroke-width="1" />
+                <line x1="460" y1="140" x2="540" y2="90" stroke="#D6D3CB" stroke-width="1" />
+                <ellipse cx="140" cy="90" rx="36" ry="12" stroke="#D6D3CB" stroke-width="0.8" />
+                <ellipse cx="540" cy="90" rx="36" ry="12" stroke="#D6D3CB" stroke-width="0.8" />
+                <!-- Gimbal Highlight Unit -->
+                <rect x="315" y="195" width="50" height="42" rx="6" stroke="#FF4B26" stroke-width="2" fill="#EFECE6" />
+                <circle cx="340" cy="216" r="14" stroke="#121316" stroke-width="2" fill="#121316" />
+                <circle cx="340" cy="216" r="6" fill="#FF4B26" />
+                <!-- Callout Lines -->
+                <line x1="365" y1="216" x2="520" y2="216" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="520" cy="216" r="3" fill="#FF4B26" />
+                <text x="530" y="212" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">3-AXIS DIRECT-DRIVE CORE</text>
+                <text x="530" y="228" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Continuous 360&deg; Pan • -120&deg; to +35&deg; Tilt</text>
+              </svg>
+            </div>
+            <p class="caption-text text-center">Schematic: Optical core positioned forward-ventral to shield lens from propwash turbulence.</p>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">02 // VERIFIABLE TECHNICAL DATA</h2>
+            <div class="tech-table-wrap">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Sensor Dimension</th>
+                    <td>35.8 &times; 23.9 mm (3:2 Full-Frame BSI CMOS)</td>
+                  </tr>
+                  <tr>
+                    <th>Effective Pixels</th>
+                    <td>45.4 Megapixels Raw Still / 8K Cinema D-Log</td>
+                  </tr>
+                  <tr>
+                    <th>Angular Stability</th>
+                    <td>&plusmn;0.005&deg; (Mechanical Feedback at 2,000 Hz)</td>
+                  </tr>
+                  <tr>
+                    <th>Native ISO Ceiling</th>
+                    <td>Dual Base: ISO 800 and ISO 3200 (Clean up to 12,800)</td>
+                  </tr>
+                  <tr>
+                    <th>Dynamic Range</th>
+                    <td>14.2 verified stops via calibrated Stouffer step chart</td>
+                  </tr>
+                  <tr>
+                    <th>Lens Integration</th>
+                    <td>Equivalent 24mm f/1.8 custom aspherical 9-element optic</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">03 // WHY IT MATTERS TO THE USER</h2>
+            <p class="body-lead">
+              For cinematographers and scientific surveyors alike, software stabilization is a compromise that crops pixels and introduces gelatinous motion blur.
+            </p>
+            <p>
+              By resolving optical stability mechanically at the hardware level, Garud outputs clean, broadcast-ready footage that matches high-end ground cameras. Surveyors receive distortion-free orthomosaic tiles where individual leaves, structural weld cracks, or geological fissures remain crisp down to sub-millimeter ground sampling distances.
+            </p>
+          </div>
+
+          <!-- Feature Chapter Navigation -->
+          <div class="feature-pagination">
+            <a href="../features.html" class="p-prev">
+              <span class="p-dir">&larr; INDEX</span>
+              <span class="p-title">Features Directory</span>
+            </a>
+            <a href="propulsion.html" class="p-next">
+              <span class="p-dir">NEXT FEATURE 02 &rarr;</span>
+              <span class="p-title">WhisperDrive™ Toroidal Propulsion</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="../index.html">00 // Overview</a></li>
+            <li><a href="../features.html">01 // All 8 Features</a></li>
+            <li><a href="../in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="../engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="../specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="../gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="../story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="../faq.html">07 // Technical FAQ</a></li>
+            <li><a href="../contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/motion.js"></script>
+</body>
+</html>

@@ -1,155 +1,136 @@
-# 🌐 Google Cloud Storage (GCS) Deployment Guide for DRWEB AERO
+# GARUD — GOOGLE CLOUD STORAGE (GCS) STATIC DEPLOYMENT RUNBOOK
 
-This step-by-step guide walks you through deploying the static **DRWEB AERO** website to Google Cloud Storage (GCS) with public access, custom domain mapping, HTTPS, and Cloud CDN acceleration.
+This guide provides the exact `gcloud` and `gsutil` commands to deploy the **GARUD Autonomous Aerial Instrument** feature-showcase website as a high-performance static website on Google Cloud Storage (GCS), backed by Cloud CDN and SSL.
 
 ---
 
 ## 1. Prerequisites
 
-Ensure you have Google Cloud SDK (`gcloud`) installed and authenticated:
-
-```bash
-gcloud auth login
-gcloud config set project YOUR_PROJECT_ID
-```
+1. Install and authenticate the Google Cloud SDK:
+   ```bash
+   gcloud auth login
+   gcloud config set project YOUR_PROJECT_ID
+   ```
+2. Enable the Google Cloud Storage API:
+   ```bash
+   gcloud services enable storage.googleapis.com compute.googleapis.com
+   ```
 
 ---
 
-## 2. Step 1: Create a Cloud Storage Bucket
+## 2. Bucket Creation & Website Configuration
 
-Bucket names for static websites hosted without a load balancer must match the domain name (e.g. `drwebaero.in` or `www.drwebaero.in`), or you can use any unique name if deploying behind Cloud CDN / HTTPS Load Balancer.
+Set your desired bucket name (if using a custom domain directly via CNAME, the bucket name must match the domain, e.g., `garud.aero`):
 
 ```bash
-# Set your desired bucket name
-export BUCKET_NAME="drwebaero-static-site"
-export REGION="asia-south1" # Or us-central1 / nearest region
+export BUCKET_NAME="garud-showcase-monograph"
+export REGION="us-central1"
 
-# Create the bucket with standard storage class
+# 1. Create a uniform bucket-level access storage bucket
 gcloud storage buckets create gs://$BUCKET_NAME \
-    --location=$REGION \
-    --default-storage-class=STANDARD \
-    --uniform-bucket-level-access
-```
+  --location=$REGION \
+  --default-storage-class=STANDARD \
+  --uniform-bucket-level-access
 
----
-
-## 3. Step 2: Configure Bucket for Website Hosting
-
-Assign `index.html` as the default landing index page and `404.html` as the error page:
-
-```bash
+# 2. Configure default web index and 404 error page
 gcloud storage buckets update gs://$BUCKET_NAME \
-    --web-main-page-suffix=index.html \
-    --web-error-page=404.html
+  --web-main-page-suffix=index.html \
+  --web-error-page=404.html
 ```
 
 ---
 
-## 4. Step 3: Grant Public Read Access (`allUsers`)
+## 3. Public Read Permissions
 
-Grant public read permissions so anyone on the web can view the site:
+Grant all users public read permission to view the static site:
 
 ```bash
 gcloud storage buckets add-iam-policy-binding gs://$BUCKET_NAME \
-    --member=allUsers \
-    --role=roles/storage.objectViewer
+  --member=allUsers \
+  --role=roles/storage.objectViewer
 ```
 
 ---
 
-## 5. Step 4: Upload Website Files to GCS
+## 4. Asset Syncing with Optimized Cache Headers
 
-Navigate to your `drweb` project directory and sync all files:
+To guarantee fast page loads (90+ Lighthouse targets) while preventing stale HTML caches:
 
 ```bash
-cd "d:/drone wen/drweb"
+# A. Upload CSS and JS assets with a 1-year immutable cache header
+gcloud storage rsync ./css gs://$BUCKET_NAME/css \
+  --recursive \
+  --cache-control="public, max-age=31536000, immutable"
 
-# Upload all files with gzip caching headers
-gcloud storage rsync -r . gs://$BUCKET_NAME/ \
-    --exclude=".git/*"
+gcloud storage rsync ./js gs://$BUCKET_NAME/js \
+  --recursive \
+  --cache-control="public, max-age=31536000, immutable"
+
+# B. Upload SVGs and images with 30-day cache
+gcloud storage rsync ./assets gs://$BUCKET_NAME/assets \
+  --recursive \
+  --cache-control="public, max-age=2592000"
+
+# C. Upload HTML files with short cache & revalidation (10 minutes)
+gcloud storage cp ./*.html gs://$BUCKET_NAME/ \
+  --cache-control="public, max-age=600, must-revalidate" \
+  --content-type="text/html"
+
+gcloud storage cp ./features/*.html gs://$BUCKET_NAME/features/ \
+  --cache-control="public, max-age=600, must-revalidate" \
+  --content-type="text/html"
 ```
 
-Set optimal caching headers for CSS and JS assets:
-
-```bash
-# Cache CSS and JS for high performance
-gcloud storage objects update gs://$BUCKET_NAME/css/*.css \
-    --content-type="text/css" \
-    --cache-control="public, max-age=86400"
-
-gcloud storage objects update gs://$BUCKET_NAME/js/*.js \
-    --content-type="application/javascript" \
-    --cache-control="public, max-age=86400"
-
-gcloud storage objects update gs://$BUCKET_NAME/*.html \
-    --content-type="text/html" \
-    --cache-control="public, max-age=3600"
+The site will now be directly accessible at:
+```
+https://storage.googleapis.com/garud-showcase-monograph/index.html
 ```
 
 ---
 
-## 6. Step 5: Direct Public Access URL
+## 5. Custom Domain, SSL & Cloud CDN Setup
 
-Once uploaded, your website is immediately live and accessible via:
+For a production custom domain (e.g., `https://garud.archive.org`):
 
-```
-https://storage.googleapis.com/drwebaero-static-site/index.html
-```
-
----
-
-## 7. Step 6: Custom Domain, HTTPS, and Cloud CDN Setup
-
-For a production custom domain (e.g., `https://drwebaero.in`) with automated Google-managed SSL and Cloud CDN edge caching:
-
-### A. Reserve a Global Static External IP Address
+### Step A: Reserve an External Static IP
 ```bash
-gcloud compute addresses create drweb-ip \
-    --network-tier=PREMIUM \
-    --ip-version=IPV4 \
-    --global
+gcloud compute addresses create garud-static-ip \
+  --network-tier=PREMIUM \
+  --global
 ```
 
-Find the reserved IP:
+### Step B: Create a Backend Bucket with Cloud CDN
 ```bash
-gcloud compute addresses describe drweb-ip --global --format="get(address)"
+gcloud compute backend-buckets create garud-backend-bucket \
+  --gcs-bucket-name=$BUCKET_NAME \
+  --enable-cdn
 ```
 
-### B. Create a Backend Bucket with Cloud CDN
+### Step C: Create Google-Managed SSL Certificate
 ```bash
-gcloud compute backend-buckets create drweb-backend-bucket \
-    --gcs-bucket-name=$BUCKET_NAME \
-    --enable-cdn
+gcloud compute ssl-certificates create garud-ssl-cert \
+  --domains=garud.archive.org \
+  --global
 ```
 
-### C. Create URL Map & Google-Managed SSL Certificate
+### Step D: Wire the URL Map and HTTPS Proxy
 ```bash
-# Create URL Map pointing to the backend bucket
-gcloud compute url-maps create drweb-url-map \
-    --default-backend-bucket=drweb-backend-bucket
+# 1. Create URL Map
+gcloud compute url-maps create garud-url-map \
+  --default-backend-bucket=garud-backend-bucket
 
-# Create Google-managed SSL Certificate
-gcloud compute ssl-certificates create drweb-ssl-cert \
-    --domains=drwebaero.in,www.drwebaero.in \
-    --global
+# 2. Create Target HTTPS Proxy with SSL Certificate
+gcloud compute target-https-proxies create garud-https-proxy \
+  --url-map=garud-url-map \
+  --ssl-certificates=garud-ssl-cert
 
-# Create Target HTTPS Proxy
-gcloud compute target-https-proxies create drweb-https-proxy \
-    --url-map=drweb-url-map \
-    --ssl-certificates=drweb-ssl-cert
-
-# Create Global Forwarding Rule (Port 443)
-gcloud compute forwarding-rules create drweb-https-forwarding-rule \
-    --address=drweb-ip \
-    --global \
-    --target-https-proxy=drweb-https-proxy \
-    --ports=443
+# 3. Create Global Forwarding Rule pointing port 443 to the Static IP
+gcloud compute forwarding-rules create garud-https-rule \
+  --address=garud-static-ip \
+  --global \
+  --target-https-proxy=garud-https-proxy \
+  --ports=443
 ```
 
-### D. Update DNS A-Records
-Go to your domain registrar (Google Domains, Cloudflare, GoDaddy, etc.) and create an **A Record**:
-- **Name**: `@` and `www`
-- **Type**: `A`
-- **Value**: The reserved IP address from Step 7A (`drweb-ip`)
-
-SSL certificates typically provision within 15–30 minutes of DNS propagation.
+### Step E: DNS Configuration
+Add an `A` record at your DNS registrar pointing `garud.archive.org` to the allocated static IP address. Cloud CDN will automatically cache assets globally at edge nodes, delivering sub-100ms first-contentful paint worldwide.

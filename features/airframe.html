@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Airframe Monocoque | Garud Feature Monograph 06</title>
+  <meta name="description" content="Technical monograph of Garud's Carbon-Titanium Monocoque Skeleton: 249g ultralight classification, Toray T1000 continuous fibers, and Force 8 gale (18 m/s) wind resistance.">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/garud-blueprint.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="../index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 06</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Overview</a></li>
+          <li><a href="../features.html" class="nav-link active">Features</a></li>
+          <li><a href="../in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="../engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="../specs.html" class="nav-link">Specs</a></li>
+          <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="../story.html" class="nav-link">Story</a></li>
+          <li><a href="../faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../features.html" class="btn btn-outline header-cta">
+          <span>All features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="../index.html" class="drawer-link">Overview</a></li>
+      <li><a href="../features.html" class="drawer-link active">Features</a></li>
+      <li><a href="../in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="../engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="../specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="../gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="../story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="../faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="../contact.html" class="drawer-link">Exhibition Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <article class="feature-detail-article">
+      <header class="feature-hero-header">
+        <div class="editorial-container">
+          <div class="section-label-group">
+            <span class="chapter-num">FEATURE 06 / 08</span>
+            <span class="hairline-divider"></span>
+            <span class="section-meta">MATERIALS SCIENCE &amp; MONOCOQUE TOPOLOGY</span>
+          </div>
+
+          <h1 class="feature-main-title">Carbon-Titanium Monocoque Skeleton</h1>
+          <p class="feature-lead-text">
+            A single unified hollow fuselage molded from Toray T1000 carbon fiber and reinforced with generative Grade 5 titanium structural inserts. Delivering uncompromised Force 8 gale (18 m/s) wind resistance while registering exactly 249 grams on the analytical balance.
+          </p>
+        </div>
+      </header>
+
+      <!-- Stats Banner -->
+      <section class="feature-stats-banner">
+        <div class="content-container">
+          <div class="stats-ribbon">
+            <div class="ribbon-item">
+              <span class="r-val">249 g</span>
+              <span class="r-lbl">TOTAL ALL-UP FLYING WEIGHT</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">18 m/s</span>
+              <span class="r-lbl">WIND GUST RESISTANCE (FORCE 8)</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">T1000</span>
+              <span class="r-lbl">INTERMEDIATE MODULUS CARBON</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">Ti-6Al-4V</span>
+              <span class="r-lbl">DMLS 3D PRINTED TITANIUM NODES</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Teardown -->
+      <section class="feature-body-section">
+        <div class="editorial-container">
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">01 // STRUCTURAL UNIFICATION WITHOUT MECHANICAL FASTENERS</h2>
+            <p>
+              Most quadcopters are assembled from dozens of injection-molded plastic shells held together by steel screws that rattle loose over hundreds of vibration cycles. Garud is cured as a continuous hollow monocoque inside a high-pressure autoclave. The fuselage itself acts as the primary load path, heat sink, and electronic enclosure, eliminating over 40 redundant mechanical fasteners.
+            </p>
+          </div>
+
+          <!-- Staged Airframe Location Diagram -->
+          <div class="feature-diagram-card">
+            <div class="diagram-meta">
+              <span class="mono-datum">MONOCOQUE DATUM: CONTINUOUS TOROIDAL SPARS</span>
+              <span class="mono-datum accent">AUTOCLAVE CURE: 180&deg;C AT 7 BAR PRESSURE</span>
+            </div>
+            <div class="diagram-canvas-wrap">
+              <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
+                <!-- Highlighted Airframe Monocoque -->
+                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#FF4B26" stroke-width="2.5" fill="#EFECE6" fill-opacity="0.6" />
+                <!-- Titanium Nodes -->
+                <polygon points="280,120 295,130 285,145" fill="#121316" stroke="#FF4B26" stroke-width="1" />
+                <polygon points="420,120 405,130 415,145" fill="#121316" stroke="#FF4B26" stroke-width="1" />
+                <polygon points="290,200 305,210 295,225" fill="#121316" stroke="#FF4B26" stroke-width="1" />
+                <polygon points="410,200 395,210 405,225" fill="#121316" stroke="#FF4B26" stroke-width="1" />
+
+                <!-- Arms Continuous Weave -->
+                <line x1="290" y1="130" x2="160" y2="70" stroke="#FF4B26" stroke-width="2" />
+                <line x1="410" y1="130" x2="540" y2="70" stroke="#FF4B26" stroke-width="2" />
+                <line x1="300" y1="210" x2="180" y2="250" stroke="#FF4B26" stroke-width="2" />
+                <line x1="400" y1="210" x2="520" y2="250" stroke="#FF4B26" stroke-width="2" />
+
+                <!-- Rotors Ghosted -->
+                <ellipse cx="160" cy="70" rx="46" ry="16" stroke="#D6D3CB" stroke-width="1" />
+                <ellipse cx="540" cy="70" rx="46" ry="16" stroke="#D6D3CB" stroke-width="1" />
+                <ellipse cx="180" cy="250" rx="46" ry="16" stroke="#D6D3CB" stroke-width="1" />
+                <ellipse cx="520" cy="250" rx="46" ry="16" stroke="#D6D3CB" stroke-width="1" />
+
+                <!-- Callout -->
+                <line x1="350" y1="175" x2="500" y2="175" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="500" cy="175" r="3" fill="#FF4B26" />
+                <text x="510" y="171" font-family="'Space Grotesk'" font-size="12" font-weight="600" fill="#121316">T1000 MONOCOQUE CORE</text>
+                <text x="510" y="187" font-family="'JetBrains Mono'" font-size="10" fill="#62656E">Hollow Carbon Web • Wall Thickness: 0.6mm</text>
+              </svg>
+            </div>
+            <p class="caption-text text-center">Schematic: Finite element analysis (FEA) topology mapping maximum stress dissipation across titanium node joints.</p>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">02 // VERIFIABLE TECHNICAL DATA</h2>
+            <div class="tech-table-wrap">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Carbon Weave Specification</th>
+                    <td>Torayca&reg; T1000G Intermediate Modulus (Tensile Strength: 6,370 MPa)</td>
+                  </tr>
+                  <tr>
+                    <th>Metallic Reinforcement</th>
+                    <td>Selective Laser Sintered (SLS) Grade 5 Titanium (Ti-6Al-4V)</td>
+                  </tr>
+                  <tr>
+                    <th>Takeoff Weight (TOW)</th>
+                    <td>249.0 grams &plusmn; 0.5g (Sub-250g global aviation category compliant)</td>
+                  </tr>
+                  <tr>
+                    <th>Maximum Wind Resistance</th>
+                    <td>18.0 m/s sustained gale (Force 8 on the Beaufort scale)</td>
+                  </tr>
+                  <tr>
+                    <th>Torsional Rigidity</th>
+                    <td>14.8 Nm/deg (3.4&times; stiffer than aluminum alloy frames)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">03 // WHY IT MATTERS TO THE USER</h2>
+            <p class="body-lead">
+              Aviation regulations worldwide impose arduous registration, licensing, and flight authorization barriers on drones weighing 250 grams or more.
+            </p>
+            <p>
+              By landing at precisely 249 grams without sacrificing structural stiffness or sensor size, Garud can be transported and operated internationally with maximum regulatory freedom while retaining the rough-weather stability of high-end commercial airframes.
+            </p>
+          </div>
+
+          <!-- Feature Pagination -->
+          <div class="feature-pagination">
+            <a href="transmission.html" class="p-prev">
+              <span class="p-dir">&larr; PREVIOUS FEATURE 05</span>
+              <span class="p-title">GarudLink Ultra-Spectral Transmission</span>
+            </a>
+            <a href="tracking.html" class="p-next">
+              <span class="p-dir">NEXT FEATURE 07 &rarr;</span>
+              <span class="p-title">EagleEye AI Autonomous Tracking Core</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="../index.html">00 // Overview</a></li>
+            <li><a href="../features.html">01 // All 8 Features</a></li>
+            <li><a href="../in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="../engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="../specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="../gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="../story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="../faq.html">07 // Technical FAQ</a></li>
+            <li><a href="../contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/motion.js"></script>
+</body>
+</html>

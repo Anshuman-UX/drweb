@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>WhisperDrive™ Propulsion | Garud Feature Monograph 02</title>
+  <meta name="description" content="Technical monograph of WhisperDrive™ toroidal propulsion: continuous carbon loop blades, 48.5 dBA acoustic floor, and 24,000 RPM field-oriented control.">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/garud-blueprint.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="../index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 02</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Overview</a></li>
+          <li><a href="../features.html" class="nav-link active">Features</a></li>
+          <li><a href="../in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="../engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="../specs.html" class="nav-link">Specs</a></li>
+          <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="../story.html" class="nav-link">Story</a></li>
+          <li><a href="../faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../features.html" class="btn btn-outline header-cta">
+          <span>All features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="../index.html" class="drawer-link">Overview</a></li>
+      <li><a href="../features.html" class="drawer-link active">Features</a></li>
+      <li><a href="../in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="../engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="../specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="../gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="../story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="../faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="../contact.html" class="drawer-link">Exhibition Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <article class="feature-detail-article">
+      <header class="feature-hero-header">
+        <div class="editorial-container">
+          <div class="section-label-group">
+            <span class="chapter-num">FEATURE 02 / 08</span>
+            <span class="hairline-divider"></span>
+            <span class="section-meta">AERODYNAMICS &amp; ACOUSTIC ARCHITECTURE</span>
+          </div>
+
+          <h1 class="feature-main-title">WhisperDrive™ Toroidal Propulsion</h1>
+          <p class="feature-lead-text">
+            Closed-loop toroidal rotor rings fabricated from unbroken pre-preg carbon fibers. By eliminating open blade tips, Garud dissolves aerodynamic tip vortices, yielding a 48.5 dBA sound signature that vanishes into natural ambient rustle.
+          </p>
+        </div>
+      </header>
+
+      <!-- Stats Banner -->
+      <section class="feature-stats-banner">
+        <div class="content-container">
+          <div class="stats-ribbon">
+            <div class="ribbon-item">
+              <span class="r-val">48.5 dBA</span>
+              <span class="r-lbl">ACOUSTIC LEVEL AT 15M</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">-60%</span>
+              <span class="r-lbl">ACOUSTIC ENERGY REDUCTION</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">24,000</span>
+              <span class="r-lbl">PEAK RPM (3-PHASE FOC)</span>
+            </div>
+            <div class="ribbon-item">
+              <span class="r-val">11.4 g/W</span>
+              <span class="r-lbl">SPECIFIC THRUST EFFICIENCY</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Teardown -->
+      <section class="feature-body-section">
+        <div class="editorial-container">
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">01 // THE FLUID DYNAMICS OF SILENCE</h2>
+            <p>
+              Traditional drone propellers produce their distinctive, irritating whine because air spills violently across the high-velocity blade tip, shedding micro-tornados into the air stream. The WhisperDrive™ architecture curves each blade back into itself in a seamless toroidal loop. Airflow is contained, distributed, and released with laminar gentleness.
+            </p>
+          </div>
+
+          <!-- Staged Airframe Location Diagram -->
+          <div class="feature-diagram-card">
+            <div class="diagram-meta">
+              <span class="mono-datum">PROPULSION DATUM: 4X RADIAL TOROIDAL HUBS</span>
+              <span class="mono-datum accent">STATOR: 12-POLE SINTERED NEODYMIUM N52H</span>
+            </div>
+            <div class="diagram-canvas-wrap">
+              <svg viewBox="0 0 700 300" class="airframe-location-svg" fill="none" stroke="#121316">
+                <!-- Drone Outline -->
+                <path d="M 280 120 C 310 110, 390 110, 420 120 C 410 180, 380 230, 350 235 C 320 230, 290 180, 280 120 Z" stroke="#D6D3CB" stroke-width="1.2" fill="#EFECE6" fill-opacity="0.3" />
+                <line x1="290" y1="130" x2="160" y2="70" stroke="#D6D3CB" stroke-width="1.2" />
+                <line x1="410" y1="130" x2="540" y2="70" stroke="#D6D3CB" stroke-width="1.2" />
+                <line x1="300" y1="210" x2="180" y2="250" stroke="#D6D3CB" stroke-width="1.2" />
+                <line x1="400" y1="210" x2="520" y2="250" stroke="#D6D3CB" stroke-width="1.2" />
+
+                <!-- Toroidal Rotor Active Highlights -->
+                <g stroke="#FF4B26" stroke-width="2" fill="#EFECE6" fill-opacity="0.4">
+                  <ellipse cx="160" cy="70" rx="48" ry="18" transform="rotate(-15 160 70)" />
+                  <ellipse cx="540" cy="70" rx="48" ry="18" transform="rotate(15 540 70)" />
+                  <ellipse cx="180" cy="250" rx="48" ry="18" transform="rotate(20 180 250)" />
+                  <ellipse cx="520" cy="250" rx="48" ry="18" transform="rotate(-20 520 250)" />
+                </g>
+                <circle cx="160" cy="70" r="4" fill="#FF4B26" />
+                <circle cx="540" cy="70" r="4" fill="#FF4B26" />
+                <circle cx="180" cy="250" r="4" fill="#FF4B26" />
+                <circle cx="520" cy="250" r="4" fill="#FF4B26" />
+
+                <!-- Callout -->
+                <line x1="588" y1="70" x2="630" y2="70" stroke="#FF4B26" stroke-width="1.2" />
+                <circle cx="630" cy="70" r="3" fill="#FF4B26" />
+                <text x="635" y="66" font-family="'Space Grotesk'" font-size="11" font-weight="600" fill="#121316">CLOSED-LOOP BLADE</text>
+                <text x="635" y="80" font-family="'JetBrains Mono'" font-size="9" fill="#62656E">Continuous Carbon Filament</text>
+              </svg>
+            </div>
+            <p class="caption-text text-center">Schematic: Toroidal rotor geometry dispersing high-frequency vortex harmonics into broad sub-audible pink noise.</p>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">02 // VERIFIABLE TECHNICAL DATA</h2>
+            <div class="tech-table-wrap">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Acoustic Signature</th>
+                    <td>48.5 dBA at 15m radius (Equivalent to a quiet residential library)</td>
+                  </tr>
+                  <tr>
+                    <th>Frequency Distribution</th>
+                    <td>Peak shifted below 350 Hz; eliminated typical 2–5 kHz blade whine</td>
+                  </tr>
+                  <tr>
+                    <th>Motor Architecture</th>
+                    <td>Custom 1404 outrunner with 0.15mm silicon steel laminations</td>
+                  </tr>
+                  <tr>
+                    <th>Electronic Speed Control</th>
+                    <td>32-bit dual FOC (Field Oriented Control) running at 96 kHz PWM</td>
+                  </tr>
+                  <tr>
+                    <th>Dynamic Braking</th>
+                    <td>Regenerative active-braking reclaiming up to 4.2% kinetic descent energy</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="feature-section-block">
+            <h2 class="subhead-mono">03 // WHY IT MATTERS TO THE USER</h2>
+            <p class="body-lead">
+              Acoustic intrusion is the primary barrier preventing aerial cinematography and survey work in ecologically sensitive biomes.
+            </p>
+            <p>
+              With WhisperDrive™, researchers observe nesting raptors and herd migrations without inciting panic or scattering subjects. In municipal settings, Garud operates without drawing the ire of bystanders or triggering ambient noise complaints.
+            </p>
+          </div>
+
+          <!-- Feature Pagination -->
+          <div class="feature-pagination">
+            <a href="camera.html" class="p-prev">
+              <span class="p-dir">&larr; PREVIOUS FEATURE 01</span>
+              <span class="p-title">Full-Frame 3-Axis Precision Gimbal</span>
+            </a>
+            <a href="battery.html" class="p-next">
+              <span class="p-dir">NEXT FEATURE 03 &rarr;</span>
+              <span class="p-title">Solid-State Lithium-Sulfur Power Cell</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="../index.html">00 // Overview</a></li>
+            <li><a href="../features.html">01 // All 8 Features</a></li>
+            <li><a href="../in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="../engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="../specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="../gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="../story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="../faq.html">07 // Technical FAQ</a></li>
+            <li><a href="../contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/motion.js"></script>
+</body>
+</html>

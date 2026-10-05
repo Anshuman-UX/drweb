@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Engineering &amp; Materials | Garud Technical Monograph</title>
+  <meta name="description" content="An exhaustive engineering teardown of Garud: carbon-titanium monocoque architecture, interactive exploded view, and aerospace materials science.">
+  <link rel="icon" type="image/svg+xml" href="assets/svg/garud-blueprint.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Minimal Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 04</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Overview</a></li>
+          <li><a href="features.html" class="nav-link">Features</a></li>
+          <li><a href="in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="engineering.html" class="nav-link active">Engineering</a></li>
+          <li><a href="specs.html" class="nav-link">Specs</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="story.html" class="nav-link">Story</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="specs.html" class="btn btn-outline header-cta">
+          <span>Read specs</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Overview</a></li>
+      <li><a href="features.html" class="drawer-link">Features</a></li>
+      <li><a href="in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="engineering.html" class="drawer-link active">Engineering</a></li>
+      <li><a href="specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="contact.html" class="drawer-link">Exhibition Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <p class="caption-text">ARCHIVAL SPECIFICATION 2026</p>
+      <!-- BRAND-NAME-PLACEHOLDER -->
+    </div>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <!-- Page Title Header -->
+    <section class="page-intro-section">
+      <div class="editorial-container">
+        <div class="section-label-group">
+          <span class="chapter-num">CHAPTER 04</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">MATERIALS SCIENCE &amp; MONOCOQUE TEARDOWN</span>
+        </div>
+        <h1 class="page-title">Engineering</h1>
+        <p class="body-lead">
+          Garud is not an assembly of disparate off-the-shelf modules. It is an indivisible aerodynamic skeleton engineered from aerospace composites, generative titanium nodes, and solid-state electronics.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Exploded View Stage -->
+    <section class="exploded-stage-section" aria-labelledby="exploded-h2">
+      <div class="content-container">
+        
+        <div class="section-label-group">
+          <span class="chapter-num">DECONSTRUCTION</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">INTERACTIVE PHYSICAL STACK</span>
+        </div>
+        <h2 id="exploded-h2" class="section-heading-h2">The Six Mechanical Strata</h2>
+        <p class="body-text max-editorial">
+          Drag the dispersion control slider or scroll downward to separate the six structural tiers of Garud along its central vertical datum axis.
+        </p>
+
+        <!-- Exploded View Controls -->
+        <div class="exploded-controls">
+          <label for="exploded-slider" class="mono-datum">DISPERSION AXIS: <span id="dispersion-value">0%</span></label>
+          <input type="range" id="exploded-slider" class="exploded-slider" min="0" max="100" value="0" step="1" aria-label="Airframe layer separation slider">
+          <div class="exploded-presets">
+            <button type="button" class="btn-preset active" data-percent="0">Assembled (0%)</button>
+            <button type="button" class="btn-preset" data-percent="50">Expanded (50%)</button>
+            <button type="button" class="btn-preset" data-percent="100">Full Teardown (100%)</button>
+          </div>
+        </div>
+
+        <!-- Exploded View Container -->
+        <div class="exploded-view-container" id="exploded-container">
+          <img src="assets/svg/garud-exploded.svg" alt="Garud multi-tier exploded view diagram showing canopy, sensors, avionics, battery, chassis, and gimbal" class="exploded-svg-img" width="800" height="650">
+        </div>
+
+        <div class="exploded-caption-bar">
+          <span class="mono-datum">AUTOCLAVE CURE CYCLE: 180&deg;C @ 7 BAR</span>
+          <span class="mono-datum">NET STRUCTURAL FASTENERS: 4 (TITANIUM M2.5)</span>
+          <span class="mono-datum accent">FUSED INTEGRATION: 92%</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Materials Science Technical Table -->
+    <section class="materials-section">
+      <div class="editorial-container">
+        <div class="section-label-group">
+          <span class="chapter-num">SPECIFICATION</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">AEROSPACE METALLURGY &amp; POLYMERS</span>
+        </div>
+        <h2 class="section-heading-h2">Verified Material Manifest</h2>
+
+        <div class="tech-table-wrap">
+          <table class="specs-table">
+            <thead>
+              <tr>
+                <th>Component Stratum</th>
+                <th>Material Specification</th>
+                <th>Physical Role &amp; Mechanical Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fuselage Monocoque</strong></td>
+                <td>Torayca&reg; T1000G Intermediate Modulus Carbon</td>
+                <td>Continuous carbon weave cured in an autoclave to provide 6,370 MPa tensile strength while shedding 40% mass compared to traditional carbon plate frames.</td>
+              </tr>
+              <tr>
+                <td><strong>Structural Stress Nodes</strong></td>
+                <td>Ti-6Al-4V Grade 5 Titanium (DMLS 3D Printed)</td>
+                <td>Generatively designed organic truss nodes absorbing motor torsion and dissipating mechanical shock directly into the airframe shell.</td>
+              </tr>
+              <tr>
+                <td><strong>Toroidal Propellers</strong></td>
+                <td>Toray Torayca Toroidal Filament Matrix</td>
+                <td>Seamless closed aerodynamic loops with zero tip vortices, eliminating 60% of high-pitch acoustic energy without weight penalty.</td>
+              </tr>
+              <tr>
+                <td><strong>Gimbal Housing</strong></td>
+                <td>AZ91D Thixomolded Magnesium Alloy</td>
+                <td>Precision CNC-milled casing providing electromagnetic shielding, ultra-rigid optical alignment, and passive sensor heat dissipation.</td>
+              </tr>
+              <tr>
+                <td><strong>Optical Elements</strong></td>
+                <td>Monocrystalline Sapphire &amp; ED Fluorite Glass</td>
+                <td>9-element aspherical lens array with zero chromatic aberration, diamond-like nano-coating, and hydrophobic surface repellent.</td>
+              </tr>
+              <tr>
+                <td><strong>Thermal Jacket</strong></td>
+                <td>Pyrolytic Graphene Sheet (1,700 W/m&middot;K)</td>
+                <td>Direct conduction paths channeling neural processor and motor heat evenly into the carbon fuselage, eliminating heavy motorized cooling fans.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Principles / Macro Details -->
+    <section class="engineering-pillars-section">
+      <div class="content-container">
+        <div class="section-label-group">
+          <span class="chapter-num">PRINCIPLES</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">DESIGN RATIONALE</span>
+        </div>
+        <h2 class="section-heading-h2">Three Foundational Decisions</h2>
+
+        <div class="pillars-grid">
+          
+          <div class="pillar-card">
+            <span class="pillar-idx">01 // STRUCTURAL INTEGRITY</span>
+            <h3 class="pillar-title">Elimination of Mechanical Screws</h3>
+            <p class="pillar-body">
+              A standard drone houses between 35 and 60 miniature steel screws. Over prolonged high-RPM vibration regimes, these fasteners loosen, corrode, and introduce structural play. Garud unifies its airframe through precision co-cured carbon joints and interlocking titanium bayonet fittings, reducing mechanical fasteners to just four captive titanium bolts.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-idx">02 // THERMAL HOMEOSTASIS</span>
+            <h3 class="pillar-title">Passive Conduction via Graphene</h3>
+            <p class="pillar-body">
+              Motorized cooling fans suck in dust, moisture, and fine sea spray while consuming precious battery watts. Garud dissipates the thermal output of its 40 TOPS neural engine and radio amplifiers using pyrolytic graphene conduits that radiate heat uniformly across the entire carbon shell during flight airflow.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-idx">03 // KINETIC HARMONICS</span>
+            <h3 class="pillar-title">Viscoelastic Gimbal Decoupling</h3>
+            <p class="pillar-body">
+              Propeller revolutions inevitably introduce high-frequency motor harmonics. Rather than fighting vibrations algorithmically with software cropping, the full-frame optical gimbal hangs suspended inside four tuned fluoro-silicone viscoelastic dampers, ensuring that zero motor resonance ever reaches the optical sensor glass.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="section-cta-wrap text-center">
+          <a href="specs.html" class="btn btn-primary">
+            <span>Read Complete Specs &amp; Dimensions</span>
+          </a>
+          <a href="gallery.html" class="btn btn-outline">
+            <span>View Archival Gallery</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="index.html">00 // Overview</a></li>
+            <li><a href="features.html">01 // All 8 Features</a></li>
+            <li><a href="in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="faq.html">07 // Technical FAQ</a></li>
+            <li><a href="contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/explode.js"></script>
+</body>
+</html>

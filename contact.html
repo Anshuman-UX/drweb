@@ -1,354 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission Request &amp; Flight Dispatch | DRWEB AERO</title>
-  <meta name="description" content="Submit a mission flight requisition. State disaster readiness standby retainers, healthcare logistics, and commercial BVLOS cargo routes.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+  <!-- BRAND-NAME-PLACEHOLDER -->
+  <title>Curatorial &amp; Technical Inquiries | Garud Monograph</title>
+  <meta name="description" content="Direct your technical inquiries, scientific research collaborations, and exhibition requests regarding the Garud autonomous aerial instrument.">
+  <link rel="icon" type="image/svg+xml" href="assets/svg/garud-blueprint.svg">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/game.css">
-
-  <!-- Pinned CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
-
-  <style>
-    .radar-map-box {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      background: radial-gradient(circle at center, #0a1c36 0%, #050a14 100%);
-      border: 1px solid var(--clr-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1.5rem;
-    }
-    .radar-sweep {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: conic-gradient(from 0deg at 50% 50%, rgba(0,229,255,0.2) 0deg, transparent 60deg, transparent 360deg);
-      animation: sweepRotate 4s linear infinite;
-    }
-    @keyframes sweepRotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    .map-blip {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: var(--clr-cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 15px var(--clr-cyan);
-      animation: blipPulse 1.5s ease-in-out infinite;
-    }
-    @keyframes blipPulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.6); opacity: 0.4; }
-    }
-    .form-progress-wrap {
-      margin-bottom: 1.5rem;
-    }
-    .form-progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      font-family: var(--ff-mono);
-      color: #7e8ba6;
-      margin-bottom: 6px;
-    }
-    .form-progress-track {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .form-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #00e5ff, #00e676);
-      transition: width 0.3s ease;
-    }
-  </style>
 </head>
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-  <div class="aurora-bg"></div>
-  <div class="page-transition"></div>
 
-  <!-- Navigation -->
-  <header class="navbar" id="navbar">
-    <div class="navbar__container">
-      <a href="index.html" class="navbar__logo">
-        <span class="navbar__logo-icon">⚡</span>
-        <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
+
+  <!-- Shared Minimal Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Garud Homepage">
+        <span class="wordmark-text">GARUD</span>
+        <span class="wordmark-sub">MONOGRAPH // 09</span>
       </a>
 
-      <nav class="navbar__nav">
-        <ul class="navbar__list">
-          <li><a href="index.html" class="navbar__link">Home</a></li>
-          <li><a href="about.html" class="navbar__link">About</a></li>
-          <li><a href="services.html" class="navbar__link">Services</a></li>
-          <li><a href="pricing.html" class="navbar__link">Pricing</a></li>
-          <li><a href="showreel.html" class="navbar__link">Showreel</a></li>
-          <li><a href="studio.html" class="navbar__link">Studio</a></li>
-          <li><a href="profile.html" class="navbar__link">Profile</a></li>
-          <li><a href="faq.html" class="navbar__link">FAQ</a></li>
-          <li><a href="contact.html" class="navbar__link active">Contact</a></li>
+      <nav class="site-nav" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Overview</a></li>
+          <li><a href="features.html" class="nav-link">Features</a></li>
+          <li><a href="in-flight.html" class="nav-link">In Flight</a></li>
+          <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="specs.html" class="nav-link">Specs</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="story.html" class="nav-link">Story</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="navbar__actions">
-        <a href="studio.html" class="btn btn--primary btn--sm">Build Drone</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-          <span></span><span></span><span></span>
+      <div class="header-actions">
+        <a href="features.html" class="btn btn-outline header-cta">
+          <span>Explore features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+            <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Drawer -->
-  <div class="mobile-nav" id="mobileNav">
-    <ul class="mobile-nav__list">
-      <li><a href="index.html" class="mobile-nav__link">Home</a></li>
-      <li><a href="about.html" class="mobile-nav__link">About</a></li>
-      <li><a href="services.html" class="mobile-nav__link">Services</a></li>
-      <li><a href="pricing.html" class="mobile-nav__link">Pricing</a></li>
-      <li><a href="showreel.html" class="mobile-nav__link">Showreel</a></li>
-      <li><a href="studio.html" class="mobile-nav__link">Studio</a></li>
-      <li><a href="profile.html" class="mobile-nav__link">Profile</a></li>
-      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
-      <li><a href="contact.html" class="mobile-nav__link active">Contact</a></li>
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="wordmark-text">GARUD</span>
+      <button class="drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Overview</a></li>
+      <li><a href="features.html" class="drawer-link">Features</a></li>
+      <li><a href="in-flight.html" class="drawer-link">In Flight</a></li>
+      <li><a href="engineering.html" class="drawer-link">Engineering</a></li>
+      <li><a href="specs.html" class="drawer-link">Specifications</a></li>
+      <li><a href="gallery.html" class="drawer-link">Visual Gallery</a></li>
+      <li><a href="story.html" class="drawer-link">Design Story</a></li>
+      <li><a href="faq.html" class="drawer-link">FAQ &amp; Inquiry</a></li>
+      <li><a href="contact.html" class="drawer-link active">Exhibition Contact</a></li>
     </ul>
+    <div class="drawer-footer">
+      <p class="caption-text">ARCHIVAL SPECIFICATION 2026</p>
+      <!-- BRAND-NAME-PLACEHOLDER -->
+    </div>
   </div>
 
-  <main style="padding-top: 6rem;">
-    <section class="section">
-      <div class="container">
-        <div class="section__header" style="text-align: left; margin-bottom: 2.5rem;">
-          <div class="section__label">
-            FLIGHT DISPATCH &amp; PARTNERSHIPS
-            <span class="scavenger-drone" data-scavenger-id="scav_contact" style="margin-left:8px;" title="Secret Recon Drone Found!">🛸</span>
-          </div>
-          <h1 class="section__title" style="font-size: clamp(2.4rem, 5vw, 4rem);">
-            Submit a <span class="text-cyan">Mission Request</span>
-          </h1>
-          <p class="section__subtitle" style="max-width: 800px;">
-            Whether you represent a State Disaster Management Authority (SDMA), a hospital blood bank network, or an enterprise 3PL logistics provider, our operations team is ready to deploy.
-          </p>
+  <main id="main-content" role="main">
+
+    <!-- Page Title Header -->
+    <section class="page-intro-section">
+      <div class="editorial-container">
+        <div class="section-label-group">
+          <span class="chapter-num">CHAPTER 09</span>
+          <span class="hairline-divider"></span>
+          <span class="section-meta">CURATORIAL &amp; TECHNICAL COMMUNICATION</span>
         </div>
-
-        <div class="grid grid--2">
-          <!-- Form with Progress Indicator -->
-          <div class="card">
-            <h2 style="font-size: var(--fs-h4); margin-bottom: 0.5rem; color: var(--clr-white);">Mission Requisition Form</h2>
-            
-            <div class="form-progress-wrap">
-              <div class="form-progress-header">
-                <span>REQUISITION READINESS:</span>
-                <span id="formProgressText" style="color:var(--clr-cyan); font-weight:700;">0% COMPLETE</span>
-              </div>
-              <div class="form-progress-track">
-                <div class="form-progress-fill" id="formProgressBar"></div>
-              </div>
-            </div>
-
-            <form id="contact-form">
-              <div class="form__group">
-                <label for="name" class="form__label">Full Name / Official Designation</label>
-                <input type="text" id="name" class="form__input form-track-input" placeholder="e.g. Anand Kumar, Ops Director" required>
-                <div class="form__error">Please provide a valid name.</div>
-              </div>
-
-              <div class="form__group">
-                <label for="email" class="form__label">Official Email Address</label>
-                <input type="email" id="email" class="form__input form-track-input" placeholder="name@agency.gov.in" required>
-                <div class="form__error">Please provide a valid email.</div>
-              </div>
-
-              <div class="form__group">
-                <label for="subject" class="form__label">Inquiry / Deployment Scope</label>
-                <select id="subject" class="form__select form-track-input" required>
-                  <option value="">Select Deployment Category</option>
-                  <option value="b2g">B2G Flood Disaster Standby Retainer (SDMA)</option>
-                  <option value="b2b">Commercial B2B Middle-Mile Cargo Trial</option>
-                  <option value="medical">Healthcare &amp; Blood Bank Cold-Chain Transit</option>
-                  <option value="research">Academic / Incubatex R&amp;D Collaboration</option>
-                  <option value="invest">Startup Investment &amp; Seed Grants</option>
-                </select>
-                <div class="form__error">Please select a category.</div>
-              </div>
-
-              <div class="form__group">
-                <label for="message" class="form__label">Mission Operational Requirements</label>
-                <textarea id="message" class="form__textarea form-track-input" placeholder="Detail your operational corridor, expected payload weights, frequency, or flood response readiness parameters..." required></textarea>
-                <div class="form__error">Please provide operational details (minimum 10 characters).</div>
-              </div>
-
-              <button type="submit" class="btn btn--primary magnetic" style="width: 100%;">
-                Submit Mission Requisition
-              </button>
-            </form>
-          </div>
-
-          <!-- Contact Information & Radar Base -->
-          <div>
-            <div class="contact-info">
-              <div class="contact-info__item">
-                <div class="contact-info__icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-info__label">Research &amp; Flight Testing HQ</div>
-                  <div class="contact-info__value">
-                    Incubatex Innovation Foundation<br>
-                    GIET University Campus, Gunupur - 765022<br>
-                    Rayagada, Odisha, India
-                  </div>
-                </div>
-              </div>
-
-              <div class="contact-info__item">
-                <div class="contact-info__icon">
-                  <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-info__label">Direct Telemetry &amp; Flight Ops Hotline</div>
-                  <div class="contact-info__value">+91 94370 12345 / +91 6857 250123</div>
-                </div>
-              </div>
-
-              <div class="contact-info__item">
-                <div class="contact-info__icon">
-                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-info__label">Secure Email Inquiries</div>
-                  <div class="contact-info__value">contact@drwebaero.in | incubatex@giet.edu</div>
-                </div>
-              </div>
-
-              <div class="contact-info__item">
-                <div class="contact-info__icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
-                </div>
-                <div>
-                  <div class="contact-info__label">Flight Base Operations Hours</div>
-                  <div class="contact-info__value">Mon - Sat: 08:00 - 19:00 IST<br>Emergency Disaster Dispatch: 24/7/365</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Radar Flight Base Map Simulation -->
-            <div class="radar-map-box">
-              <div class="radar-sweep"></div>
-              <div class="map-blip" style="top: 48%; left: 52%;"></div>
-              <div style="position: absolute; bottom: 12px; left: 16px; font-family: var(--ff-mono); font-size: 11px; color: var(--clr-cyan); z-index: 2;">
-                RADAR: GUNUPUR AIRSPACE CORRIDOR [ACTIVE 19.0494°N, 83.8213°E]
-              </div>
-            </div>
-          </div>
+        <h1 class="page-title">Curatorial Inquiries</h1>
+        <p class="body-lead">
+          Garud is an object of academic and technological study. We welcome communications regarding technical telemetry, scientific research partnerships, and museum exhibition loans.
+        </p>
+        <div class="disclaimer-callout">
+          <strong>NON-COMMERCIAL ARCHIVE NOTICE:</strong>
+          <span>This portal is strictly dedicated to engineering inquiries and research collaborations. Garud is not available for retail purchase, e-commerce ordering, or commercial consumer sales.</span>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- Shared Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a href="index.html" class="navbar__logo">
-            <span class="navbar__logo-icon">⚡</span>
-            <span class="navbar__logo-text">DRWEB<span class="text-cyan">AERO</span></span>
-          </a>
-          <p class="footer__brand-desc">
-            Modular Autonomous Heavy-Lift Drone Platform for Flood Disaster Relief &amp; Multi-Sector Logistics. Incubatex Foundation, GIET University.
-          </p>
-        </div>
+    <!-- Contact Content Layout -->
+    <section class="contact-section">
+      <div class="editorial-container">
+        <div class="contact-grid">
 
-        <div>
-          <h4 class="footer__heading">Navigation</h4>
-          <a href="index.html" class="footer__link">Home</a>
-          <a href="about.html" class="footer__link">About &amp; Tech</a>
-          <a href="services.html" class="footer__link">Services</a>
-          <a href="pricing.html" class="footer__link">Pricing</a>
-          <a href="showreel.html" class="footer__link">4K Showreel</a>
-          <a href="studio.html" class="footer__link">Drone Studio</a>
-          <a href="profile.html" class="footer__link">Pilot Profile</a>
-        </div>
+          <!-- Left Column: Form -->
+          <div class="contact-form-column">
+            <h2 class="subhead-mono">01 // SUBMIT AN INQUIRY</h2>
+            
+            <form class="editorial-form" id="enquiry-form" novalidate>
+              
+              <div class="form-group">
+                <label for="contact-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="contact-name" name="name" placeholder="Dr. Elena Vance" required>
+                <div class="field-error" id="name-error">Please provide your full name.</div>
+              </div>
 
-        <div>
-          <h4 class="footer__heading">Support &amp; Legal</h4>
-          <a href="faq.html" class="footer__link">FAQ</a>
-          <a href="contact.html" class="footer__link">Mission Request (Contact)</a>
-          <a href="404.html" class="footer__link">Flight Radar (404)</a>
-        </div>
+              <div class="form-group">
+                <label for="contact-email">Institutional or Professional Email <span class="required">*</span></label>
+                <input type="email" id="contact-email" name="email" placeholder="e.vance@cryosphere-institute.org" required>
+                <div class="field-error" id="email-error">Please enter a valid email address.</div>
+              </div>
 
-        <div>
-          <h4 class="footer__heading">Secret Recon Drones</h4>
-          <p style="font-size: 0.85rem; color: var(--clr-text-dim); margin-bottom: 0.5rem;">
-            10 micro drones are hidden throughout this platform. Discover them to unlock the "Surveyor General" badge and bonus coins.
-          </p>
-          <span class="scavenger-drone" data-scavenger-id="scav_contact_footer" title="Secret Recon Drone Found!">🛸</span>
+              <div class="form-group">
+                <label for="contact-topic">Inquiry Topic <span class="required">*</span></label>
+                <select id="contact-topic" name="topic" required>
+                  <option value="" disabled selected>Select an area of interest...</option>
+                  <option value="technical">Technical Specification &amp; Telemetry Data</option>
+                  <option value="research">Scientific &amp; Academic Research Deployment</option>
+                  <option value="exhibition">Museum Exhibition &amp; Retrospective Loan</option>
+                  <option value="press">Media, Monograph &amp; Journal Review</option>
+                  <option value="other">General Engineering Inquiry</option>
+                </select>
+                <div class="field-error" id="topic-error">Please select an inquiry topic.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Inquiry Details <span class="required">*</span></label>
+                <textarea id="contact-message" name="message" rows="5" placeholder="Specify your research objectives, flight parameters, or exhibition dates (minimum 20 characters)..." required></textarea>
+                <div class="field-error" id="message-error">Please provide detailed context (at least 20 characters).</div>
+              </div>
+
+              <div class="form-checkbox-group">
+                <input type="checkbox" id="contact-consent" name="consent" required>
+                <label for="contact-consent">
+                  I understand that this form is strictly for technical and curatorial inquiries, not commercial purchase or retail orders.
+                </label>
+                <div class="field-error" id="consent-error">Please acknowledge the non-commercial nature of this inquiry.</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submit-enquiry-btn">
+                <span>Transmit Archival Inquiry</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+                  <path d="M 2 6 L 10 6 M 6 2 L 10 6 L 6 10" />
+                </svg>
+              </button>
+
+              <div class="form-feedback" id="enquiry-feedback" role="alert"></div>
+
+            </form>
+          </div>
+
+          <!-- Right Column: Archival Base Directory -->
+          <div class="contact-info-column">
+            <h2 class="subhead-mono">02 // ARCHIVAL REPOSITORY BASE</h2>
+
+            <div class="info-block">
+              <span class="info-label">RESEARCH &amp; ARCHIVAL DESK</span>
+              <p class="info-val">
+                <a href="mailto:curator@garud-archive.org">curator@garud-archive.org</a> <!-- DUMMY -->
+              </p>
+              <p class="info-sub">Cryptographic PGP keys available upon institutional request.</p>
+            </div>
+
+            <div class="info-block">
+              <span class="info-label">TELEMETRY &amp; FLIGHT LAB</span>
+              <p class="info-val">+1 (415) 890-4278</p> <!-- DUMMY -->
+              <p class="info-sub">Monday–Friday 09:00–17:00 PST (Technical calls only)</p>
+            </div>
+
+            <div class="info-block">
+              <span class="info-label">FACILITY LOCATION</span>
+              <address class="info-address">
+                Garud Engineering Monolith Archive<br>
+                Hangar 12, Aerospace Corridor<br>
+                Mojave Air &amp; Space Port<br>
+                California 93501, USA <!-- DUMMY -->
+              </address>
+            </div>
+
+            <div class="info-block">
+              <span class="info-label">MONOGRAPH CITATION</span>
+              <p class="info-sub">
+                To cite this monograph in scientific literature:<br>
+                <code>Garud Archival Technical Monograph. Rev 4.2.0 (2026). Ref: GARUD-SPEC-AERO-01.</code>
+              </p>
+            </div>
+
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <div class="footer__bottom">
-        <div>&copy; 2026 DRWEB Aero. All rights reserved. Incubatex Innovation Foundation, GIET University, Gunupur-765022.</div>
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <span class="footer-wordmark">GARUD</span>
+          <p class="footer-tagline">Autonomous Aerial Instrument. Sees like an eagle. Flies like a whisper.</p>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">MONOGRAPH DIRECTORY</span>
+          <ul class="footer-links">
+            <li><a href="index.html">00 // Overview</a></li>
+            <li><a href="features.html">01 // All 8 Features</a></li>
+            <li><a href="in-flight.html">02 // Operational Regimes</a></li>
+            <li><a href="engineering.html">03 // Monocoque Engineering</a></li>
+            <li><a href="specs.html">04 // Complete Technical Matrix</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-col-title">CURATORIAL &amp; PRESS</span>
+          <ul class="footer-links">
+            <li><a href="gallery.html">05 // Visual Exhibition</a></li>
+            <li><a href="story.html">06 // Origin &amp; Etymology</a></li>
+            <li><a href="faq.html">07 // Technical FAQ</a></li>
+            <li><a href="contact.html">08 // Curatorial Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-subscribe-col">
+          <span class="footer-col-title">ARCHIVAL UPDATES</span>
+          <p class="footer-sub-text">Receive technical monographs and updates.</p>
+          <form class="bulletin-form" id="bulletin-form">
+            <div class="input-inline-group">
+              <input type="email" placeholder="curator@institution.org" required aria-label="Email for updates">
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </div>
+            <div class="form-feedback" id="bulletin-feedback" role="alert"></div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-rule"></div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2026 GARUD. All engineering designs reserved.</p>
+          <!-- BRAND-NAME-PLACEHOLDER -->
+          <p class="disclaimer-text">Archival technical monograph. Not an e-commerce platform.</p>
+        </div>
+        <div class="footer-meta-stats">
+          <span>SPEC-REV: 4.2.0</span>
+          <span>&bull;</span>
+          <span>ISO-2768-m</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/flight.js"></script>
-  <script>
-    // Form Progress Gamification
-    (function(){
-      const inputs = document.querySelectorAll('.form-track-input');
-      const bar = document.getElementById('formProgressBar');
-      const text = document.getElementById('formProgressText');
-      const form = document.getElementById('contact-form');
-
-      function updateProgress() {
-        let filled = 0;
-        inputs.forEach(i => {
-          if (i.value.trim().length > 0) filled++;
-        });
-        const pct = Math.floor((filled / inputs.length) * 100);
-        if (bar) bar.style.width = `${pct}%`;
-        if (text) text.textContent = pct === 100 ? 'MISSION PARAMETERS LOCKED (100%)' : `${pct}% COMPLETE`;
-      }
-
-      inputs.forEach(i => {
-        i.addEventListener('input', updateProgress);
-        i.addEventListener('change', updateProgress);
-      });
-
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          if (window.AeroGame) {
-            window.AeroGame.addXP(100);
-            window.AeroGame.addCoins(75);
-            window.AeroGame.spawnFloatText('MISSION DISPATCHED: +100 XP & +75 COINS!', 'coins');
-          }
-          alert('Mission Requisition dispatched to GIET University flight operations command! Telemetry engineers will respond within 4 hours.');
-          form.reset();
-          updateProgress();
-        });
-      }
-    })();
-  </script>
+  <script src="js/motion.js"></script>
 </body>
 </html>
