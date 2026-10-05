@@ -93,6 +93,6 @@
 
   <!-- Technical Monograph Footer Tag -->
   <line x1="40" y1="440" x2="760" y2="440" stroke="#D6D3CB" stroke-width="0.8" />
-  <text x="40" y="465" class="dim-text">ARCHIVAL RECORD: GARUD-AIRFRAME-SPECS // REV 4.2</text>
+  <text x="40" y="465" class="dim-text">ARCHIVAL RECORD: GRAVITAS-AIRFRAME-SPECS // REV 4.2</text>
   <text x="560" y="465" class="dim-text-accent">PASSIVE RADAR CROSS-SECTION: 0.012 m²</text>
 </svg>

@@ -68,7 +68,7 @@
   <circle cx="300" cy="290" r="3" class="accent-fill" />
 
   <!-- Technical Dimension & Angle Annotations -->
-  <text x="300" y="380" font-family="'JetBrains Mono', monospace" font-size="10" fill="#62656E" text-anchor="middle" letter-spacing="2">GARUD MONOCOQUE BLUEPRINT // SCALE 1:1</text>
+  <text x="300" y="380" font-family="'JetBrains Mono', monospace" font-size="10" fill="#62656E" text-anchor="middle" letter-spacing="2">GRAVITAS MONOCOQUE BLUEPRINT // SCALE 1:1</text>
   <text x="50" y="45" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8C8E94">DATUM: REF-01</text>
   <text x="530" y="45" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8C8E94" text-anchor="end">SPAN: 340mm</text>
 </svg>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — CORE MONOGRAPH SCRIPTS (main.js)
+   GRAVITAS — CORE MONOGRAPH SCRIPTS (main.js)
    Navigation, Lightbox, FAQ Accordion, Soft Enquiry Form Validation.
    ========================================================================== */
 
@@ -139,5 +139,5 @@
     });
   }
 
-  console.log('[Garud Monograph] Core systems initialized.');
+  console.log('[Gravitas Monograph] Core systems initialized.');
 })();

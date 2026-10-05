@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — ENGINEERING EXPLODED VIEW CONTROLLER (explode.js)
+   GRAVITAS — ENGINEERING EXPLODED VIEW CONTROLLER (explode.js)
    Deconstructs and reassembles the carbon-titanium monocoque architecture.
    ========================================================================== */
 
@@ -56,7 +56,7 @@
     }
   };
 
-  window.GarudExploded = ExplodedEngine;
+  window.GravitasExploded = ExplodedEngine;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => ExplodedEngine.init());

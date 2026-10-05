@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GARUD — MOTION & THE ANATOMY JOURNEY (motion.js)
+   GRAVITAS — MOTION & THE ANATOMY JOURNEY (motion.js)
    GSAP 3.12.5 + ScrollTrigger signature camera moves, SVG line drawing,
    subtle image unmasks, and chapter stat counter animations.
    ========================================================================== */
@@ -220,7 +220,7 @@
     }
   };
 
-  window.GarudMotion = MotionEngine;
+  window.GravitasMotion = MotionEngine;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => MotionEngine.init());
