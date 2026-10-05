@@ -1,66 +1,106 @@
 /* ==========================================================================
-   GRAVITAS — ENGINEERING EXPLODED VIEW CONTROLLER (explode.js)
-   Deconstructs and reassembles the carbon-titanium monocoque architecture.
+   GARUD — INTERACTIVE EXPLODED VIEW ENGINE (explode.js)
+   Physical stratum dispersion along the central vertical datum axis.
+   Translates individual mechanical layers (canopy, sensors, avionics,
+   battery, chassis, and gimbal) based on slider percentage.
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  const ExplodedEngine = {
-    slider: null,
-    statusText: null,
-    layers: [],
-
+  const ExplodeEngine = {
     init() {
-      this.slider = document.getElementById('explodeSlider');
-      this.statusText = document.getElementById('explodeStatus');
-      this.layers = [
-        { id: 'layerFuselageTop', dx: 0, dy: -120, dz: 0 },
-        { id: 'layerRotorsTop', dx: -60, dy: -60, dz: 0 },
-        { id: 'layerCoreAvionics', dx: 0, dy: 0, dz: 0 },
-        { id: 'layerBatteryTray', dx: 0, dy: 60, dz: 0 },
-        { id: 'layerGimbalBottom', dx: 40, dy: 130, dz: 0 }
-      ];
+      this.slider = document.getElementById('exploded-slider');
+      this.valDisplay = document.getElementById('dispersion-value');
+      this.container = document.getElementById('exploded-container');
+      this.presets = document.querySelectorAll('.btn-preset');
 
-      if (this.slider) {
-        this.slider.addEventListener('input', (e) => {
-          const val = parseFloat(e.target.value) / 100;
-          this.applyExplosion(val);
-        });
+      if (!this.slider || !this.container) return;
 
-        // Initialize at 0% (assembled)
-        this.applyExplosion(0);
-      }
+      this.cacheLayers();
+      this.bindEvents();
+      this.updateDispersion(parseInt(this.slider.value, 10) || 0);
     },
 
-    applyExplosion(factor) {
-      this.layers.forEach(layer => {
-        const el = document.getElementById(layer.id);
-        if (el) {
-          const transY = layer.dy * factor;
-          const transX = layer.dx * factor;
-          el.style.transform = `translate3d(${transX}px, ${transY}px, 0)`;
-          el.style.opacity = factor > 0 ? (0.6 + (1 - factor) * 0.4) : 1;
-        }
+    cacheLayers() {
+      // Find SVG layer groups inside the container
+      this.layerCanopy = this.container.querySelector('#layer-canopy');
+      this.layerSensors = this.container.querySelector('#layer-sensors');
+      this.layerAvionics = this.container.querySelector('#layer-avionics');
+      this.layerBattery = this.container.querySelector('#layer-battery');
+      this.layerChassis = this.container.querySelector('#layer-chassis');
+      this.layerGimbal = this.container.querySelector('#layer-gimbal');
+      this.centralAxis = this.container.querySelector('.datum');
+    },
+
+    bindEvents() {
+      this.slider.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        this.updateDispersion(val);
+        this.updatePresetButtons(val);
       });
 
-      if (this.statusText) {
-        if (factor === 0) {
-          this.statusText.textContent = 'STATE: MONOCOQUE ASSEMBLED (0% DISPERSION)';
-        } else if (factor >= 0.95) {
-          this.statusText.textContent = 'STATE: FULL ISOLATION (100% DISPERSION)';
+      this.presets.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const percent = parseInt(e.currentTarget.getAttribute('data-percent'), 10);
+          this.slider.value = percent;
+          this.updateDispersion(percent);
+          this.updatePresetButtons(percent);
+        });
+      });
+    },
+
+    updatePresetButtons(val) {
+      this.presets.forEach(btn => {
+        const btnVal = parseInt(btn.getAttribute('data-percent'), 10);
+        if (btnVal === val) {
+          btn.classList.add('active');
         } else {
-          this.statusText.textContent = `STATE: SEPARATION AT ${Math.round(factor * 100)}%`;
+          btn.classList.remove('active');
         }
+      });
+    },
+
+    updateDispersion(percent) {
+      if (this.valDisplay) {
+        this.valDisplay.textContent = `${percent}%`;
+      }
+
+      const factor = percent / 100;
+
+      // Physically displace individual mechanical layers along vertical axis
+      if (this.layerCanopy) {
+        const dy = -100 * factor;
+        this.layerCanopy.style.transform = `translateY(${dy}px)`;
+        this.layerCanopy.style.transition = 'transform 0.15s ease-out';
+      }
+      if (this.layerSensors) {
+        const dy = -55 * factor;
+        this.layerSensors.style.transform = `translateY(${dy}px)`;
+        this.layerSensors.style.transition = 'transform 0.15s ease-out';
+      }
+      if (this.layerAvionics) {
+        const dy = -20 * factor;
+        this.layerAvionics.style.transform = `translateY(${dy}px)`;
+        this.layerAvionics.style.transition = 'transform 0.15s ease-out';
+      }
+      if (this.layerBattery) {
+        const dy = 25 * factor;
+        this.layerBattery.style.transform = `translateY(${dy}px)`;
+        this.layerBattery.style.transition = 'transform 0.15s ease-out';
+      }
+      if (this.layerChassis) {
+        const dy = 45 * factor;
+        this.layerChassis.style.transform = `translateY(${dy}px)`;
+        this.layerChassis.style.transition = 'transform 0.15s ease-out';
+      }
+      if (this.layerGimbal) {
+        const dy = 95 * factor;
+        this.layerGimbal.style.transform = `translateY(${dy}px)`;
+        this.layerGimbal.style.transition = 'transform 0.15s ease-out';
       }
     }
   };
 
-  window.GravitasExploded = ExplodedEngine;
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => ExplodedEngine.init());
-  } else {
-    ExplodedEngine.init();
-  }
+  document.addEventListener('DOMContentLoaded', () => ExplodeEngine.init());
 })();
